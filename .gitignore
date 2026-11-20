@@ -1,0 +1,9 @@
+node_modules/
+.netlify/
+.env
+.env.*
+!.env.example
+# Stage 2 import seed: open asks, todo, status, meta from the old relay. Live data, never committed.
+migration-seed/
+*.seed.json
+*.local.db

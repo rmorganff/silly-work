@@ -1,0 +1,13 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  # migrations are read at cold start by src/lib/db.ts
+  included_files = ["migrations/**"]
+
+[[headers]]
+  for = "/claude-shim.js"
+  [headers.values]
+    Cache-Control = "no-cache"

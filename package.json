@@ -1,0 +1,23 @@
+﻿{
+  "name": "silly-work",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Work-side board backend for Silly: Netlify Functions + Turso, with a drop-in window.claude shim.",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "migrate": "tsx scripts/migrate.ts",
+    "extract-relay": "node scripts/extract-relay.mjs"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.15.0"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^4.0.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0"
+  }
+}
