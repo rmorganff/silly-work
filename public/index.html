@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work Board</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%232f5d8a%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2246%22%20font-family%3D%22Arial%2CHelvetica%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2242%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fff%22%3EW%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<meta name="theme-color" content="#2f5d8a">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky bar (board switch, status line, section tabs), then one section at a time. Warm paper, one accent per board, status colour on the left edge of each card. */
+:root { --bg:#f3f1ec; --fg:#1d1f22; --muted:#5d6168; --line:#d6d3cb; --card:#ffffff; --soft:#ebe8e1; --accent:var(--work); --work:#2f5d8a; --personal:#6b4f8a; --good:#2e7d4f; --warn:#a85f00; --bad:#b4322e; --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#121416; --fg:#ecebe7; --muted:#a3a7ae; --line:#30343a; --card:#1c1f23; --soft:#262a2f; --work:#7fb0e0; --personal:#b79ddb; --good:#5fbf86; --warn:#e0a24a; --bad:#ec7a75; color-scheme:dark } }
+:root[data-theme="dark"] { --bg:#121416; --fg:#ecebe7; --muted:#a3a7ae; --line:#30343a; --card:#1c1f23; --soft:#262a2f; --work:#7fb0e0; --personal:#b79ddb; --good:#5fbf86; --warn:#e0a24a; --bad:#ec7a75; color-scheme:dark }
+* { box-sizing:border-box }
+html { -webkit-text-size-adjust:100%; text-size-adjust:100% }
+body { background:var(--bg); color:var(--fg); font-family:var(--font); font-size:17px; line-height:1.5; margin:0 }
+a { color:var(--accent); text-underline-offset:2px }
+[hidden] { display:none !important }
+.wrap { max-width:760px; margin:0 auto; padding-left:max(14px,env(safe-area-inset-left,0px)); padding-right:max(14px,env(safe-area-inset-right,0px)) }
+
+/* Sticky bar */
+.bar { position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter:saturate(1.4) blur(10px); -webkit-backdrop-filter:saturate(1.4) blur(10px); border-bottom:1px solid var(--line); padding-top:max(10px,env(safe-area-inset-top,0px)) }
+.top { display:flex; align-items:center; gap:10px; justify-content:space-between }
+.switch { display:inline-flex; background:var(--soft); border-radius:12px; padding:4px; gap:4px }
+.switch a { display:inline-flex; align-items:center; gap:8px; min-height:42px; padding:0 16px; border-radius:9px; font-weight:600; font-size:17px; text-decoration:none; color:var(--muted) }
+.switch a .dot { width:10px; height:10px; border-radius:50%; background:currentColor; opacity:.7 }
+.switch a.on { background:var(--card); color:var(--fg); box-shadow:0 1px 2px rgb(0 0 0 / .12) }
+.switch a.on .dot { opacity:1; background:var(--accent) }
+.switch a.w:not(.on) .dot { background:var(--work) } .switch a.p:not(.on) .dot { background:var(--personal) }
+.board-name { display:flex; align-items:center; gap:10px; font-size:21px; margin:0; min-height:50px }
+.board-name .dot { width:12px; height:12px; border-radius:50%; background:var(--accent) }
+.sub { color:var(--muted); font-size:14.5px; margin:8px 0 0; font-variant-numeric:tabular-nums }
+.sub b { color:var(--fg) }
+.tabs { display:flex; margin:6px -6px 0 }
+.tab { flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:58px; padding:4px 2px 2px; font:inherit; font-size:15.5px; font-weight:500; color:var(--muted); background:none; border:0; border-bottom:3px solid transparent; cursor:pointer; white-space:nowrap }
+.tab[aria-selected="true"] { color:var(--fg); font-weight:600; border-bottom-color:var(--accent) }
+.tab .n { order:-1; font-size:12.5px; font-weight:700; min-width:22px; height:20px; padding:0 6px; border-radius:999px; background:var(--soft); color:var(--muted); display:inline-grid; place-items:center; font-variant-numeric:tabular-nums }
+.tab .n.hot { background:var(--bad); color:#fff }
+.tab .n:empty { visibility:hidden }
+
+main { padding-block:16px 56px }
+.sec-head { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin:0 0 12px }
+.sec-head h2 { font-size:21px; margin:0; letter-spacing:-.01em }
+.hint { color:var(--muted); font-size:15px; margin:-4px 0 14px }
+
+/* Cards */
+.card { background:var(--card); border:1px solid var(--line); border-left:5px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:10px; min-width:0; overflow-wrap:anywhere }
+.card.s-waiting { border-left-color:var(--bad) }
+.card.s-blocked { border-left-color:var(--warn) }
+.card.s-running { border-left-color:var(--good) }
+.card.s-done { opacity:.72 }
+.empty { color:var(--muted); font-style:italic; border-left-color:var(--line) }
+.head { display:flex; gap:10px; align-items:flex-start; justify-content:space-between }
+.name { font-weight:600; font-size:18px; line-height:1.35 }
+.num { font-family:var(--mono); color:var(--muted); font-weight:500; margin-right:4px }
+.meta { color:var(--muted); font-size:14.5px; font-variant-numeric:tabular-nums }
+.where { margin-top:6px }
+.clamp { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden }
+.pins { display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; margin:12px 0 6px; padding-bottom:8px; -webkit-overflow-scrolling:touch }
+.pinp { flex:0 0 78%; max-width:300px; scroll-snap-align:start; margin:0; background:var(--soft); border:1px solid var(--line); border-radius:16px; overflow:hidden }
+.pvctl { display:flex; flex-wrap:wrap; gap:6px; align-items:center; padding:0 12px 12px }
+.pvctl .pvon { background:#1f6f43; color:#fff }
+.pvctl .pvoff { background:#8a2b2b; color:#fff }
+.pinp img { display:block; width:100%; aspect-ratio:2/3; object-fit:cover }
+.pinp figcaption { padding:10px 12px 12px; display:grid; gap:4px; font-size:15px; line-height:1.35 }
+.clamp4 { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:4; overflow:hidden }
+.preview { margin-top:12px; padding:12px 14px; border-radius:10px; background:var(--soft); border:1px solid var(--line) }
+.preview .ask { margin-top:0 }
+/* Everything Ronnie needs to answer, on the card itself (7 Nov) */
+.dets { margin-top:12px; display:grid; gap:10px }
+.det { padding:12px 14px; border-radius:10px; background:var(--soft); border:1px solid var(--line) }
+.det h4 { margin:0 0 6px; font-size:16px; font-weight:700 }
+.det ol, .det ul { margin:0; padding-left:22px; display:grid; gap:4px }
+.det p { margin:0 0 4px }
+.pill { flex:0 0 auto; font-size:13.5px; font-weight:600; border-radius:999px; padding:4px 11px; background:var(--soft); color:var(--muted); line-height:1.3; max-width:58%; text-align:right }
+.pill.waiting { background:color-mix(in srgb, var(--bad) 14%, var(--card)); color:var(--bad) }
+.pill.running { background:color-mix(in srgb, var(--good) 14%, var(--card)); color:var(--good) }
+.pill.blocked { background:color-mix(in srgb, var(--warn) 16%, var(--card)); color:var(--warn) }
+.pills { display:flex; gap:8px; flex-wrap:wrap }
+.pills .pill { max-width:none; text-align:left }
+.status-line { margin-top:8px; font-weight:600; font-size:16px }
+.status-line.waiting { color:var(--bad) } .status-line.running { color:var(--good) } .status-line.blocked { color:var(--warn) } .status-line.idle, .status-line.done { color:var(--muted) }
+.txt p { margin:8px 0 } .txt ol, .txt ul { margin:8px 0 4px 1.3em; padding:0 } .txt li { margin:4px 0 }
+ol.feed { padding-left:1.3em; margin:8px 0 0 } ol.feed li { margin-bottom:8px }
+.details { margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); display:grid; gap:4px }
+/* Video plan: every stage of the pipeline as chips in order, the current one filled */
+.plan { margin-top:10px }
+.plan-head { font-size:15.5px; font-weight:600 }
+.plan-head .meta { font-weight:400 }
+.plan-bar { height:6px; border-radius:999px; background:var(--soft); margin:7px 0 8px; overflow:hidden }
+.plan-bar i { display:block; height:100%; background:var(--accent); border-radius:999px }
+.chips { display:flex; flex-wrap:wrap; gap:5px }
+.chip { font-size:13.5px; line-height:1.25; padding:4px 9px; border-radius:999px; border:1.5px solid var(--line); color:var(--muted); background:var(--card); white-space:nowrap }
+.chip.done { background:var(--soft); border-color:var(--soft) }
+.chip.done::before { content:"\2713 "; color:var(--good); font-weight:700 }
+.chip.now { background:var(--accent); border-color:var(--accent); color:var(--card); font-weight:600 }
+.chip.you:not(.done):not(.now) { border-style:dashed; color:var(--fg) }
+.chip.skip { text-decoration:line-through; opacity:.6 }
+.plan-note { margin-top:7px; font-size:15px }
+
+/* Controls: 44px minimum touch targets, 16px+ text in inputs */
+.reply { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; align-items:center }
+.btn, .opt { font:inherit; font-size:16px; font-weight:600; min-height:46px; padding:0 18px; border-radius:10px; cursor:pointer; border:1.5px solid var(--accent); color:var(--accent); background:var(--card); display:inline-flex; align-items:center; justify-content:center; gap:6px }
+a.btn { text-decoration:none }
+.btn.primary, .opt.send { background:var(--accent); color:var(--card); border-color:var(--accent) }
+.btn.quiet { border-color:var(--line); color:var(--fg); font-weight:500 }
+.btn:disabled, .opt:disabled { opacity:.5; cursor:default }
+.btn:active, .opt:active { transform:translateY(1px) }
+.choices { display:flex; flex-direction:column; gap:8px; margin-top:12px }
+.opt.wide { display:flex; justify-content:flex-start; width:100%; text-align:left; white-space:normal; line-height:1.35; padding:12px 16px; font-weight:500 }
+.opt.wide b { flex:0 0 auto; width:28px; height:28px; border-radius:7px; background:color-mix(in srgb, var(--accent) 15%, var(--card)); display:inline-grid; place-items:center; margin-right:10px; font-family:var(--mono) }
+.ask { font-weight:600; margin-top:12px; font-size:15px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em }
+.in { flex:1 1 180px; min-width:0; min-height:46px; font:inherit; font-size:16px; padding:0 14px; border:1.5px solid var(--line); border-radius:10px; background:var(--bg); color:var(--fg) }
+.in:focus { border-color:var(--accent); outline:none }
+.btn:focus-visible, .opt:focus-visible, .tab:focus-visible, .tog:focus-visible, .switch a:focus-visible { outline:3px solid var(--accent); outline-offset:2px }
+.tog { background:none; border:0; color:var(--accent); font:inherit; font-size:15.5px; font-weight:600; min-height:44px; padding:0 2px; cursor:pointer }
+.tog.more { display:block; margin:2px 0 0 }
+.tog.block { display:flex; width:100%; justify-content:center; border:1.5px dashed var(--line); border-radius:12px; color:var(--muted); margin:4px 0 12px }
+.flags { border-left-color:var(--warn); background:color-mix(in srgb, var(--warn) 8%, var(--card)); color:var(--fg) }
+.flags .ttl { font-weight:700; color:var(--warn); margin-bottom:4px }
+.flags div + div { margin-top:4px }
+.addbox { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px }
+.sub.lead { margin:0 0 14px }
+.sync { display:flex; align-items:center; gap:8px; font-size:14.5px; color:var(--muted); padding:6px 0 8px; }
+.sync[hidden] { display:none }
+.sync .spin { width:16px; height:16px; border-radius:50%; border:2.5px solid var(--line); border-top-color:var(--accent); animation:spin .8s linear infinite; flex:none }
+.sync.slow .spin { border-top-color:var(--warn) }
+.sync .ok { width:18px; height:18px; border-radius:50%; background:var(--good); color:#fff; font-size:12px; font-weight:700; display:none; align-items:center; justify-content:center; flex:none }
+.sync.done .spin, .sync.off .spin { display:none }
+.sync.done .ok { display:inline-flex }
+.sync.done { color:var(--good) }
+.sync.done b { color:var(--good) }
+.sync.off .ok { display:inline-flex; background:var(--warn) }
+.sync.off { color:var(--warn) }
+.sync.flash { animation:flash 1.2s ease-out 1 }
+@keyframes flash { 0% { background:color-mix(in srgb, var(--good) 22%, transparent) } 100% { background:transparent } }
+@keyframes spin { to { transform:rotate(360deg) } }
+@media (prefers-reduced-motion: reduce) { .sync .spin { animation-duration:2.4s } }
+body:not([data-tab="waiting"]):not([data-tab="more"]) #flags { display:none }
+.foot { color:var(--muted); font-size:14px; margin:32px 0 0 }
+@media (max-width:420px) { .tab { font-size:15px } .switch a { padding:0 12px; font-size:16px } .name { font-size:17px } .pill { max-width:50% } }
+.qs{margin-top:12px;display:flex;flex-direction:column;gap:8px}.qs h4{margin:10px 0 0;font-size:16px}
+label.qa{display:flex;flex-direction:column;gap:4px}label.qa span{font-size:16px;line-height:1.35}
+textarea.in{width:100%;box-sizing:border-box;min-height:46px;font:inherit;font-size:16px;resize:vertical}
+ol.qdone{margin:8px 0 0 18px;padding:0}ol.qdone li{margin:0 0 8px}
+/* 8 Nov: question first, quiet "Pictures not ready" and "Doing" lists, the Videos strip */
+.card.s-idle { border-left-color:var(--line) }
+.qtext p:first-child { font-size:17.5px; font-weight:500 }
+.kico { display:inline-grid; place-items:center; width:26px; height:26px; border-radius:8px; margin-right:8px; font-size:15px; vertical-align:1px; background:color-mix(in srgb, var(--kc,#888) 20%, var(--card)); border:1px solid color-mix(in srgb, var(--kc,#888) 55%, var(--card)) }
+.k-social { --kc:#d6336c } .k-stock { --kc:#2f9e8f } .k-video { --kc:#e8590c } .k-blog { --kc:#7048e8 } .k-trip { --kc:#1c7ed6 } .k-system { --kc:#868e96 } .k-ask { --kc:#f08c00 }
+button.name { display:block; width:100%; text-align:left; background:none; border:0; padding:0; margin:0; font:inherit; font-weight:600; font-size:18px; line-height:1.35; color:var(--fg); cursor:pointer }
+button.name .chev { float:right; color:var(--accent); font-weight:700; font-size:20px; line-height:1 }
+.opt.send::before, .btn.primary::before { content:"\27A4"; font-size:14px }
+.tag { display:inline-block; font-size:12.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:2px 8px; border-radius:6px; background:color-mix(in srgb, var(--bad) 14%, var(--card)); color:var(--bad); margin-left:6px; vertical-align:2px }
+.grp { margin:22px 0 8px; font-size:15px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.05em }
+.grp .meta { text-transform:none; letter-spacing:0; font-weight:400 }
+.quiet { background:var(--soft); border-style:dashed }
+.quiet .name { font-size:16.5px }
+.dlist { padding:4px 0 }
+.doingl .dline { border-left:4px solid #2a6fb8; padding-left:10px; background:rgba(42,111,184,.07) } .doingtog { border-left:4px solid #2a6fb8 }
+.dline { display:flex; width:100%; align-items:flex-start; gap:10px; text-align:left; min-height:48px; padding:10px 4px; background:none; border:0; border-top:1px solid var(--line); font:inherit; font-size:15.5px; color:var(--fg); cursor:pointer }
+.dline:first-child { border-top:0 }
+.opt.picked { outline:2px solid var(--accent); background:color-mix(in srgb, var(--accent) 10%, var(--card)) }
+.picknote { margin-top:10px }
+textarea.in { min-height:84px; resize:vertical; font:inherit }
+.qtext p.theq { font-size:17px; font-weight:600; margin-top:6px }
+.startp { align-items:center; flex-wrap:wrap; gap:8px }
+.startp .meta { flex:1 1 160px }
+.windex .dline .tag { margin-left:6px }
+.dline .num { flex:0 0 auto }
+.dline .dt { flex:1 1 auto; min-width:0 }
+.dline .dt span { display:block; color:var(--muted); font-size:14px }
+.dline .chev { flex:0 0 auto; color:var(--accent); font-weight:700 }
+.vhead { display:flex; gap:12px; align-items:flex-start }
+.vpic { flex:0 0 112px; width:112px; height:63px; border-radius:8px; object-fit:cover; background:var(--soft); display:block }
+.vtile { flex:0 0 112px; width:112px; height:63px; border-radius:8px; display:grid; place-items:center; color:#fff; font-weight:700; font-size:14px; text-align:center; padding:4px; line-height:1.2 }
+.vhead .vt { min-width:0; flex:1 1 auto }
+.vstat { margin-top:4px; font-weight:600; font-size:15.5px; line-height:1.35 }
+.vstat.waiting { color:var(--bad) } .vstat.blocked { color:var(--warn) } .vstat.running { color:var(--good) } .vstat.idle { color:var(--muted) }
+.ladder { display:flex; flex-wrap:wrap; gap:4px; margin-top:10px }
+.lstep { font-size:13px; line-height:1.2; padding:4px 8px; border-radius:999px; border:1.5px solid var(--line); color:var(--fg); background:var(--card); white-space:nowrap }
+.lstep.done { color:var(--muted); background:var(--soft); border-color:var(--soft) }
+.lstep.done::before { content:"\2713 "; color:var(--good) }
+.lstep.now { border:2.5px solid var(--accent); color:var(--accent); font-weight:700 }
+.lstep.skip { text-decoration:line-through; opacity:.55 }
+.lstep.you::after { content:" \25CF"; color:var(--bad); font-size:10px; vertical-align:1px }
+.lstep.done.you::after { color:var(--muted) }
+.lnext { margin-top:7px; font-size:15px }
+.lbar { display:flex; gap:2px; margin-top:10px }
+.lbar i { flex:1 1 0; height:12px; border-radius:3px; background:var(--card); border:1px solid var(--line) }
+.lbar i.done { background:color-mix(in srgb, var(--good) 45%, var(--card)); border-color:transparent }
+.lbar i.now { background:var(--accent); border-color:var(--accent); outline:2px solid var(--accent); outline-offset:1px }
+.lbar i.you { box-shadow:inset 0 -4px 0 var(--bad) }
+.lbar i.skip { opacity:.3 }
+.lkey { color:var(--muted); font-size:13px; margin-top:4px }
+.fbc { border-left:6px solid var(--warn) } .fbc.fb-new { border-left-color:var(--warn); background:rgba(168,95,0,.10) } .fbc.fb-doing { border-left-color:#2a6fb8; background:rgba(42,111,184,.10) } .fbc.fb-done { border-left-color:var(--good); opacity:1 }
+.fbbadge { display:inline-block; font-size:12px; font-weight:700; border-radius:10px; padding:2px 9px; margin-bottom:4px; color:#fff; background:var(--warn) } .fbbadge.doing { background:#2a6fb8 } .fbbadge.done { background:var(--good) } .fbbadge.declined { background:#6d727a } .fbbadge.wait { background:#6d727a } .fbbadge.waityou { background:var(--bad) } .fbc.fb-wait { border-left-color:#6d727a; background:rgba(109,114,122,.10) } .fbc.fb-waityou { border-left-color:var(--bad); background:rgba(168,95,0,.10) }
+.fbrow { display:flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid var(--line); border-left:6px solid var(--good); border-radius:8px; background:var(--card); margin:4px 0; cursor:pointer; font-size:13px } .fbrow.declined { border-left-color:#8a8f98 } .fbrow .t { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+</style>
+<style>
+/* Board token (silly-work backend) */
+#tok-bar .addbox { margin-top:10px }
+#tok-bar .tok-note { color:var(--muted); font-size:14px; margin:8px 0 0 }
+#tok-bar .tok-note.bad { color:var(--bad) }
+.tok-ctl { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px }
+</style>
+<script>
+  // Backend: the silly-work Netlify API (Turso) instead of the claude.ai host storage.
+  // Set before the shim loads: the shim reads these when it runs.
+  window.SILLY_WORK_FORCE_SHIM = true;
+  window.SILLY_WORK_BASE = 'https://silly-work.netlify.app';
+</script>
+<script src="https://silly-work.netlify.app/claude-shim.js"></script>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <div class="top">
+      <nav class="switch" aria-label="Boards">
+        <a class="w" href="https://silly-work.netlify.app" id="sw-work"><span class="dot"></span>Work</a>
+        <a class="p" href="https://silly-personal.netlify.app" id="sw-personal"><span class="dot"></span>Personal</a>
+      </nav>
+      <h1 class="board-name" id="board-name" hidden><span class="dot"></span>Work Board</h1>
+      <button class="btn quiet" type="button" id="run-all" title="Start the task runner, the run that acts on your answers, and the needs-you push">Run all now</button>
+    </div>
+    <div class="sync" id="sync" role="status" aria-live="polite"><span class="spin" aria-hidden="true"></span><span class="ok" id="sync-ok" aria-hidden="true">✓</span><span id="sync-text">Updating the board…</span></div>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab" role="tab" type="button" data-tab="waiting">Waiting <span class="n" id="n-waiting"></span></button>
+      <button class="tab" role="tab" type="button" data-tab="projects">Projects <span class="n" id="n-projects"></span></button>
+      <button class="tab" role="tab" type="button" data-tab="tasks">Tasks <span class="n" id="n-tasks"></span></button>
+      <button class="tab" role="tab" type="button" data-tab="ideas">Ideas <span class="n" id="n-ideas"></span></button>
+      <button class="tab" role="tab" type="button" data-tab="more">More <span class="n" id="n-more"></span></button>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <div class="card" id="tok-bar" hidden>
+    <div class="head"><span class="name">Connect this board</span></div>
+    <p class="tok-note" id="tok-note">Paste your work_api_token to load the board on this device. It is kept in this browser only.</p>
+    <form class="addbox" id="tok-form" autocomplete="off"><input class="in" id="tok-in" type="password" placeholder="work_api_token" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done"><button class="btn primary" type="submit">Save</button></form>
+  </div>
+  <p class="sub lead" id="sub">Loading…</p>
+  <p class="sub lead" id="run-all-note" hidden></p>
+  <div class="card flags" id="flags" hidden></div>
+  <section data-sec="waiting" hidden>
+    <div class="sec-head"><h2>Waiting on you</h2></div>
+    <div id="inbox"><div class="card empty">Nothing waiting.</div></div>
+  </section>
+  <section data-sec="projects" hidden>
+    <div class="sec-head"><h2>Projects</h2></div>
+    <div id="videos"></div>
+    <div id="resolve"></div>
+    <p class="hint">Tap Details on a project for its chat, folder and start prompt.</p>
+    <div id="rows"><div class="card empty">No rows yet. Each control session writes its own.</div></div>
+  </section>
+  <section data-sec="tasks" hidden>
+    <div class="sec-head"><h2>Tasks for Claude</h2><button class="btn" type="button" id="task-run">Run now</button></div>
+    <div class="addbox" id="tasks-add"><input class="in" id="task-new" type="text" placeholder="Type a task for Claude" maxlength="300" enterkeyhint="send"><button class="btn primary" type="button" id="task-add">Add</button></div>
+    <p class="hint">These are jobs you ask Claude to do. Feedback you send about the boards or Silly is on the More tab, under Feedback for the Control Room.</p>
+    <p class="hint" id="task-run-note">Runs within two hours, or straight away with Run now.</p>
+    <div id="tasklist"><div class="card empty">No tasks. Add one above; the runner does it.</div></div>
+  </section>
+  <section data-sec="ideas" hidden>
+    <div class="sec-head"><h2>Ideas</h2></div>
+    <div id="ideas"><div class="card empty">Ideas filed from the Ideas project land here, personal or work. Tag each one Personal or Work.</div></div>
+  </section>
+  <section data-sec="more" hidden>
+    <div class="sec-head"><h2>Feedback for the Control Room</h2></div>
+    <p class="hint">What you have told the Control Room about the boards and Silly. Jobs for Claude are on the Tasks tab.</p>
+    <div id="feedback"></div>
+    <div class="sec-head"><h2>Changes in progress</h2></div>
+    <div id="locks"><div class="card empty">Nothing is being changed right now.</div></div>
+    <div class="sec-head" style="margin-top:24px"><h2>Feeds</h2></div>
+    <div id="feeds"><div class="card empty">Slack and monday.com digests land here.</div></div>
+    <div class="sec-head" style="margin-top:24px"><h2>Scheduled tasks and laptop</h2></div>
+    <div id="tasks"><div class="card empty">No scheduled tasks listed.</div></div>
+    <div class="sec-head" style="margin-top:24px"><h2>Board token</h2></div>
+    <p class="hint" id="tok-state">This device connects to silly-work with a saved token.</p>
+    <div class="tok-ctl"><button class="btn quiet" type="button" id="tok-change">Change token</button><button class="btn quiet" type="button" id="tok-clear">Clear token</button></div>
+    <p class="foot">Written by control sessions and the daily sweep. Nothing here is edited by hand.</p>
+  </section>
+</main>
+<script>
+// screenshots on feedback (8 Nov, fl8n)
+(async () => {
+  // Side config: the only block that differs between the Work and Personal boards.
+  const SIDE = { name: 'Work', trigger: 'trig_01BuEvaNfUebyPWxiCRMHwDu', shiftName: 'Work shift',
+    fireNote: 'Started from the Work Board: do only steps 1, 1c (LOOPS) and 2 and what this message names, write meta/loops, skip step 3, then stop. ',
+    wake: [], defaultWake: null, wakeIds: [[/^Blog audits/, 'trig_0133SpHeHVdnM9RrZyBHNXjv', 'Blog audits'], [/^Model review/, 'trig_01X8KQWX8yXaAnj11KkguwxN', 'Model review']],
+    runAll: [['Work shift', /^Work shift$/i]],
+    boards: { work: 'https://silly-work.netlify.app', personal: 'https://silly-personal.netlify.app' } };
+  const TRIGGER_ID = SIDE.trigger;
+  const $ = id => document.getElementById(id);
+  // Board switch: the current board is highlighted and not a link; the other opens its own page.
+  $('sw-work').href = SIDE.boards.work; $('sw-personal').href = SIDE.boards.personal;
+  const cur = $(SIDE.name === 'Work' ? 'sw-work' : 'sw-personal');
+  cur.classList.add('on'); cur.removeAttribute('href'); cur.setAttribute('aria-current', 'page');
+  // Opened from a home-screen app (its launcher adds #from-app): one board per app, so the switch is hidden and the board name shows instead.
+  let inApp = false;
+  try { inApp = sessionStorage.getItem('board-app') === '1'; } catch (e) {}
+  if (location.hash === '#from-app') { inApp = true; try { sessionStorage.setItem('board-app', '1'); } catch (e) {} try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
+  if (inApp) { document.querySelector('.switch').hidden = true; $('board-name').hidden = false; }
+  // Sections: one at a time, chosen by tab or #name in the address. Default is Waiting if anything waits, else Projects.
+  const TABS = ['waiting', 'projects', 'tasks', 'ideas', 'more'];
+  let tab = null, tabChosen = false;
+  const showTab = (t, user) => {
+    if (!TABS.includes(t)) t = 'waiting';
+    tab = t; if (user) tabChosen = true;
+    document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
+    document.body.dataset.tab = t;
+    document.querySelectorAll('section[data-sec]').forEach(s => { s.hidden = s.dataset.sec !== t; });
+    if (user) { try { history.replaceState(null, '', '#' + t); } catch (e) { try { location.hash = t; } catch (e2) {} } window.scrollTo(0, 0); }
+  };
+  const fromHash = () => { const h = String(location.hash || '').replace(/^#/, ''); return TABS.includes(h) ? h : null; };
+  if (fromHash()) { tabChosen = true; showTab(fromHash()); } else showTab('waiting');
+  window.addEventListener('hashchange', () => { const h = fromHash(); if (h) showTab(h, false); });
+  document.querySelector('.tabs').addEventListener('click', e => { const b = e.target.closest('.tab'); if (b) showTab(b.dataset.tab, true); });
+  const setCount = (id, n, hot) => { const el = $('n-' + id); if (!el) return; el.textContent = n ? String(n) : ''; el.classList.toggle('hot', !!hot && n > 0); };
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const when = iso => { if (!iso) return ''; const d = new Date(iso); return isNaN(d) ? esc(iso) : d.toLocaleString('en-GB', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}); };
+  const ago = iso => { if (!iso) return ''; const t = new Date(iso).getTime(); if (isNaN(t)) return ''; const m = Math.round((Date.now() - t) / 60000); if (m < 1) return 'just now'; if (m < 60) return m + ' min ago'; const h = Math.round(m / 60); if (h < 48) return h + ' h ago'; return Math.round(h / 24) + ' days ago'; };
+  const until = iso => { if (!iso) return ''; const t = new Date(iso).getTime(); if (isNaN(t)) return ''; const m = Math.round((t - Date.now()) / 60000); if (m < -5) return 'overdue by ' + (m < -120 ? Math.round(-m / 60) + ' h' : (-m) + ' min'); if (m < 60) return 'in ' + Math.max(m, 0) + ' min'; const h = Math.round(m / 60); if (h < 48) return 'in ' + h + ' h'; return 'on ' + new Date(iso).toLocaleString('en-GB', {weekday:'short', day:'numeric', month:'short'}); };
+  // Board token for the silly-work backend: ask for it if none is saved, then load the board.
+  const savedToken = () => { let t = window.SILLY_WORK_TOKEN || ''; if (!t) { try { t = localStorage.getItem('silly_work_token') || ''; } catch (e) {} } return String(t || '').trim(); };
+  const tokBar = (note, bad) => { $('tok-bar').hidden = false; $('tok-note').textContent = note || 'Paste your work_api_token to load the board on this device. It is kept in this browser only.'; $('tok-note').classList.toggle('bad', !!bad); $('tok-in').value = ''; setTimeout(() => { try { $('tok-in').focus(); } catch (e) {} }, 50); };
+  const setTok = t => { if (window.claude && typeof claude.setToken === 'function') claude.setToken(t); else { try { t ? localStorage.setItem('silly_work_token', t) : localStorage.removeItem('silly_work_token'); } catch (e) {} } };
+  $('tok-form').addEventListener('submit', e => { e.preventDefault(); const t = String($('tok-in').value || '').trim(); if (!t) { tokBar('Paste the token first.', true); return; } setTok(t); window.SILLY_WORK_TOKEN = t; location.reload(); });
+  $('tok-change').addEventListener('click', () => { showTab('waiting', true); tokBar('Paste the new token. The board reloads with it.'); });
+  $('tok-clear').addEventListener('click', () => { setTok(''); try { localStorage.removeItem('silly_work_token'); } catch (e) {} window.SILLY_WORK_TOKEN = ''; location.reload(); });
+  if (!window.claude || !window.claude.__sillyWork) { $('sub').textContent = 'Could not reach silly-work.netlify.app to load the board. Check the connection and reload.'; return; }
+  if (!savedToken()) { $('sub').textContent = 'Not connected yet.'; $('sync').hidden = true; $('tok-state').textContent = 'No token saved on this device.'; tokBar(); return; }
+  const db = await claude.use('db');
+  if (!db) { $('sub').textContent = 'Sign in to see the board.'; return; }
+  const rows = s => s.docs.map(d => ({ id: d.id, ...d.data() }));
+  const arr = v => Array.isArray(v) ? v : [];
+  // Item text: numbered points become a list, long text folds behind Show more.
+  // inbox/<id>.details: [{h, lines[]|text, numbered}] or a plain string. Shown in full: the card must hold all Ronnie needs to answer.
+  const detsHtml = d => {
+    const secs = typeof d === 'string' ? [{ text: d }] : arr(d).filter(x => x && typeof x === 'object');
+    if (!secs.length) return '';
+    return `<div class="dets">${secs.map(x => { const L = arr(x.lines).map(String).filter(Boolean); const tag = x.numbered ? 'ol' : 'ul'; return `<div class="det">${x.h ? `<h4>${esc(x.h)}</h4>` : ''}${x.text ? String(x.text).split(/\n+/).map(t => `<p>${esc(t)}</p>`).join('') : ''}${L.length ? `<${tag}>${L.map(t => `<li>${esc(t)}</li>`).join('')}</${tag}>` : ''}</div>`; }).join('')}</div>`;
+  };
+  // inbox/<id>.questions: [{h, q, hint}] -> one answer box per question; answered as answers[] + a joined answer for the runs.
+  const qList = i => arr(i.questions).map(x => typeof x === 'string' ? { q: x } : x).filter(x => x && x.q);
+  const qDraftKey = id => 'qa:' + id;
+  const qDraft = id => { try { return JSON.parse(localStorage.getItem(qDraftKey(id)) || '{}') || {}; } catch (e) { return {}; } };
+  const qSave = (id, k, v) => { try { const d = qDraft(id); if (v) d[k] = v; else delete d[k]; localStorage.setItem(qDraftKey(id), JSON.stringify(d)); } catch (e) {} };
+  const qsHtml = i => {
+    const Q = qList(i); if (!Q.length) return ''; const d = qDraft(i.id); let last = null;
+    return `<div class="qs"><div class="ask">Answer here</div><div class="meta">One box per question. Leave any blank you don't know; Claude writes around it.</div>${Q.map((x, k) => { const head = x.h && x.h !== last ? `<h4>${esc(x.h)}</h4>` : ''; last = x.h || last; return `${head}<label class="qa"><span>${esc(x.q)}</span><textarea class="in qa" id="qa-${esc(i.id)}-${k}" data-qitem="${esc(i.id)}" data-qk="${k}" rows="2" placeholder="${esc(x.hint || 'Your answer')}">${esc(d[k] || '')}</textarea></label>`; }).join('')}<div class="reply"><button class="btn primary" type="button" data-qsend="${esc(i.id)}">Send answers</button></div></div>`;
+  };
+  const qAnsweredHtml = i => arr(i.answers).length ? `<ol class="qdone">${arr(i.answers).map(x => `<li><span class="meta">${esc(x && x.q)}</span><br>${x && x.a ? esc(x.a) : '<i>left blank</i>'}</li>`).join('')}</ol>` : '';
+  const fmtText = (t, full) => {
+    let s = String(t || '').trim();
+    if (!full && s.length > 320) {
+      // Question first (8 Nov): when the question is the last sentence, keep it whole and bold after the shortened start.
+      const q = s.lastIndexOf('?'), qs = q > 0 ? Math.max(s.lastIndexOf('. ', q) + 2, s.lastIndexOf('\n', q) + 1, 0) : -1, ques = q > 280 && qs > 0 ? s.slice(qs, q + 1).trim() : '';
+      const lim = ques && ques.length < 260 ? 200 : 300, cut = s.slice(0, lim);
+      return `<p>${esc(cut.slice(0, cut.lastIndexOf(' ') > lim - 100 ? cut.lastIndexOf(' ') : lim))}…</p>${ques && ques.length < 260 ? `<p class="theq">${esc(ques)}</p>` : ''}`; }
+    const parts = s.split(/\s*\((\d{1,2})\)\s+/);
+    if (parts.length >= 5) { const pre = parts[0].trim(); const items = []; for (let i = 2; i < parts.length; i += 2) items.push(parts[i]); return (pre ? `<p>${esc(pre)}</p>` : '') + `<ol>${items.map(x => `<li>${esc(x.trim())}</li>`).join('')}</ol>`; }
+    return s.split(/\n+/).filter(x => x.trim()).map(x => `<p>${esc(x)}</p>`).join('');
+  };
+  const errText = e => { if (!e) return 'error'; const c = e.code ? String(e.code) : ''; const m = e.message ? String(e.message).slice(0, 140) : ''; return (c && m) ? c + ': ' + m : (c || m || 'error'); };
+  const safeImg = u => /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(String(u || '')) || /^\/_blob\/[A-Za-z0-9_-]+$/.test(String(u || ''));
+  const safeUrl = u => /^https?:\/\//i.test(String(u || '')) ? esc(u) : '';
+  // A row's own chat: only claude.ai links count, so the button always opens the Claude app or site.
+  const chatUrl = r => /^https:\/\/claude\.ai\/\S+$/i.test(String((r && r.chat) || '').trim()) ? esc(String(r.chat).trim()) : '';
+  const canPaste = r => r && r.session && !/\brun$/i.test(String(r.session));
+  const ORDER = { waiting:0, blocked:1, running:2, idle:3, done:4 };
+  // The allout.travel pipeline (aot-pipeline skill), in the order a video goes through it. you = a stage only Ronnie can do.
+  const STAGES = [['shoot','Shoot',1,'Shoot the footage'],['setup','Set up',0,'Resolve project set up'],['footage','Footage review',0,'Footage review: shot log and Best of'],['script','Script',0,'Script: angle, facts, blueprint, review'],['prevo','Pre-VO',0,'Pre-VO assembly: picture laid to the script'],['music','Music + VO prep',0,'Music and voiceover prep'],['vo','You: voiceover',1,'Record the voiceover'],['cut','Cut',0,'Cut to the voice'],['hook','Hook + titles',0,'Hook and titles'],['sound','Soundscape',0,'Soundscape: beds, SFX, music transitions'],['levels','Levels',0,'Audio levels'],['grade','Grade',0,'Colour grade'],['review','You: review',1,'Review the latest assembly in Resolve'],['deliver','Deliver',0,'Deliver: master, captions, chapters'],['brief','Packaging brief',0,'Packaging brief'],['upload','You: upload',1,'Package and upload'],['launch','Launch watch',0,'Launch watch: title and thumbnail test'],['shorts','Shorts',0,'Shorts'],['retention','Retention',0,'Retention review']];
+  const isVideo = r => !!r.stage || /^video-/.test(String(r.id || ''));
+  // Guard (8 Nov): a social card (post set) or any card with previews_needed true and no pictures yet cannot be answered.
+  // It waits quietly in "Pictures not ready": no answer buttons, not counted, not pushed. It becomes a normal card the moment previews land.
+  const pvOn = i => !!i && !!i.post && !i.answered && !i.actioned;
+  const pvVotes = i => (i && i.picvotes && typeof i.picvotes === 'object') ? i.picvotes : {};
+  const hasPics = i => arr(i && i.previews).some(x => x && safeImg(x.img));
+  const picsPending = i => !!i && !i.answered && !i.actioned && (!!i.post || i.previews_needed === true) && !hasPics(i);
+  // Held (8 Nov 11:45Z, feedback 20261108113830-hwkw): a card Ronnie sent feedback about is taken off Waiting while the Control Room looks at it (feedback new/doing, under 6 h old); it comes back when the feedback is done or declined, or he taps Show it anyway.
+  const fbHold = i => !!i && !i.answered && !(S.unhold && S.unhold.has(i.id)) && S.fb.some(f => f.item === i.id && (f.status === 'new' || f.status === 'doing') && Date.now() - new Date(f.updated || f.created || 0).getTime() < 6 * 3600e3);
+  const askable = i => !!i && !i.answered && !picsPending(i) && !fbHold(i);
+  // Options that ask for words ("B: changes (say which)", "(type the numbers)") open a box; the answer is sent with what he types (8 Nov).
+  const wantsWords = o => /\((?:say|type|tell|name|list|give|write)\b|\b(?:say|type|tell me|name) (?:which|what|where|how|why|who|them|the)\b/i.test(String(o || '')) || sillyAsksWords(o);
+  // Same rule as Silly's chrome/lib/desk.js asksForWords (feedback 20261108095113-9x0g): also "(tick them in the box)", "(which?)", "(what time?)", "(...)", "other - which?".
+  const sillyAsksWords = o => { const s = String(o || '').trim(), mm = /^([A-Z])\s*[:.)-]\s*(.*)$/.exec(s), w = mm ? mm[2] : s, W = /\b(say|type|tick|which|what)\b/i, dots = /^\s*(?:\.{2,}|\u2026)\s*$/;
+    if ([...w.matchAll(/\(([^)]*)\)/g)].some(m => W.test(m[1]) || dots.test(m[1]))) return true;
+    const bare = w.replace(/\([^)]*\)/g, ' ');
+    return /(?:^|[\s,;:\u2013\u2014-])(?:say|type|tick)\s+(?:which|what|it|them|how|where|who|more|in|here|why)\b/i.test(bare) || /[,;:\u2013\u2014-]\s*(?:which|what)\b/i.test(bare); };
+  const doing = i => !!i && !!i.answered && !i.actioned;
+  // Honest Doing states (9 Nov, Ronnie: "19 items being done, I'm not seeing signs of movement"): an answered card is only "being worked on" when a run stamped state "doing" with state_at under 3 h ago; otherwise it says who it waits for (waiting_on you|laptop|silly|<chat name>) or that nobody has picked it up.
+  // Open loops (11 Nov, Ronnie: answered cards sat for days because a name in waiting_on counted as an owner). An answered card is covered only while someone is on it now, or its `hold` points at a live task, an open card of his, or a time still ahead. Anything else answered over 2 h ago is overdue, and the board says so whatever the card's notes say.
+  const LOOP_MS = 2 * 3600e3;
+  const holdOf = i => { const h = i && i.hold && typeof i.hold === 'object' ? i.hold : {}; const t = h.task ? S.taskDocs.find(x => x.id === h.task) : null, c = h.card ? S.inbox.find(x => x.id === h.card) : null;
+    if (t && (t.status === 'queued' || t.status === 'running')) return { on: 'task', t };
+    if (c && !c.answered && !c.withdrawn) return { on: 'card', c };
+    if (h.until && Date.parse(h.until) > Date.now()) return { on: 'until', until: h.until };
+    if (i && i.remind_on && String(i.remind_on) > new Date().toISOString().slice(0, 10)) return { on: 'until', until: i.remind_on };
+    return null; };
+  const workedNow = i => i.state === 'doing' && Date.now() - (Date.parse(i.state_at || '') || 0) < LOOP_MS;
+  const isOverdue = i => doing(i) && !i.withdrawn && Date.now() - (Date.parse(i.answered || '') || 0) > LOOP_MS && !workedNow(i) && !holdOf(i);
+  const loopLate = () => { if (!S.loopsSeen) return false; const lp = S.loops, age = lp && lp.checked_at ? Date.now() - (Date.parse(lp.checked_at) || 0) : Infinity;
+    if (SIDE.name === 'Work') { const d = new Date(new Date().toLocaleString('en-US', { timeZone: 'Europe/London' })), wd = d.getDay(), m = d.getHours() * 60 + d.getMinutes(); return wd > 0 && wd < 6 && m >= 500 && m <= 1040 && age > 2.5 * 3600e3; }
+    return age > 3.5 * 3600e3; };
+  const doInfo = i => {
+    const on = String(i.waiting_on || '').trim(), key = on.toLowerCase(), note = i.state_note ? String(i.state_note) : i.note ? String(i.note) : '';
+    if (workedNow(i)) return { k: 'doing', text: 'Being worked on now' + (i.state_note ? ': ' + String(i.state_note) : '') };
+    const tail = note ? ': ' + note : '';
+    const hd = holdOf(i);
+    if (hd && hd.on === 'task') return { k: 'held', text: (hd.t.status === 'running' ? 'Being done now as a task' : 'Queued as a task for the next shift' + (hd.t.needs_laptop ? ' that has the laptop' : '')) + tail };
+    if (hd && hd.on === 'card') return { k: 'held', text: 'Waiting for you: card ' + hd.c.n + ' (' + String(hd.c.title || '') + ')' };
+    if (hd && hd.on === 'until') return { k: 'held', text: 'Comes back ' + when(hd.until) + tail };
+    if (isOverdue(i)) return { k: 'late', text: 'Overdue: nobody has finished this. The next shift must finish it or hand it back to you' };
+    if (key === 'you') return { k: 'wait', text: 'Waiting for you' + tail };
+    if (key === 'laptop') return { k: 'wait', text: 'Waiting for the laptop run' + tail };
+    if (key === 'silly') return { k: 'wait', text: 'Waiting for the next Silly build' + tail };
+    if (key === 'later') return { k: 'wait', text: 'Snoozed' + tail };
+    if (on) return { k: 'wait', text: 'Waiting for the ' + on + ' chat' + tail };
+    if (note) return { k: 'wait', text: note };
+    if (i.relayed) return { k: 'wait', text: 'Handed to a run ' + ago(i.relayed) + '; it has not reported back' };
+    return { k: 'wait', text: 'Nobody has picked this up yet' };
+  };
+  // Urgent and dated cards first (optional fields urgent: true, due: ISO), then newest.
+  const dueT = i => { const t = i && i.due ? Date.parse(i.due) : NaN; return isNaN(t) ? Infinity : t; };
+  const byUrgency = (a, b) => (a.urgent ? 0 : 1) - (b.urgent ? 0 : 1) || dueT(a) - dueT(b) || (b.n || 0) - (a.n || 0) || String(b.created || '').localeCompare(String(a.created || ''));
+  const picsMissing = i => i.previews_note ? String(i.previews_note) : (i.post ? `The ${String(i.post).replace(/^./, c => c.toUpperCase())} pictures are not made yet. They are made on the laptop when it is free; then this card moves to Waiting.` : 'The pictures for this card are not made yet; then it moves to Waiting.');
+  const plan = r => {
+    const i = STAGES.findIndex(s => s[0] === r.stage), over = (r.stages && typeof r.stages === 'object') ? r.stages : {};
+    if (i < 0) return `<div class="plan"><div class="meta">Stage not reported yet. The video's session adds it the next time it updates this card.</div></div>`;
+    const stOf = (s, k) => { const o = String(over[s[0]] || '').toLowerCase(); return ['done','now','skip','todo'].includes(o) ? o : k < i ? 'done' : k === i ? 'now' : 'todo'; };
+    const states = STAGES.map(stOf), counted = STAGES.filter((s, k) => states[k] !== 'skip').length, doneN = states.filter(x => x === 'done').length;
+    const cur = STAGES[i], nextK = STAGES.findIndex((s, k) => k > i && states[k] === 'todo');
+    const head = cur[2] ? `Waiting on you: ${esc(cur[3].toLowerCase())}` : `Now: ${esc(cur[3])}`;
+    const also = STAGES.filter((s, k) => k !== i && states[k] === 'now').map(s => s[1]);
+    const chips = STAGES.map((s, k) => `<span class="chip ${states[k]}${s[2] ? ' you' : ''}"${states[k] === 'now' ? ' aria-current="step"' : ''}>${esc(s[1])}</span>`).join('');
+    return `<div class="plan"><div class="plan-head">${head} <span class="meta">· ${doneN} of ${counted} stages done${also.length ? ' · also running: ' + esc(also.join(', ')) : ''}${nextK >= 0 ? ' · next: ' + esc(STAGES[nextK][1].replace(/^You: /, 'your ')) : ''}</span></div><div class="plan-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${counted}" aria-valuenow="${doneN}"><i style="width:${Math.round(doneN / Math.max(counted, 1) * 100)}%"></i></div><div class="chips">${chips}</div>${angleBlock(r)}${r.stage_note ? `<div class="plan-note">${esc(r.stage_note)}</div>` : ''}</div>`;
+  };
+  // Latest data per source, plus UI state (kept in memory only).
+  const S = { sweep:null, sweepSeen:false, laptop:null, inbox:[], rows:[], feeds:[], taskDocs:[], showTaskDone:false, showAnswered:false, showDone:false, openFeeds:new Set(), openItems:new Set(), openRows:new Set(), inboxSeen:false, failed:false, stale:false, ideas:[], showIdeasDone:false, wakeNote:'', waking:false, loops:null, loopsSeen:false, chasing:false, chaseNote:'', suspended:[], suspendNote:'', resuming:false, laptopStarting:false, laptopNote:{}, chatNote:{}, goUntil:0, res:null, resNote:'', locks:[], changes:[], showChanges:false, undoArm:null, fb:[], unhold:new Set(), fbOpen:null, fbPics:{}, fbBusy:{}, fbNote:'', showQuiet:false, nudging:null, nudgeNote:{}, openSteps:new Set(), showFlags:false };
+  // Chats that live on the laptop act on an answer only when woken. Each has a wake-up scheduled task; the board fires it early with the answers appended.
+  const wakePrefix = src => { const s = String(src || ''); const m = SIDE.wake.find(w => s.startsWith(w[0])); if (m) return m[1]; if (SIDE.defaultWake && /Control$/.test(s)) return SIDE.defaultWake; const wi = (SIDE.wakeIds || []).find(w => w[0].test(s)); return wi ? 'id:' + wi[1] : null; };
+  // Event-driven runs (9 Nov): an answer starts the run for its source at once; at most one start per run per 10 minutes.
+  const recentFire = id => { try { return Date.now() - Number(localStorage.getItem('wakefired-' + id) || 0) < 600e3; } catch (e) { return (window.__wf || {})[id] > Date.now() - 600e3; } };
+  const markFired = id => { try { localStorage.setItem('wakefired-' + id, String(Date.now())); } catch (e) { (window.__wf = window.__wf || {})[id] = Date.now(); } };
+  const pendingWakes = () => S.inbox.filter(i => i.answered && !i.actioned && wakePrefix(i.source) && (!i.relayed || Date.now() - new Date(i.relayed).getTime() > 20 * 3600e3));
+  const unwrap = r => { let p = r && r.payload !== undefined ? r.payload : r; if (p && Array.isArray(p.content)) p = p.content.map(c => (c && c.text) || '').join(''); if (typeof p === 'string') { const i = p.indexOf('{'); try { p = JSON.parse(i > 0 ? p.slice(i) : p); } catch (e) { return null; } } return p; };
+  const findWake = async (mcp, prefix) => {
+    const p = unwrap(await mcp.callTool('Claude Code Remote', 'list_triggers', { enabled: true, limit: 100 }));
+    const list = p && Array.isArray(p.data) ? p.data : [];
+    return list.filter(t => t && t.enabled !== false && String(t.name || '').startsWith(prefix)).sort((a, b) => String(a.next_run_at || '').localeCompare(String(b.next_run_at || '')))[0] || null;
+  };
+  // Chase now: starts the side's shift on the overdue cards (at most once per 10 minutes). The shift's LOOPS step finishes each one or hands it back.
+  const chase = async () => {
+    if (S.chasing) return; const late = S.inbox.filter(isOverdue);
+    if (recentFire(SIDE.trigger)) { S.chaseNote = 'The ' + SIDE.shiftName + ' was started a few minutes ago and is on them.'; renderInbox(); return; }
+    S.chasing = true; S.chaseNote = 'Starting…'; renderInbox();
+    try { const mcp = await claude.use('mcp'); if (!mcp) throw { code: 'not available in this view' };
+      await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: SIDE.trigger, text: SIDE.fireNote + 'Ronnie tapped Chase now on the ' + SIDE.name + ' Board. Overdue answered cards, to be finished or handed back in this run whatever their age: ' + (late.map(i => i.id).join(', ') || 'none listed; run the whole LOOPS step') + '.' });
+      markFired(SIDE.trigger); S.chaseNote = 'Started at ' + new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) + '. The ' + SIDE.shiftName + ' is on them; each card changes here as it is finished or handed back.'; }
+    catch (e) { const code = e && e.code ? String(e.code) : 'error'; S.chaseNote = code === 'not_granted' ? 'Allow the connector for this page, then tap again.' : 'Could not start it (' + code + '). The next ' + SIDE.shiftName + ' picks them up.'; }
+    S.chasing = false; renderInbox();
+  };
+  const wake = async items => {
+    if (S.waking) return; S.waking = true; S.wakeNote = 'Starting…'; renderInbox();
+    const notes = [];
+    try {
+      const mcp = await claude.use('mcp');
+      if (!mcp) { notes.push('Wake is not available in this view'); }
+      else {
+        const groups = {}; items.forEach(i => { const p = wakePrefix(i.source); if (p) (groups[p] = groups[p] || []).push(i); });
+        for (const [prefix, its] of Object.entries(groups)) {
+          try {
+            const wid = prefix.indexOf('id:') === 0 ? (SIDE.wakeIds || []).find(w => w[1] === prefix.slice(3)) : null;
+            const t = wid ? { id: wid[1], name: wid[2] } : await findWake(mcp, prefix);
+            if (wid && recentFire(t.id)) { notes.push(`${t.name} was started a few minutes ago and will pick up ${its.map(i => i.n).join(', ')} on its way.`); continue; }
+            if (!t) { notes.push(`Nothing can start ${its[0].source} from here: open that chat and say "read the board"`); continue; }
+            const text = `Fired by the board on answer to ${its.map(i => i.id).join(', ')}.\nFired from the ${SIDE.name} Board: Ronnie has answered items ${its.map(i => i.n).join(', ')}.` + its.map(i => `\n${i.n}. ${i.title}: ${i.answer}`).join('') + `\nAct on these now whatever their age, log each in log/decisions and set actioned on each. Skip any dated checks in your scheduled prompt.`;
+            await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: t.id, text }); markFired(t.id);
+            const now = new Date().toISOString();
+            await Promise.all(its.map(i => db.doc('inbox/' + i.id).update({ relayed: now, relayed_to: t.name }).catch(() => {})));
+            notes.push(`Started. ${t.name.replace(/ \(.*$/, '')} is working on ${its.map(i => i.n).join(', ')}; the rows update as it goes.`);
+          } catch (e) {
+            const code = e && e.code ? String(e.code) : 'error';
+            notes.push(code === 'not_granted' ? 'Allow the connector for this page, then tap again' : `Could not start it (${code}). The next shift picks this up, or open the chat "${its[0].source}" and say read the board.`);
+          }
+        }
+      }
+    } finally { S.waking = false; S.wakeNote = notes.join(' · '); renderInbox(); }
+  };
+  // Ronnie says the laptop is free: fire that row's laptop run now and tell it to skip the idle check for 10 minutes.
+  const startLaptop = async id => {
+    if (S.laptopStarting) return; S.laptopStarting = true;
+    const now = new Date(), next = new Date(now); next.setUTCMinutes(10, 0, 0); if (next <= now) next.setUTCHours(next.getUTCHours() + 1);
+    const until = new Date(next.getTime() + 75 * 60000).toISOString();
+    try { await db.doc('meta/go').set({ until, by: 'board', set: now.toISOString() }); S.goUntil = new Date(until).getTime(); S.laptopNote[id] = 'Marked free. The run at ' + next.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'}) + ' does the Chrome work even if you have used the laptop recently.'; }
+    catch (e) { S.laptopNote[id] = 'Could not mark it (' + (e && e.code ? e.code : 'error') + '). The next laptop shift still does it once the laptop is free.'; }
+    finally { S.laptopStarting = false; renderRows(); }
+  };
+
+
+
+  const renderSub = () => {
+    if (S.failed) return;
+    const el = $('sub');
+    if (!S.sweepSeen) { el.textContent = S.stale ? 'The board data cannot be reached yet.' : 'Loading…'; return; }
+    const m = S.sweep;
+    if (!m || !m.last) { el.textContent = 'No sweep has run yet.'; return; }
+    // Count live from the inbox; the sweep's inbox_open is only a snapshot from when it ran.
+    const open = (S.inboxSeen ? S.inbox.filter(askable).length : (typeof m.inbox_open === 'number' ? m.inbox_open : 0)) + arr(S.fb).filter(f => f.status === 'waiting' && String(f.waiting_on || '').toLowerCase() === 'you').length;
+    const latest = S.rows.slice().sort((a, b) => String(b.updated || '').localeCompare(String(a.updated || '')))[0];
+    el.innerHTML = `<b>${esc(open)} ${open === 1 ? 'thing needs' : 'things need'} you</b> · last move ${latest ? ago(latest.updated) + ' (' + esc(latest.name || latest.id) + ')' : 'none yet'} · sweep ${when(m.last)}` + (S.stale ? ' · <b>may be out of date</b>' : '');
+  };
+  // Answered items still being worked on are shown on their rows, so they are never setup problems.
+  const realFlags = () => S.sweep ? arr(S.sweep.flags).filter(x => x && !/^answered\b/i.test(String(x).trim())) : [];
+  const renderFlags = () => {
+    const f = realFlags();
+    $('flags').hidden = !f.length;
+    const oldF = S.sweep && S.sweep.last && Date.now() - (Date.parse(S.sweep.last) || 0) > 20 * 3600e3;
+    $('flags').innerHTML = !S.showFlags ? `<div class="ttl">${f.length} setup ${f.length === 1 ? 'note' : 'notes'} from the ${oldF ? 'morning' : 'latest'} check ${esc(when(S.sweep && S.sweep.last))}</div><div class="meta">Claude fixes these itself; nothing for you to do.</div><button class="tog more" type="button" data-flags="1" aria-expanded="false">Show them</button>` : `<div class="ttl">Something in the setup is not working</div><div class="meta">Found by the morning check ${esc(when(S.sweep && S.sweep.last))}. Claude fixes these at its next run; nothing for you to do unless a line asks you.</div>` + f.map(x => `<div>${esc(x)}</div>`).join('') + `<button class="tog more" type="button" data-flags="1" aria-expanded="true">Hide them</button>`;
+    renderTasks();
+  };
+  // A live refresh must never redraw a card Ronnie is typing in: hold it until he stops, then draw once.
+  const typingInInbox = () => { const a = document.activeElement; return !!(a && a.matches && a.matches('#inbox input, #inbox textarea')); };
+  const renderInboxLive = () => { if (typingInInbox()) { S.inboxDirty = true; return; } renderInbox(); };
+  const renderInbox = () => {
+    S.inboxDirty = false;
+    const scrollY0 = window.scrollY;
+    const all = S.inbox.slice().sort(byUrgency);
+    const open = all.filter(askable), held = all.filter(fbHold), pics = all.filter(i => picsPending(i) && !fbHold(i)), doingL = all.filter(doing), done = all.filter(i => i.answered && i.actioned);
+    const detLen = d => typeof d === 'string' ? d.length : arr(d).reduce((s, x) => s + String((x && x.text) || '').length + arr(x && x.lines).join(' ').length + String((x && x.h) || '').length, 0);
+    const detsFor = i => { if (!i.details) return ''; const secs = typeof i.details === 'string' ? [{ text: i.details }] : arr(i.details); const k = 'x:' + i.id, op = S.openItems.has(k); if (i.answered || op || detLen(i.details) <= 700 || secs.length < 2) return detsHtml(i.details) + (op ? `<button class="tog more" type="button" data-item="${esc(k)}" aria-expanded="true">Show fewer details</button>` : ''); return detsHtml(secs.slice(0, 1)) + `<button class="tog more" type="button" data-item="${esc(k)}" aria-expanded="false">Show all the details (${secs.length - 1} more ${secs.length - 1 === 1 ? 'section' : 'sections'})</button>`; };
+    // Picture votes and swaps (11 Nov 2026, feedback 20261111185415-brlv): social cards let Ronnie like or dislike each picture and swap one for a photo from his phone.
+    const pvCtl = (i, k) => { if (!pvOn(i)) return ''; const v = pvVotes(i)[k], sw = arr(i.previews)[k] && arr(i.previews)[k].swapped; return `<div class="pvctl">${sw ? '<span class="meta">Your photo</span>' : ''}<button class="btn quiet${v === 'up' ? ' pvon' : ''}" type="button" data-pv="${esc(i.id)}|${k}|up" aria-pressed="${v === 'up'}">Like</button><button class="btn quiet${v === 'down' ? ' pvoff' : ''}" type="button" data-pv="${esc(i.id)}|${k}|down" aria-pressed="${v === 'down'}">Dislike</button><label class="btn quiet" style="cursor:pointer">Swap with my photo<input type="file" accept="image/*" data-pswap="${esc(i.id)}|${k}" hidden></label></div>`; };
+    const pvBar = i => { if (!pvOn(i)) return ''; const V = pvVotes(i), dn = Object.keys(V).filter(k => V[k] === 'down').map(Number).sort((a, b) => a - b); const bz = (S.pvBusy || {})[i.id]; return `<div class="pvbar meta">${dn.length ? `<button class="btn primary" type="button" data-pvgo="${esc(i.id)}">Replace the ${dn.length} I disliked</button> ` : 'Like or dislike each picture, or swap one for a photo from your phone. Disliked ones get replaced when you tap the button here.'}${bz ? ' ' + esc(bz) : ''}</div>`; };
+    const picsHtml = i => { const P = arr(i.previews).filter(x => x && safeImg(x.img)); return P.length ? `<div class="pins">${P.map((x, k0, all) => { const k = arr(i.previews).indexOf(x); return `<figure class="pinp"><img src="${x.img}" alt="" loading="lazy"><figcaption><span class="meta">${k0 + 1} of ${all.length}</span><b>${esc(x.title)}</b>${x.text ? `<span>${esc(x.text)}</span>` : ''}${x.meta ? `<span class="meta">${esc(x.meta)}</span>` : ''}</figcaption>${pvCtl(i, k)}</figure>`; }).join('')}</div>${P.length > 1 ? '<div class="meta">Swipe to see them all.</div>' : ''}${pvBar(i)}` : ''; };
+    const resultHtml = i => { const tid = /^t-/.test(String(i.id)) ? String(i.id).slice(2) : '', t = tid ? (S.taskDocs.find(x => x.id === tid) || S.taskDocs.find(x => x.id === tid.replace(/-\d+$/, ''))) : null; if (!t || !t.result) return ''; const k = 'r:' + i.id, op = S.openItems.has(k); return `<div class="preview"><div class="ask">What Claude did</div><div class="${op ? '' : 'clamp4'}">${fmtText(t.result, true)}</div>${arr(t.links).filter(safeUrl).length && op ? `<div>${arr(t.links).filter(safeUrl).map(u => `<a href="${safeUrl(u)}" target="_blank" rel="noopener">${esc(String(u).replace(/^https?:\/\/(www\.)?/, '').slice(0, 60))}</a>`).join('<br>')}</div>` : ''}<button class="tog more" type="button" data-item="${esc(k)}" aria-expanded="${op}">${op ? 'Hide' : 'Show it all here'}</button></div>`; };
+    const startHtml = i => { const r = !i.answered && i.row ? S.rows.find(x => x.id === i.row) : null; return r && r.start ? `<div class="reply startp"><button class="btn quiet" type="button" data-copy="${esc(r.id)}">Copy start prompt</button><span class="meta">Only if you'd rather answer in a new chat: paste it there.</span></div>` : ''; };
+    const answeredHtml = i => `<div class="status-line ${i.actioned ? 'done' : 'blocked'}">You answered ${when(i.answered)}${i.answer && !arr(i.answers).length ? ': ' + esc(i.answer) : ''}${i.actioned ? ' · done' : ' · not acted on yet'}</div>${qAnsweredHtml(i)}${S.undoArm === i.id ? `<div class="meta where">${i.actioned ? 'Claude has already acted on this. Changing it reopens the question and tells Claude to undo what it did where it can.' : 'Your answer is taken back and the question asks you again.'}</div>` : ''}<div class="reply"><button class="btn" type="button" data-undo="${esc(i.id)}">${S.undoArm === i.id ? 'Tap again to confirm' : i.actioned ? 'Change my answer' : 'Undo my answer'}</button></div>`;
+    const chatEscape = o => { const w = String(o || '').replace(/^[A-Z]\s*[:.)-]\s*/, '').trim(); return /^(?:other|something else|none of these|a different)\b/i.test(w) || /^changes?\b[^(]*\bin (?:the|that|this) [\w ]*chat\b/i.test(w) || /^(?:i'?ll|i will|let me)\s+(?:answer|say|explain|pick|type|tell|reply)\b[^'"]*\bchat\b/i.test(w) || /\b(?:say|reply|answer|explain) in (?:the|that) chat\b/i.test(w) && !/["\u201c]|(?:^|\s)['\u2018]\w/.test(w); };
+    const shownOpts = i => arr(i.options).filter(o => !chatEscape(o));
+    const choicesHtml = i => `${shownOpts(i).length ? `<div class="ask">${qList(i).length ? 'Or' : 'Your call'}</div><div class="choices">${shownOpts(i).map(o => { const m = String(o).match(/^([A-Z])\s*[:.)-]\s*(.*)$/); const pk = (S.picked || {})[i.id] === o; return `<button class="opt wide${pk ? ' picked' : ''}" type="button" data-id="${esc(i.id)}" data-ans="${esc(o)}"${wantsWords(o) ? ' data-words="1"' : ''}${pk ? ' aria-pressed="true"' : ''}>${m ? `<b>${esc(m[1])}</b><span>${esc(m[2])}</span>` : esc(o)}</button>`; }).join('')}</div>` : ''}${(S.picked || {})[i.id] ? `<div class="meta where picknote">You picked <b>${esc(String(S.picked[i.id]).split(':')[0])}</b>. Say ${/which/i.test(S.picked[i.id]) ? 'which' : 'what'} in the box, then tap Send.</div><div class="reply"><textarea class="in" id="reply-${esc(i.id)}" rows="3" placeholder="Type it here"></textarea><button class="opt send" type="button" data-send="${esc(i.id)}">Send</button></div>` : `<div class="reply"><input class="in" id="reply-${esc(i.id)}" type="text" placeholder="${arr(i.options).length ? (shownOpts(i).length < arr(i.options).length ? 'Other: type your own answer here' : 'Or type your own answer') : 'Type your answer'}" enterkeyhint="send"><button class="opt send" type="button" data-send="${esc(i.id)}">Send</button></div>`}`;
+    // Card order (8 Nov): the question, the pictures, the facts, then the answer controls.
+    const kindOf = i => { const t = String((i.source || '') + ' ' + (i.title || '') + ' ' + (i.id || '')); return /pinterest|instagram|tiktok|social|shorts/i.test(t) ? ['social', '\u{1F4CC}'] : /stock/i.test(t) ? ['stock', '\u{1F39E}'] : /blog|post|wordpress/i.test(t) ? ['blog', '\u270D'] : /video|thumbnail|cuatro|script|resolve|render/i.test(t) ? ['video', '\u{1F3AC}'] : /trip|flight|hotel|tenerife|iseo/i.test(t) ? ['trip', '\u2708'] : /control room|skill|silly|board|feedback/i.test(t) ? ['system', '\u2699'] : ['ask', '\u2753']; };
+    const item = (i, foldKey) => { const hasP = !!picsHtml(i), long = String(i.text || '').length > (hasP ? 160 : 320), op = S.openItems.has(i.id); const kd = kindOf(i); const nm = `<span class="kico k-${kd[0]}" aria-hidden="true">${kd[1]}</span><span class="num">${esc(i.n)}</span>${esc(i.title)}${i.urgent && !i.answered ? '<span class="tag">urgent</span>' : ''}`; const dueTxt = i.due ? ' · by ' + when(i.due) : ''; return `<div class="card ${i.answered ? 's-done' : 's-waiting'}" id="card-${esc(i.id)}">${foldKey ? `<button class="name tog" type="button" data-item="${esc(foldKey)}" aria-expanded="true"><span class="chev">&#x2212;</span>${nm}</button>` : `<div class="name">${nm}</div>`}<div class="meta">${esc(i.source)} · ${when(i.created)}${esc(dueTxt)}</div>${picsHtml(i)}<div class="where txt qtext">${fmtText(i.text, op || !long)}${long ? `<button class="tog more" type="button" data-item="${esc(i.id)}" aria-expanded="${op}">${op ? 'Show less' : 'Show more'}</button>` : ''}${detsFor(i)}${safeUrl(i.link) ? `<div><a href="${safeUrl(i.link)}" target="_blank" rel="noopener">${/claude\.ai\/code\//.test(String(i.link)) ? 'Open the chat' : 'Open the full write-up'}</a></div>` : ''}${resultHtml(i)}${i.note && !i.actioned ? `<div class="meta where">${esc(i.note)}</div>` : ''}${!i.answered ? qsHtml(i) : ''}</div>${i.answered ? answeredHtml(i) : choicesHtml(i) + startHtml(i)}${fbCard(i)}</div>`; };
+    // Pictures not ready: quiet, no answer buttons; tap to read what it will be.
+    const picItem = i => { const k = 'p:' + i.id, op = S.openItems.has(k); return `<div class="card quiet" id="card-${esc(i.id)}"><div class="name"><span class="num">${esc(i.n)}</span>${esc(i.title)}</div><div class="meta">${esc(i.source)} · raised ${ago(i.created) || when(i.created)}</div><div class="where">${esc(picsMissing(i))}</div>${op ? `<div class="where txt">${fmtText(i.text, true)}${i.details ? detsHtml(i.details) : ''}</div>` : ''}<button class="tog more" type="button" data-item="${esc(k)}" aria-expanded="${op}">${op ? 'Hide it' : 'What it will be'}</button></div>`; };
+    // Doing: answered, Claude has not finished acting. One line each; tap for the full card (Undo or change the answer there).
+    const doLine = i => { const k = 'd:' + i.id, op = S.openItems.has(k); const what = doInfo(i).text; return op ? `<button class="dline tog" type="button" data-item="${esc(k)}" aria-expanded="true"><span class="num">${esc(i.n)}</span><span class="dt">${esc(i.title)}<span>Hide</span></span><span class="chev">&#x2212;</span></button>${item(i)}` : `<button class="dline tog" type="button" data-item="${esc(k)}" aria-expanded="false"><span class="num">${esc(i.n)}</span><span class="dt">${esc(i.title)}<span>You answered ${esc(ago(i.answered))}${i.answer ? ': ' + esc(String(i.answer).slice(0, 60)) : ''} · ${esc(what.slice(0, 90))}</span></span><span class="chev">&#x203A;</span></button>`; };
+    const pw = pendingWakes();
+    let h = '';
+    const late = doingL.filter(isOverdue), lpl = loopLate(), lp = S.loops;
+    if (late.length || lpl || S.chaseNote) h += `<div class="card s-blocked" id="overdue"><div class="name">${late.length ? late.length + (late.length === 1 ? ' answered card is overdue' : ' answered cards are overdue') : lpl ? 'The loop check is late' : 'Chase started'}</div><div class="where">${late.length ? 'You answered ' + esc(late.map(i => '#' + i.n).join(', ')) + ' over 2 hours ago and nothing has finished them or handed them back. ' : ''}${lp && lp.checked_at ? 'The last loop check was ' + esc(ago(lp.checked_at)) + ', by the ' + esc(lp.by || 'shift') + '.' : 'No loop check has run on this board yet.'}${late.length || lpl ? ' Tap <b>Chase now</b> and the ' + esc(SIDE.shiftName) + ' starts on them; otherwise its next run does.' : ''}${S.chaseNote ? `<div class="meta where">${esc(S.chaseNote)}</div>` : ''}</div>${late.length || lpl ? `<div class="reply"><button class="btn primary" type="button" id="chase"${S.chasing ? ' disabled' : ''}>Chase now</button></div>` : ''}</div>`;
+    if (pw.length || S.wakeNote) h += `<div class="card s-blocked"><div class="name">${pw.length ? 'Your answers have not been picked up yet' : 'Started'}</div><div class="where">${pw.length ? `You answered ${esc(pw.map(i => i.n).join(', '))}. Tap <b>Start now</b> and the board starts the run that acts on them. Otherwise the next shift picks them up.` : ''}${S.wakeNote ? `<div class="meta where">${esc(S.wakeNote)}</div>` : ''}</div>${pw.length ? `<div class="reply"><button class="btn primary" type="button" id="wake-all"${S.waking ? ' disabled' : ''}>Start now</button></div>` : ''}</div>`;
+    // Fold (8 Nov): the top card is open, the rest are one line each; tap a line to open it. Less scrolling.
+    const cKey = (i, k) => (k === 0 ? 'cx:' : 'c:') + i.id;
+    const cIsOpen = (i, k) => open.length === 1 || (k === 0 ? !S.openItems.has('cx:' + i.id) : (S.openItems.has('c:' + i.id) || !!(S.picked || {})[i.id]));
+    const cLine = (i, k) => `<button class="dline tog" type="button" data-item="${esc(cKey(i, k))}" aria-expanded="false"><span class="num">${esc(i.n)}</span><span class="dt">${esc(i.title)}${i.urgent ? '<span class="tag">urgent</span>' : ''}<span>${esc(i.source || '')} · ${esc(ago(i.created) || when(i.created))}${i.due ? ' · by ' + esc(when(i.due)) : ''}${arr(i.previews).some(x => x && safeImg(x.img)) ? ' · ' + arr(i.previews).filter(x => x && safeImg(x.img)).length + ' pictures' : ''}${qList(i).length ? ' · ' + qList(i).length + ' questions' : ''}</span></span><span class="chev">&#x203A;</span></button>`;
+    if (open.length) {
+      let grp = '';
+      open.forEach((i, k) => {
+        if (cIsOpen(i, k)) { if (grp) { h += `<div class="card dlist">${grp}</div>`; grp = ''; } h += item(i, open.length > 1 ? cKey(i, k) : null) + (open.length > 1 ? `<button class="tog more" type="button" data-item="${esc(cKey(i, k))}" aria-expanded="true">Fold #${esc(i.n)} up</button>` : ''); }
+        else grp += cLine(i, k);
+      });
+      if (grp) h += `<div class="card dlist">${grp}</div>`;
+    } else h += `<div class="card empty">Nothing waiting on you.${pics.length ? ' ' + pics.length + (pics.length === 1 ? ' card is' : ' cards are') + ' waiting for pictures, below.' : ''}</div>`;
+    if (held.length) h += `<div class="grp">Held while the Control Room looks at your feedback (${held.length}) <span class="meta">· they come back when it is done</span></div><div class="card dlist">${held.map(i => `<div class="dline"><span class="num">${esc(i.n)}</span><span class="dt">${esc(i.title)}<span>You sent feedback on this card</span></span><button class="opt" type="button" data-unhold="${esc(i.id)}">Show it anyway</button></div>`).join('')}</div>`;
+    if (pics.length) h += `<div class="grp">Pictures not ready (${pics.length}) <span class="meta">· nothing to answer yet</span></div>` + pics.map(picItem).join('');
+    if (doingL.length) { h += `<button class="tog block doingtog" type="button" data-tog="doing" aria-expanded="${!!S.showDoing}">${S.showDoing ? 'Hide' : 'Show'} Answered, not finished (${doingL.length}) <span class="meta">· ${(() => { const nd = doingL.filter(x => doInfo(x).k === 'doing').length, nl = doingL.filter(isOverdue).length; return (nl ? nl + ' overdue, ' : '') + (nd ? nd + ' being worked on, ' + (doingL.length - nd - nl) + ' waiting' : 'none being worked on right now'); })()}</span></button>`; if (S.showDoing) h += `<div class="card dlist doingl">${doingL.sort((a, b) => String(b.answered || '').localeCompare(String(a.answered || ''))).map(doLine).join('')}</div>`; }
+    if (done.length) {
+      h += `<button class="tog block" type="button" data-tog="answered" aria-expanded="${S.showAnswered}">${S.showAnswered ? 'Hide' : 'Show'} done (${done.length})</button>`;
+      if (S.showAnswered) h += done.map(x => item(x)).join('');
+    }
+    // Typing in a reply box must survive a live refresh.
+    const keep = {}; document.querySelectorAll('#inbox input.in, #inbox textarea.in').forEach(x => { if (x.value) keep[x.id] = x.value; });
+    const focused = document.activeElement && document.activeElement.id;
+    $('inbox').innerHTML = h;
+    Object.entries(keep).forEach(([k, v]) => { const x = $(k); if (x) x.value = v; });
+    if (focused && $(focused) && $(focused).matches('input, textarea')) $(focused).focus();
+    if (Math.abs(window.scrollY - scrollY0) > 2) window.scrollTo(0, scrollY0);
+    setCount('waiting', open.length, true);
+    if (!tabChosen && S.inboxSeen) { tabChosen = true; showTab(open.length || pw.length ? 'waiting' : 'projects'); }
+  };
+  const renderRows = () => {
+    const st = r => { const s = String(r.status || 'idle').toLowerCase(); return s.startsWith('wait') ? 'waiting' : s.startsWith('block') ? 'blocked' : s.startsWith('run') ? 'running' : s.startsWith('done') ? 'done' : 'idle'; };
+    const slug = s => String(s || '').toLowerCase().replace(/ control$/, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const itemsFor = r => S.inbox.filter(i => i.row ? String(i.row) === String(r.id) : (i.source && r.session && String(i.source) === String(r.session) && slug(i.source) === String(r.id)));
+    const state = r => {
+      const its = itemsFor(r), open = its.filter(askable), pend = its.filter(i => i.answered && !i.actioned), picw = its.filter(picsPending), s = st(r);
+      const list = a => a.map(i => i.n).join(', ');
+      const movedRecently = r.updated && (Date.now() - new Date(r.updated).getTime()) < 20 * 60000;
+      if (open.length) return { cls: 'waiting', label: 'Needs your answer: ' + list(open) };
+      if (picw.length && !pend.length) return { cls: 'idle', label: 'Pictures not ready for ' + list(picw) + ': nothing to answer yet' };
+      if (pend.length) {
+        const noted = pend.find(i => i.note);
+        if (noted) return { cls: 'blocked', label: String(noted.note).replace(/^Waiting:\s*/i, 'Waiting: ').slice(0, 110) + (pend.length > 1 ? ' (+' + (pend.length - 1) + ' more)' : ''), action: wakePrefix(r.session) ? 'start' : 'open', items: pend };
+        const justMoved = r.updated && (Date.now() - new Date(r.updated).getTime()) < 10 * 60000;
+        if (justMoved) return { cls: 'running', label: 'Working on your answers ' + list(pend) };
+        const started = pend.filter(i => i.relayed && (Date.now() - new Date(i.relayed).getTime()) < 2 * 3600000);
+        if (started.length === pend.length) return { cls: 'running', label: 'Picked up ' + ago(started[0].relayed) + ', working on ' + list(pend) };
+        return wakePrefix(r.session) ? { cls: 'blocked', label: 'You answered ' + list(pend) + '. Not picked up yet', action: 'start', items: pend }
+                                     : { cls: 'blocked', label: 'You answered ' + list(pend) + '. Not picked up yet', action: 'open' };
+      }
+      const laptopWait = s !== 'done' && wakePrefix(r.session) && (r.needs === 'laptop' || /waiting (for|on) the laptop/i.test(String(r.where || '')));
+      if (laptopWait && !movedRecently) return { cls: 'blocked', label: S.goUntil > Date.now() ? 'Laptop marked free: the run at ten past uses it' : 'Waiting for the laptop to be free (needs Chrome)', action: 'laptop' };
+      const late = r.next_wake && new Date(r.next_wake).getTime() < Date.now() - 5 * 60000;
+      const nextTxt = late ? ', check is late: the next run picks it up' : (r.next_wake ? ', next check ' + until(r.next_wake) : '');
+      if (s === 'waiting') return { cls: 'blocked', label: (r.needs === 'ronnie' ? 'Waiting for your answer' : 'Waiting') + nextTxt };
+      if (s === 'running') return { cls: 'running', label: movedRecently ? 'Working now' : 'Working' + nextTxt };
+      if (s === 'blocked') return { cls: 'blocked', label: 'Stuck, see note' };
+      if (s === 'done') return { cls: 'done', label: 'Done' };
+      return { cls: 'idle', label: 'Not started' };
+    };
+    const rank = r => { const x = state(r); return x.label.startsWith('Needs your answer') ? 0 : /^You answered|^Picked up|^Working on your answers/.test(x.label) ? 1 : x.cls === 'running' ? 2 : x.cls === 'blocked' ? 3 : (ORDER[st(r)] ?? 3.5) + 1; };
+    const all = S.rows.slice().sort((a, b) => rank(a) - rank(b) || String(b.updated || '').localeCompare(String(a.updated || '')));
+    const live = all.filter(r => st(r) !== 'done'), done = all.filter(r => st(r) === 'done');
+    const item = (r, inV) => { inV = inV === true; const x = state(r), open = S.openRows.has(r.id); return `${inV ? '<div>' : `<div class="card s-${x.cls}"><div class="head"><span class="name">${esc(r.name || r.id)}</span><span class="meta" style="white-space:nowrap">${ago(r.updated) || ''}</span></div><div class="status-line ${x.cls}">${esc(x.label)}</div>`}${r.where ? `<div class="where${open ? '' : ' clamp'}">${esc(r.where)}</div>` : ''}${isVideo(r) ? (inV ? resLine(r) : plan(r) + resLine(r)) : ''}${chatUrl(r) ? `<div class="reply"><a class="btn${x.action === 'open' ? ' primary' : ' quiet'}" href="${chatUrl(r)}" target="_blank" rel="noopener">Open the chat</a></div>` : ''}${x.action === 'start' ? `<div class="reply"><button class="btn primary" type="button" data-start="${esc(r.id)}">Start now</button></div><div class="meta where">${/laptop|resolve/i.test(x.label) ? 'Needs the laptop on and idle 15 min. The hourly run does it then, or tap Start now once it is idle.' : 'Starts the run with your answers. Otherwise the hourly run picks them up.'}</div>` : x.action === 'laptop' ? `<div class="reply"><button class="btn primary" type="button" data-laptop="${esc(r.id)}"${S.laptopStarting || S.goUntil > Date.now() ? ' disabled' : ''}>${S.goUntil > Date.now() ? 'Marked free' : "Laptop's free: use it at ten past"}</button></div><div class="meta where">${S.laptopNote[r.id] ? esc(S.laptopNote[r.id]) : 'Resolve work runs every hour even while you use the laptop. Chrome work waits until the laptop has been idle 15 min, or until you tap this. Runs started from the board cannot use the laptop, so it happens at ten past. Keep the lid open.'}</div>` : x.action === 'open' ? (chatUrl(r) ? `<div class="where"><b>To move this:</b> tap Open the chat and say <b>read the board</b>, or tell it anything new.</div>` : `<div class="where"><b>To move this:</b> open the chat “${esc(r.session)}” and say <b>read the board</b>.</div>`) : ''}${open ? `<div class="details">${r.session ? `<div class="meta">Chat: ${esc(r.session)}</div>` : '<div class="meta">No chat open yet</div>'}${canPaste(r) && !chatUrl(r) ? `<div class="meta where">No link to this chat yet. The chat adds it the next time it writes this card, or paste its link here.</div><div class="reply"><input class="in" id="chat-${esc(r.id)}" type="url" placeholder="https://claude.ai/…" maxlength="300" enterkeyhint="done"><button class="opt send" type="button" data-chatsave="${esc(r.id)}">Save</button></div>${S.chatNote[r.id] ? `<div class="meta where">${esc(S.chatNote[r.id])}</div>` : ''}` : ''}${r.next_wake ? `<div class="meta">Next check ${until(r.next_wake)} (${when(r.next_wake)})</div>` : ''}${r.folder ? `<div class="meta">Folder: ${esc(r.folder)}</div>` : ''}${safeUrl(r.link) ? `<div><a href="${safeUrl(r.link)}" target="_blank" rel="noopener">Open the detail page</a></div>` : ''}${r.start ? `<div class="reply" style="margin-top:6px"><button class="btn" type="button" data-copy="${esc(r.id)}">Copy start prompt</button></div>` : ''}</div>` : ''}<button class="tog more" type="button" data-row="${esc(r.id)}" aria-expanded="${open}">${open ? 'Less' : 'Details'}</button></div>`; };
+    const need = live.filter(r => rank(r) <= 1).length;
+    setCount('projects', need || live.length, need > 0);
+    renderVideos(live.filter(isVideo), state, item);
+    if (!all.length) { $('rows').innerHTML = '<div class="card empty">No rows yet. Each control session writes its own.</div>'; return; }
+    // Quiet projects (8 Nov): idle rows with nothing for Ronnie, no wake ahead and no move for a day fold away; one tap shows them.
+    const others = live.filter(r => !isVideo(r)), quiet = r => st(r) === 'idle' && rank(r) >= 3 && !itemsFor(r).some(i => !i.actioned) && !(Date.parse(r.next_wake || '') > Date.now()) && Date.now() - (Date.parse(r.updated || '') || 0) > 24 * 3600e3;
+    const busy = others.filter(r => !quiet(r)), calm = others.filter(quiet);
+    let h = `<div class="grp">Other projects</div>` + (busy.length ? busy.map(item).join('') : '<div class="card empty">Nothing else is moving.</div>');
+    if (calm.length) { h += `<button class="tog block" type="button" data-tog="quiet" aria-expanded="${!!S.showQuiet}">${S.showQuiet ? 'Hide' : 'Show'} quiet projects (${calm.length}): idle, nothing for you, no move for a day</button>`; if (S.showQuiet) h += calm.map(item).join(''); }
+    if (done.length) {
+      h += `<button class="tog block" type="button" data-tog="done" aria-expanded="${S.showDone}">${S.showDone ? 'Hide' : 'Show'} done (${done.length})</button>`;
+      if (S.showDone) h += done.map(x => item(x)).join('');
+    }
+    $('rows').innerHTML = h;
+    renderResolve();
+  };
+  // Videos strip (8 Nov): one card per active video row, computed live from rows, inbox, meta/resolve, meta/laptop and tasks, so it cannot go stale.
+  const OWN = { shoot:'shoot the footage', vo:'record the voiceover', review:'review the cut in Resolve', upload:'package and upload' };
+  const TILE = ['#6b4f8a', '#2f5d8a', '#2e7d4f', '#a85f00', '#8a4f5d', '#4f7a8a'];
+  const vname = r => String(r.name || r.id).replace(/^Video:\s*/, '');
+  const vthumb = r => { if (safeImg(r.thumb)) return r.thumb; const its = S.inbox.filter(i => String(i.row || '') === String(r.id)); for (const i of its) { const p = arr(i.previews).find(x => x && safeImg(x.img)); if (p) return p.img; } return ''; };
+  const nudgeOf = r => S.taskDocs.filter(t => t && t.source === 'Board nudge' && String(t.row || '') === String(r.id)).sort((a, b) => String(b.created || '').localeCompare(String(a.created || '')))[0] || null;
+  const vStatus = r => {
+    const its = S.inbox.filter(i => String(i.row || '') === String(r.id)), mine = its.filter(askable).sort(byUrgency);
+    const hh = t => new Date(t).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+    const s = String(r.status || '').toLowerCase(), upd = Date.parse(r.updated || '') || 0, wake = Date.parse(r.next_wake || '') || 0, now = Date.now();
+    if (mine.length) return { cls:'waiting', k:0, text:`Waiting for you: ${mine[0].title} (#${mine[0].n})${mine.length > 1 ? ' and ' + (mine.length - 1) + ' more' : ''}`, go: mine[0].id };
+    if (OWN[r.stage] && s !== 'done') return { cls:'waiting', k:0.2, text:'Waiting for you: ' + OWN[r.stage] };
+    const m = S.res || {}, live = resLive(), q = resolveQueue(), qk = q.findIndex(x => x.id === r.id);
+    if (live && m.video === r.id) return { cls:'running', k:5, text:'Running: in Resolve now' + (m.doing ? ', ' + m.doing : '') };
+    if (qk >= 0) { const pos = ['1st','2nd','3rd'][qk] || (qk + 1) + 'th'; const ron = m.ronnie_until && Date.parse(m.ronnie_until) > now; return { cls:'blocked', k:1, res:true, text: ron ? `Waiting for Resolve: you have it until ${hh(m.ronnie_until)}; this video is ${pos} in the queue` : live ? `Waiting for Resolve: ${m.holder} has it (${vid2(m.video)}); this video is ${pos} in the queue` : `Waiting for Resolve: ${pos} in the queue; the next run at ten past takes it` }; }
+    if (r.needs === 'laptop' || /waiting (for|on) the laptop/i.test(String(r.where || ''))) { const L = S.laptop || {}; return { cls:'blocked', k:2, text:'Waiting for the laptop' + (L.status === 'busy' || L.status === 'away' ? ` (busy, last seen ${L.updated ? hh(L.updated) : '?'})` : '') }; }
+    const noOwner = !r.session && !chatUrl(r);
+    if (wake && wake > now && !noOwner) return { cls:'idle', k:3, text:'Waiting for an outside event: next check ' + until(r.next_wake) };
+    if (s.startsWith('run') && upd && now - upd < 6 * 3600e3) return { cls:'running', k:5, text:'Running: last move ' + ago(r.updated) };
+    if (noOwner) return { cls:'blocked', k:0.5, stuck:true, text:'Stuck: no chat or run owns this video' };
+    if (wake && now - wake > 30 * 60000) return { cls:'blocked', k:0.5, stuck:true, text:'Stuck: its check was due ' + ago(r.next_wake) + ' and has not run' };
+    return { cls:'blocked', k:0.5, stuck:true, text:'Stuck: no update for ' + (ago(r.updated) || 'a while').replace(/ ago$/, '') + ' and no wake set' };
+  };
+  const angleBlock = r => (r.angle || r.hook) ? `<div class="plan-note vangle">${r.angle ? `<div><b>Angle:</b> ${esc(r.angle)}</div>` : ''}${r.hook ? `<div><b>Hook:</b> ${esc(r.hook)}</div>` : ''}${r.narrative ? `<div><b>Story:</b> ${esc(r.narrative)}</div>` : ''}</div>` : (isVideo(r) ? '<div class="plan-note meta">Angle and hook not written yet: the video\'s chat or shift adds them at its next update.</div>' : '');
+  const ladder = r => {
+    const i = STAGES.findIndex(s => s[0] === r.stage), over = (r.stages && typeof r.stages === 'object') ? r.stages : {};
+    if (i < 0) return '<div class="lnext meta">Step not reported yet: its chat adds it at its next update.</div>';
+    const stOf = (s, k) => { const o = String(over[s[0]] || '').toLowerCase(); return ['done','now','skip','todo'].includes(o) ? o : k < i ? 'done' : k === i ? 'now' : 'todo'; };
+    const states = STAGES.map(stOf), nextK = STAGES.findIndex((s, k) => k > i && states[k] === 'todo'), also = STAGES.filter((s, k) => k !== i && states[k] === 'now').map(s => s[1]);
+    const op = S.openSteps.has(r.id), doneN = states.filter(x => x === 'done').length, counted = states.filter(x => x !== 'skip').length;
+    const bar = STAGES.map((s, k) => `<i class="${states[k]}${s[2] ? ' you' : ''}" title="${esc(s[3])}"></i>`).join('');
+    const steps = STAGES.map((s, k) => `<span class="lstep ${states[k]}${s[2] ? ' you' : ''}"${k === i ? ' aria-current="step"' : ''}>${esc(s[1].replace(/^You: /, ''))}</span>`).join('');
+    return `<div class="lbar" role="img" aria-label="${doneN} of ${counted} steps done">${bar}</div><div class="lnext"><b>Now:</b> ${esc(STAGES[i][3])}${STAGES[i][2] ? ' (you)' : ''}${also.length ? ' · also: ' + esc(also.join(', ')) : ''}${nextK >= 0 ? ` · <b>Next:</b> ${esc(STAGES[nextK][3])}${STAGES[nextK][2] ? ' (you)' : ''}` : ''} <span class="meta">· ${doneN} of ${counted} done</span></div>${angleBlock(r)}${r.stage_note ? `<div class="plan-note">${esc(r.stage_note)}</div>` : ''}${op ? `<div class="ladder" aria-label="Production steps">${steps}</div>` : ''}<button class="tog more" type="button" data-vsteps="${esc(r.id)}" aria-expanded="${op}">${op ? 'Hide the steps' : 'All the steps'}</button>`;
+  };
+  const renderVideos = (vids, state, rowItem) => {
+    const el = $('videos'); if (!el) return;
+    if (!vids.length) { el.innerHTML = ''; return; }
+    const L = vids.map(r => ({ r, v: vStatus(r) })).sort((a, b) => a.v.k - b.v.k || stIdx(b.r) - stIdx(a.r) || String(b.r.updated || '').localeCompare(String(a.r.updated || '')));
+    const hh = t => new Date(t).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+    const card = ({ r, v }) => {
+      const pic = vthumb(r), name = vname(r), col = TILE[[...String(r.id)].reduce((s, c) => s + c.charCodeAt(0), 0) % TILE.length];
+      const n = nudgeOf(r), nudged = n && Date.now() - (Date.parse(n.created || '') || 0) < 24 * 3600e3;
+      const moving = v.cls === 'running';
+      const nud = moving ? '' : `<div class="reply">${v.go ? `<button class="btn primary" type="button" data-goitem="${esc(v.go)}">Open #${esc((S.inbox.find(x => x.id === v.go) || {}).n || '')}</button>` : ''}<button class="btn${v.go ? ' quiet' : v.stuck ? ' primary' : ''}" type="button" data-nudge="${esc(r.id)}"${S.nudging === r.id ? ' disabled' : ''}>Get it moving</button>${resolveQueue().some(x => x.id === r.id) && !(r.resolve && r.resolve.bump) ? `<button class="btn quiet" type="button" data-resbump="${esc(r.id)}">Bump in the queue</button>` : ''}</div>`;
+      const nn = nudged ? `<div class="meta where">Asked at ${hh(n.created)}: ${esc(n.status === 'done' ? 'done' : n.status === 'running' ? 'working on it' : n.status === 'needs-ronnie' ? 'needs you' : 'queued')}${n.result ? ' · ' + esc(String(n.result).slice(0, 220)) : ''}</div>` : (S.nudgeNote[r.id] ? `<div class="meta where">${esc(S.nudgeNote[r.id])}</div>` : '');
+      return `<div class="card s-${v.cls === 'idle' ? 'idle' : v.cls}"><div class="vhead">${pic ? `<img class="vpic" src="${pic}" alt="" loading="lazy">` : `<div class="vtile" style="background:${col}">${esc(name)}</div>`}<div class="vt"><div class="name">${esc(name)}</div><div class="vstat ${v.cls}">${esc(v.text)}</div><div class="meta">${ago(r.updated) ? 'updated ' + ago(r.updated) : ''}</div></div></div>${ladder(r)}${nud}${nn}${rowItem(r, true)}</div>`;
+    };
+    el.innerHTML = `<div class="grp" style="margin-top:4px">Videos (${vids.length}) <span class="meta">· every active video, live</span></div><div class="lkey" style="margin:-4px 0 8px">Each bar is the 19 steps from shoot to retention review: green done, filled the step now, red edge your steps.</div>` + L.map(card).join('');
+  };
+  // Get it moving: a queued task for the row plus a fire of the tasks runner, which wakes a session for the row.
+  const nudge = async id => {
+    const r = S.rows.find(x => x.id === id); if (!r || S.nudging) return;
+    S.nudging = id; S.nudgeNote[id] = 'Asking…'; renderRows();
+    const now = new Date().toISOString(), tid = 'nudge-' + id + '-' + now.replace(/[-:.TZ]/g, '').slice(0, 12);
+    try {
+      await db.doc('tasks/' + tid).set({ title: 'Get ' + vname(r) + ' moving', detail: 'Ronnie asked to get this moving: read the row, say what blocks it, do whatever can move, wake the owner.', status: 'queued', source: 'Board nudge', row: id, created: now, updated: now, result: null });
+      S.nudgeNote[id] = 'Asked. The tasks runner starts at its next run.';
+      try { const mcp = await claude.use('mcp'); if (mcp) { await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: TRIGGER_ID, text: SIDE.fireNote + 'Board nudge from the ' + SIDE.name + ' Board: tasks/' + tid + ' for rows/' + id + '. Read the row, say what blocks it, do whatever can move, wake the owner.' }); S.nudgeNote[id] = 'Asked. The tasks runner is starting now.'; } } catch (e) { S.nudgeNote[id] = 'Asked. The tasks runner picks it up at its next run (within 2 hours).'; }
+    } catch (e) { S.nudgeNote[id] = 'Could not ask (' + errText(e) + ').'; }
+    finally { S.nudging = null; renderRows(); }
+  };
+  // Resolve queue: one video in Resolve at a time, the rest queued; everything else runs in parallel.
+  const stIdx = r => STAGES.findIndex(x => x[0] === r.stage);
+  const resLine = r => { if (S.res && S.res.video === r.id && resLive()) return `<div class="meta where"><b>In Resolve now</b>${S.res.doing ? ': ' + esc(S.res.doing) : ''}</div>`; const k = resolveQueue().findIndex(x => x.id === r.id); return k >= 0 ? `<div class="meta where"><b>Resolve: ${['1st','2nd','3rd'][k] || (k + 1) + 'th'} in the queue</b> for ${esc(r.resolve.next || 'its next stage')}. Everything else on this video carries on meanwhile.</div>` : ''; };
+  const vid2 = id => { const r = S.rows.find(x => x.id === id); return r ? String(r.name || id).replace(/^Video: /, '') : id; };
+  const resolveQueue = () => S.rows.filter(r => isVideo(r) && r.resolve && r.resolve.ready && r.status !== 'done' && !(S.res && S.res.video === r.id && resLive()))
+    .sort((a, b) => (a.resolve.bump ? 0 : 1) - (b.resolve.bump ? 0 : 1) || String(a.resolve.bump || '').localeCompare(String(b.resolve.bump || '')) || stIdx(b) - stIdx(a) || String(a.resolve.since || '').localeCompare(String(b.resolve.since || '')));
+  const resLive = () => { const m = S.res; return !!(m && m.holder && m.heartbeat && Date.now() - new Date(m.heartbeat).getTime() < 15 * 60000); };
+  const renderResolve = () => {
+    const el = $('resolve'); if (!el) return;
+    if (!S.res && !S.rows.some(isVideo)) { el.innerHTML = ''; return; }
+    const m = S.res || {}, live = resLive(), q = resolveQueue(), hh = t => new Date(t).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+    const ron = m.ronnie_until && new Date(m.ronnie_until).getTime() > Date.now();
+    const vid = id => { const r = S.rows.find(x => x.id === id); return r ? String(r.name || id).replace(/^Video: /, '') : id; };
+    let head, cls;
+    if (ron) { cls = 'blocked'; head = `<div class="status-line blocked">You have Resolve until ${hh(m.ronnie_until)}</div><div class="where">Claude keeps off Resolve until then and does the script, music and research work meanwhile. Tap “I'm done” to hand it back sooner.</div>`; }
+    else if (live) { cls = 'running'; head = `<div class="status-line running">Now: ${esc(vid(m.video))}${m.doing ? ' · ' + esc(m.doing) : ''}</div><div class="where">${esc(m.holder)} has had Resolve since ${hh(m.since)}${m.turn_ends ? `; expects this stage done about ${hh(m.turn_ends)}` : ''}. It stays on this video until the video needs you or has no Resolve work left${q.length ? ', then saves and moves Resolve to the next video below' : ''}. Last sign of life ${ago(m.heartbeat)}.</div>`; }
+    else { cls = q.length ? 'blocked' : 'idle'; head = `<div class="status-line ${cls}">Free${m.holder ? ' (last used by ' + esc(m.holder) + ', ' + (m.heartbeat ? ago(m.heartbeat) : 'time unknown') + ')' : ''}</div><div class="where">${q.length ? 'The next run at ten past takes the first video below.' : 'No video has Resolve work ready. Resolve stages that need your answer first are not queued.'}</div>`; }
+    const list = q.map((r, k) => `<li><b>${esc(vid(r.id))}</b>: ${esc(r.resolve.next || 'next Resolve stage')} <span class="meta">· queued ${ago(r.resolve.since) || ''}${r.resolve.bump ? ' · moved up by you' : ''}</span>${k > 0 ? ` <button class="opt" type="button" data-resbump="${esc(r.id)}">Do this next</button>` : ''}</li>`).join('');
+    el.innerHTML = `<div class="card s-${cls}"><div class="head"><span class="name">Resolve queue</span><span class="meta">one video at a time · closest to publishing goes first</span></div>${head}${q.length ? `<ol class="feed">${list}</ol>` : ''}<div class="meta where">Only the Resolve part queues. Script, music, research and packaging for every video run at the same time, whatever Resolve is doing.</div><div class="reply">${ron ? `<button class="btn" type="button" data-resme="off">I'm done with Resolve</button>` : `<button class="btn quiet" type="button" data-resme="on">I'm using Resolve (1 hour)</button>`}</div>${S.resNote ? `<div class="meta where">${esc(S.resNote)}</div>` : ''}</div>`;
+  };
+  // Feedback to the Control Room: feedback/<id> {text, from, item, item_title, created, status new|doing|waiting|done|declined, waiting_on you|silly|laptop|<project>, unstick {label, action fire|link|go, trigger, url}, reply, done_at}. The Control Room feedback run reads it.
+  const FBS = { new:'Sent: the next shift picks it up (within 2 hours by day)', doing:'Being worked on now', done:'Done', declined:'Not done' };
+  const FB_TRIG = SIDE.trigger, SILLY_TRIG = 'trig_011LeGjzWpsN1sipszjUymYD';
+  // Feedback status words (9 Nov): "doing" means a run is working on it right now; "waiting" + waiting_on says who it is waiting for. An old "doing" doc not touched for 3 h counts as waiting for the next run.
+  const fbInfo = f => {
+    const st = f.status, on = String(f.waiting_on || '').trim(), key = on.toLowerCase();
+    const age = Date.now() - (Date.parse(f.updated || f.created || '') || 0);
+    if (st === 'doing' && age > 3 * 3600e3) return { k: 'wait', text: 'Waiting for its next run', badge: 'Waiting', stale: true };
+    if (st === 'doing') return { k: 'doing', text: FBS.doing, badge: 'Being worked on' };
+    if (st === 'waiting') {
+      if (key === 'you') { const first = String(f.reply || '').replace(/\s+/g, ' ').trim().split(/(?<=[.!?])\s/)[0]; return { k: 'waityou', text: 'Waiting for you' + (first ? ': ' + first : ''), badge: 'Waiting for you' }; }
+      if (key === 'silly') return { k: 'wait', text: 'Waiting for the Silly build (next run within 4 hours)', badge: 'Waiting' };
+      if (key === 'laptop') return { k: 'wait', text: 'Waiting for your laptop to approve it', badge: 'Waiting' };
+      return { k: 'wait', text: 'Waiting for the ' + (on || 'other') + ' chat', badge: 'Waiting' };
+    }
+    return null;
+  };
+  // One way to unstick a waiting item: its unstick field, else a default by waiting_on.
+  const fbUnstick = f => {
+    const u = f.unstick && f.unstick.action ? f.unstick : null, inf = fbInfo(f), key = String(f.waiting_on || '').toLowerCase();
+    if (u) return { label: u.label || (u.action === 'link' ? 'Open the chat' : u.action === 'go' ? "Laptop's free" : 'Run it now'), action: u.action, trigger: u.trigger, url: u.url };
+    if (inf && inf.stale) return { label: 'Run it now', action: 'fire', trigger: FB_TRIG };
+    if (f.status === 'waiting' && key === 'silly') return { label: 'Build it now', action: 'fire', trigger: SILLY_TRIG };
+    if (f.status === 'waiting' && key === 'laptop') return { label: "Laptop's free", action: 'go' };
+    return null;
+  };
+  const fbUnstickClick = async (id, i0) => {
+    const f = S.fb.find(x => x.id === id); if (!f) return; const u = fbUnstick(f); if (!u) return;
+    S.fbAct = S.fbAct || {};
+    const hhmm = () => new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    if (u.action === 'link') { if (u.url) window.open(u.url, '_blank', 'noopener'); return; }
+    if (u.action === 'go') { await startLaptop('fb:' + id); S.fbAct[id] = S.laptopNote['fb:' + id] || ('Marked free at ' + hhmm()); renderFeedback(); return; }
+    if (u.action === 'fire') {
+      try { const mcp = await claude.use('mcp'); if (!mcp) throw new Error('none'); await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: u.trigger || FB_TRIG, text: (u.trigger ? '' : SIDE.fireNote) + 'Run now from the board: feedback/' + id + '.' }); S.fbAct[id] = 'Started at ' + hhmm(); }
+      catch (e) { S.fbAct[id] = 'Could not start it from here. It still runs at its next scheduled time.'; }
+      renderFeedback();
+    }
+  };
+  // Screenshots on feedback (8 Nov, feedback 20261108114530-fl8n): pictures are stored with the assets capability; the feedback doc keeps images [{id, url}].
+  const picUrl = p => p && p.id ? '/_blob/' + encodeURIComponent(p.id) : '';
+  const fbKey = k => 'fbp-' + String(k).replace(/[^A-Za-z0-9_-]/g, '_');
+  const fbPicsHtml = k => { const L = arr(S.fbPics[k]); return L.map((p, n) => `<span class="fbpic"><img src="${esc(picUrl(p))}" alt="Screenshot ${n + 1}" style="max-height:72px;max-width:96px;border-radius:6px;vertical-align:middle"> <button class="opt" type="button" data-fbrm="${esc(k)}|${n}" aria-label="Remove screenshot ${n + 1}">Remove</button></span>`).join(' ') + (S.fbBusy[k] ? ' <span class="meta">' + esc(S.fbBusy[k]) + '</span>' : ''); };
+  const fbShotUi = k => `<div class="reply"><label class="btn quiet" style="cursor:pointer">Add a screenshot<input type="file" accept="image/*" data-fbfile="${esc(k)}" hidden></label> <span id="${fbKey(k)}">${fbPicsHtml(k)}</span></div><div class="meta where">Leave names and case details out of screenshots.</div>`;
+  const fbShowPics = k => { const el = document.getElementById(fbKey(k)); if (el) el.innerHTML = fbPicsHtml(k); };
+  const fbUpload = async (k, file) => {
+    if (!file) return;
+    if (!/^image\//.test(file.type || '')) { S.fbBusy[k] = 'That is not a picture.'; fbShowPics(k); return; }
+    S.fbBusy[k] = 'Adding...'; fbShowPics(k);
+    try { const as = await claude.use('assets'); if (!as) throw new Error('none'); const r = await as.upload(file); (S.fbPics[k] = arr(S.fbPics[k])).push({ id: r.id, url: r.url }); S.fbBusy[k] = ''; }
+    catch (e) { S.fbBusy[k] = 'Could not add it. Describe it in words instead.'; }
+    fbShowPics(k);
+  };
+  const fbCard = i => S.fbOpen === 'i:' + i.id ? `<div class="qs"><div class="ask">Feedback on this card</div><textarea class="in" id="fb-i-${esc(i.id)}" rows="3" placeholder="What's wrong with it, or what would make it easier?"></textarea>${fbShotUi('i:' + i.id)}<div class="reply"><button class="btn primary" type="button" data-fbsend="i:${esc(i.id)}">Send to the Control Room</button><button class="btn" type="button" data-fb="">Cancel</button></div></div>` : `<div class="reply"><button class="tog more" type="button" data-fb="i:${esc(i.id)}">Feedback on this card</button></div>`;
+  // Batch send (10 Nov 2026, feedback 20261110034631-ug6q): pending feedback has a tick box (all ticked); one button sends the ticked ones to be built.
+  const fbPend = f => f.status === 'new' || (f.status === 'doing' && fbInfo(f) && fbInfo(f).stale) || (f.status === 'waiting' && String(f.waiting_on || '').toLowerCase() === 'silly');
+  const fbBarHtml = () => {
+    const P = S.fb.filter(fbPend); if (!P.length) return '';
+    S.fbOff = S.fbOff || {}; const n = P.filter(f => !S.fbOff[f.id]).length;
+    return `<div class="card" id="fbbar"><div class="name">Send feedback to be built</div><div class="where">${n} of ${P.length} ticked. Untick any you want to leave out, then send the rest as one batch. The Control Room starts on the ticked ones now; the Silly build starts if any ticked one is waiting for it, and builds everything waiting for it in one go.</div><div class="reply"><button class="btn primary" type="button" data-fbbatch="go"${n ? '' : ' disabled'}>Send ${n} to be built</button> <button class="btn quiet" type="button" data-fbbatch="all">Tick all</button> <button class="btn quiet" type="button" data-fbbatch="none">Untick all</button></div>${S.fbBatchNote ? `<div class="meta where">${esc(S.fbBatchNote)}</div>` : ''}</div>`;
+  };
+  const fbBatchGo = async () => {
+    S.fbOff = S.fbOff || {}; S.fbAct = S.fbAct || {};
+    const sel = S.fb.filter(f => fbPend(f) && !S.fbOff[f.id]); if (!sel.length) return;
+    const hhmm = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    const cr = sel.filter(f => f.status !== 'waiting'), sy = sel.filter(f => f.status === 'waiting');
+    const notes = [];
+    try {
+      const mcp = await claude.use('mcp'); if (!mcp) throw new Error('none');
+      if (cr.length) { await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: FB_TRIG, text: SIDE.fireNote + 'Batch sent from the ' + SIDE.name + ' board. Handle only these feedback ids this run: ' + cr.map(f => f.id).join(', ') + '.' }); cr.forEach(f => { S.fbAct[f.id] = 'Sent in a batch at ' + hhmm; }); notes.push(cr.length + ' to the Control Room'); }
+      if (sy.length) { await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: SILLY_TRIG, text: 'Batch sent from the ' + SIDE.name + ' board: build the Silly specs for ' + sy.map(f => f.id).join(', ') + '.' }); sy.forEach(f => { S.fbAct[f.id] = 'Sent in a batch at ' + hhmm; }); notes.push(sy.length + ' to the Silly build'); }
+      S.fbBatchNote = 'Sent at ' + hhmm + ': ' + notes.join(', ') + '.';
+    } catch (e) { S.fbBatchNote = 'Could not start them from here. They still run at their next scheduled time.'; }
+    renderFeedback();
+  };
+  // Edit pending feedback (10 Nov, feedback 20261110034658-8qll): feedback still at status new can be reworded until the Control Room run picks it up.
+  const fbEditSave = async id => {
+    const f = S.fb.find(x => x.id === id), inp = $('fbe-' + id); if (!f || !inp) return;
+    const v = inp.value.trim(); if (!v) { S.fbBatchNote = 'Feedback cannot be empty.'; renderFeedback(); return; }
+    if (f.status !== 'new') { S.fbEdit = null; S.fbEditText = null; S.fbBatchNote = 'Too late to edit: the Control Room has already picked it up.'; renderFeedback(); return; }
+    try { await db.doc('feedback/' + id).update({ text: v, updated: new Date().toISOString() }); S.fbBatchNote = 'Saved. The Control Room will read the new wording.'; }
+    catch (e) { S.fbBatchNote = 'Could not save it (' + (e && e.code ? e.code : 'error') + ').'; renderFeedback(); return; }
+    S.fbEdit = null; S.fbEditText = null; renderFeedback();
+  };
+  const renderFeedback = () => {
+    const el = $('feedback'); if (!el) return;
+    const keep = $('fb-new') ? $('fb-new').value : '';
+    if (S.fbEdit && $('fbe-' + S.fbEdit)) S.fbEditText = $('fbe-' + S.fbEdit).value;
+    const L = S.fb.slice().sort((a, b) => String(b.created || '').localeCompare(String(a.created || ''))).slice(0, 8);
+    el.innerHTML = `<div class="card"><div class="name">Tell the Control Room</div><div class="where">Anything about the boards, Silly desk or how Claude runs things: what's annoying, what's missing, what to change. The Control Room run picks it up within a few hours, makes the change and replies here.</div><textarea class="in" id="fb-new" rows="3" placeholder="e.g. cards with lots of questions are hard to answer"></textarea>${fbShotUi('new')}<div class="reply"><button class="btn primary" type="button" data-fbsend="new">Send</button></div>${S.fbNote ? `<div class="meta where">${esc(S.fbNote)}</div>` : ''}</div>` +
+      (() => {
+        const BADGE = { new:'Sent', doing:'Being worked on', done:'Done', declined:'Not done' };
+        const full = f => { const inf = fbInfo(f), u = inf ? fbUnstick(f) : null, kk = inf ? inf.k : (f.status === 'done' || f.status === 'declined' ? f.status : 'new'); return `<div class="card fbc fb-${kk}">${fbPend(f) ? `<label class="meta" style="float:right;cursor:pointer"><input type="checkbox" data-fbsel="${esc(f.id)}" ${(S.fbOff || {})[f.id] ? '' : 'checked'}> Include</label>` : ''}<span class="fbbadge ${inf ? (inf.k === 'doing' ? 'doing' : inf.k) : f.status === 'declined' ? 'declined' : f.status === 'done' ? 'done' : ''}">${esc(inf ? inf.badge : (BADGE[f.status] || BADGE.new))}</span><div class="where">${esc(f.text)}</div>${arr(f.images).filter(p => p && p.id).map(p => `<a href="${esc(picUrl(p))}" target="_blank" rel="noopener"><img src="${esc(picUrl(p))}" alt="Screenshot" style="max-height:60px;max-width:80px;border-radius:6px;margin:4px 4px 0 0"></a>`).join('')}<div class="meta">Your feedback · ${esc(f.from || '')}${f.item_title ? ' · about ' + esc(f.item_title) : ''} · ${when(f.created)}</div><div class="status-line ${inf ? (inf.k === 'doing' ? 'running' : inf.k === 'waityou' ? 'waiting' : 'idle') : f.status === 'done' ? 'done' : 'blocked'}">${esc(inf ? inf.text : (FBS[f.status] || FBS.new))}</div>${f.reply ? `<div class="where">${fmtText(f.reply, true)}</div>` : ''}${f.status === 'new' ? (S.fbEdit === f.id ? `<div class="reply"><textarea class="in" id="fbe-${esc(f.id)}" rows="3">${esc(S.fbEditText != null ? S.fbEditText : (f.text || ''))}</textarea></div><div class="reply"><button class="btn primary" type="button" data-fbeditsave="${esc(f.id)}">Save changes</button> <button class="btn" type="button" data-fbeditcancel="1">Cancel</button></div>` : `<div class="reply"><button class="tog more" type="button" data-fbedit="${esc(f.id)}">Edit before it is picked up</button></div>`) : ''}${u ? `<div class="reply"><button class="btn" type="button" data-fbunstick="${esc(f.id)}">${esc(u.label)}</button>${S.fbAct && S.fbAct[f.id] ? ` <span class="meta">${esc(S.fbAct[f.id])}</span>` : ''}</div>` : ''}${S.fbExp && S.fbExp[f.id] ? `<div class="reply"><button class="tog more" type="button" data-fbx="${esc(f.id)}">Fold up</button></div>` : ''}</div>`; };
+        const fin = x => x.status === 'done' || x.status === 'declined';
+        const act = L.filter(x => !fin(x)), dn = L.filter(fin);
+        S.fbExp = S.fbExp || {};
+        return fbBarHtml() + act.map(full).join('') +
+          (dn.length ? `<div class="grp">Finished (${dn.length}) <button class="tog more" type="button" data-fbx="__all">${S.fbDone ? 'Fold up' : 'Show'}</button></div>` + (S.fbDone ? dn.map(f => S.fbExp[f.id] ? full(f) : `<div class="fbrow ${f.status === 'declined' ? 'declined' : ''}" data-fbx="${esc(f.id)}"><span class="fbbadge ${f.status === 'declined' ? 'declined' : 'done'}" style="margin:0">${f.status === 'declined' ? 'Not done' : 'Done'}</span><span class="t">${esc(String(f.text || '').slice(0, 90))}</span><span class="meta">${when(f.done_at || f.created)}</span></div>`).join('') : '') : '');
+      })();
+    if (keep && $('fb-new')) $('fb-new').value = keep;
+  };
+  const sendFeedback = async key => {
+    const isNew = key === 'new', id = isNew ? '' : key.slice(2), inp = isNew ? $('fb-new') : $('fb-i-' + id);
+    const v = inp ? inp.value.trim() : ''; if (!v) return;
+    const it = id ? S.inbox.find(x => x.id === id) : null;
+    const fid = new Date().toISOString().replace(/[-:.TZ]/g, '').slice(0, 14) + '-' + Math.random().toString(36).slice(2, 6);
+    try { await db.doc('feedback/' + fid).set({ text: v, from: SIDE.name + ' board', item: id || null, item_title: it ? ('#' + it.n + ' ' + (it.title || '')) : null, created: new Date().toISOString(), status: 'new', reply: null, done_at: null, images: arr(S.fbPics[key]).map(p => ({ id: p.id, url: p.url })) }); }
+    catch (e) { S.fbNote = 'Could not send it (' + (e && e.code ? e.code : 'error') + ').'; renderFeedback(); return; }
+    delete S.fbPics[key]; S.fbOpen = null; S.fbNote = 'Sent. The Control Room is starting on it now; its progress shows here.'; if (inp) inp.value = '';
+    try { const mcp = await claude.use('mcp'); if (mcp && !recentFire(FB_TRIG)) { markFired(FB_TRIG); await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: FB_TRIG, text: SIDE.fireNote + 'Feedback just sent from the ' + SIDE.name + ' board: feedback/' + fid + '.' }); } } catch (e) { S.fbNote = 'Sent. The Control Room picks it up at its next run (within 2 hours).'; }
+    renderInbox(); renderFeedback();
+  };
+  // Change locks: one chat at a time changes a shared thing (CONTROL.md, the boards, a skill, a scheduled task, a repo's main branch, a blog post).
+  const lockLive = l => !!(l && l.holder && l.heartbeat && Date.now() - new Date(l.heartbeat).getTime() < 20 * 60000);
+  const renderLocks = () => {
+    const el = $('locks'); if (!el) return;
+    const hh = t => new Date(t).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' });
+    const live = S.locks.filter(lockLive), stale = S.locks.filter(l => l.holder && !lockLive(l));
+    const card = l => { const w = arr(l.waiting).filter(x => x);
+      return `<div class="card s-running"><div class="head"><span class="name">${esc(l.thing || l.id)}</span><span class="meta" style="white-space:nowrap">since ${l.since ? hh(l.since) : '?'}</span></div><div class="status-line running">Being changed by ${esc(l.holder)}</div><div class="where">${l.doing ? esc(l.doing) + '. ' : ''}Other chats wait for it and do their other work meanwhile. Last sign of life ${ago(l.heartbeat)}; if it goes quiet for 20 minutes the next chat takes over.</div>${w.length ? `<div class="meta where">Waiting to change it next: ${esc(w.map(x => x && x.holder ? x.holder : x).join(', '))}</div>` : ''}${l.chat ? `<div class="reply"><a class="btn quiet" href="${esc(l.chat)}" target="_blank" rel="noopener">Open the chat</a></div>` : ''}</div>`; };
+    const st = stale.length ? `<div class="card s-blocked"><div class="status-line blocked">Left locked by a chat that went quiet</div><div class="where">${stale.map(l => `<b>${esc(l.thing || l.id)}</b> (${esc(l.holder)}, ${ago(l.heartbeat) || 'time unknown'})`).join('; ')}. Nothing for you to do: the next chat that needs it takes it over and checks the latest copy first.</div></div>` : '';
+    const ch = S.changes, open = S.showChanges, shown = open ? ch : ch.slice(0, 5);
+    const log = ch.length ? `<div class="card"><div class="head"><span class="name">Recent changes</span><span class="meta">newest first</span></div><ol class="feed">${shown.map(c => `<li>${esc(c && c.what)} <span class="meta">· ${esc(c && (c.thing || c.key))} · ${esc(c && c.holder)} · ${when(c && c.when)}</span></li>`).join('')}</ol>${ch.length > 5 ? `<button class="tog more" type="button" data-tog="changes" aria-expanded="${open}">${open ? 'Show fewer' : `Show all ${ch.length}`}</button>` : ''}</div>` : '';
+    el.innerHTML = (live.length ? live.map(card).join('') : '<div class="card empty">Nothing is being changed right now. When a chat changes something shared, it shows here so two chats never change it at once.</div>') + st + log;
+  };
+  const renderFeeds = () => {
+    if (!S.feeds.length) { $('feeds').innerHTML = '<div class="card empty">Slack and monday.com digests land here.</div>'; return; }
+    $('feeds').innerHTML = S.feeds.map(f => {
+      const items = arr(f.items), open = S.openFeeds.has(f.id), shown = open ? items : items.slice(0, 3);
+      return `<div class="card"><div class="head"><span class="name">${esc(f.id)}</span><span class="meta" style="white-space:nowrap">${when(f.updated)}</span></div>${items.length ? `<ol class="feed">${shown.map(i => `<li>${esc(i && i.title)}${i && i.text ? ` <span class="meta">${esc(i.text)}</span>` : ''}${i && i.from ? ` <span class="meta">· ${esc(i.from)}</span>` : ''}</li>`).join('')}</ol>` : '<div class="empty where">Nothing new.</div>'}${items.length > 3 ? `<button class="tog more" type="button" data-feed="${esc(f.id)}" aria-expanded="${open}">${open ? 'Show fewer' : `Show all ${items.length}`}</button>` : ''}</div>`;
+    }).join('');
+  };
+  const renderTasks = () => {
+    const t = S.sweep ? arr(S.sweep.tasks).filter(x => x) : [], l = S.laptop;
+    setCount('more', realFlags().length + S.suspended.length, true);
+    if (!t.length && !l) { $('tasks').innerHTML = '<div class="card empty">No scheduled tasks listed.</div>'; return; }
+    const sus = S.suspended;
+    $('tasks').innerHTML = `<div class="card">${t.length ? `<div class="pills">${t.map(x => `<span class="pill">${esc(x)}</span>`).join('')}</div>` : '<div class="empty">No scheduled tasks listed.</div>'}${l ? `<div class="where"><b>Laptop:</b> ${esc(l.status || 'unknown')}, last seen ${when(l.last)}, ${arr(l.drives).length} drives indexed, ${esc(l.downloads_moved ?? 0)} files tidied</div>` : ''}${sus.length || S.suspendNote ? `<div class="where status-line ${sus.length ? 'blocked' : 'done'}">${sus.length ? `Switched off while the laptop was away: ${esc(sus.map(x => x.name).join(', '))}. ` : ''}${esc(S.suspendNote)}</div>${sus.length ? `<div class="reply"><button class="btn primary" type="button" id="resume-all"${S.resuming ? ' disabled' : ''}>Resume ${sus.length === 1 ? 'it' : 'them'}</button></div>` : ''}` : ''}</div>`;
+  };
+  // Laptop-bound scheduled tasks get switched off automatically when the laptop is asleep at their run time. Find them, offer one tap to resume.
+  const findSuspended = async () => {
+    try {
+      const mcp = await claude.use('mcp'); if (!mcp) return;
+      const p = unwrap(await mcp.callTool('Claude Code Remote', 'list_triggers', { enabled: false, limit: 100 }));
+      const list = p && Array.isArray(p.data) ? p.data : [];
+      S.suspended = list.filter(t => t && t.suspension_reason === 'device_absent').map(t => ({ id: t.id, name: t.name }));
+      renderTasks();
+    } catch (e) { /* no connector consent yet, or offline: nothing to show */ }
+  };
+  const resumeAll = async () => {
+    if (S.resuming || !S.suspended.length) return;
+    S.resuming = true; S.suspendNote = 'Resuming…'; renderTasks();
+    const notes = [];
+    try {
+      const mcp = await claude.use('mcp');
+      for (const t of S.suspended) {
+        try { await mcp.callTool('Claude Code Remote', 'update_trigger', { trigger_id: t.id, enabled: true }); notes.push(`${t.name}: on`); }
+        catch (e) { notes.push(`${t.name}: ${e && e.code ? e.code : 'failed'}`); }
+      }
+    } finally { S.resuming = false; S.suspendNote = notes.join(' · '); S.suspended = []; renderTasks(); setTimeout(findSuspended, 4000); }
+  };
+
+  const ideaAct = async (id, act) => {
+    const i = S.ideas.find(x => x.id === id); if (!i) return;
+    const now = new Date().toISOString(), day = now.slice(0, 10);
+    try {
+      if (act === 'task') {
+        await db.collection('tasks').add({ title: i.title || id, detail: (i.text || '') + (i.scope ? '\n\nScope: ' + i.scope : ''), status: 'queued', created: now, updated: now, result: null, source: 'ideas', idea: id });
+        await db.doc('ideas/' + id).update({ status: 'taken', note: 'Approved on ' + day + '. The tasks runner is starting it now; anything it needs from you appears on Waiting.' });
+        try { const mcp = await claude.use('mcp'); if (mcp) await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: TRIGGER_ID, text: SIDE.fireNote + 'Approved idea from the board: do it now. Idea ' + id + ' is queued as a task with source ideas. Work it straight away (or schedule it if there is a reason it cannot start), and raise a Waiting card for any blocker or question.' }); }
+        catch (e) { await db.doc('ideas/' + id).update({ note: 'Approved on ' + day + '. The tasks runner could not be started from here; it picks the task up at its next run, or tap Run now on the Tasks tab.' }).catch(() => {}); }
+      } else if (act === 'scope') {
+        await db.collection('tasks').add({ title: 'Scope: ' + (i.title || id), detail: 'Scope this idea for Ronnie in under 150 words: what it is in one line; why it matters for him; what it would take (effort tier small, medium or large, what is needed, dependencies, risks); then a recommendation, one of do now, shortlist, fold into an existing project (name it), or drop, with the reason. Idea: ' + (i.text || i.title || id), status: 'queued', created: now, updated: now, result: null, source: 'ideas', idea: id });
+        await db.doc('ideas/' + id).update({ note: 'Scoping now: the result lands here in a few minutes' });
+        try { const mcp = await claude.use('mcp'); if (mcp) await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: TRIGGER_ID, text: SIDE.fireNote + 'Scope now from the board: idea ' + id + '.' }); }
+        catch (e) { await db.doc('ideas/' + id).update({ note: 'Scoping queued: the runner does it at its next run, or tap Run now on the Tasks tab' }).catch(() => {}); }
+      } else if (act === 'shortlist') await db.doc('ideas/' + id).update({ status: 'shortlisted' });
+      else if (act === 'drop') await db.doc('ideas/' + id).update({ status: 'dropped', note: 'Dropped on ' + day });
+      else if (act === 'area') await db.doc('ideas/' + id).update({ area: i.area === 'work' ? 'personal' : 'work' });
+      else if (act === 'reopen') await db.doc('ideas/' + id).update({ status: 'new', note: null });
+    } catch (e) { $('sub').textContent = 'Could not update the idea (' + (e && e.code ? e.code : 'error') + ').'; }
+  };
+  const renderIdeas = () => {
+    const IS = { new:'idle', scoped:'waiting', shortlisted:'running', taken:'done', dropped:'done' };
+    const all = S.ideas.slice().sort((a, b) => String(b.created || '').localeCompare(String(a.created || '')));
+    if (!all.length) { $('ideas').innerHTML = '<div class="card empty">Ideas filed from the Ideas project land here, personal or work. Tag each one Personal or Work.</div>'; return; }
+    const pick = i => { if (i.status !== 'scoped') return 'task'; const r = String(i.recommendation || '').toLowerCase(); return r.startsWith('drop') ? 'drop' : r.startsWith('shortlist') ? 'shortlist' : 'task'; };
+    const b = (i, a, label, base) => `<button class="btn${pick(i) === a ? ' primary' : base}" type="button" data-idea="${esc(i.id)}" data-act="${a}">${label}</button>`;
+    const act = i => IS[i.status] === 'done'
+      ? `<div class="reply"><button class="btn quiet" type="button" data-idea="${esc(i.id)}" data-act="reopen">Reopen</button></div>`
+      : `${i.status === 'scoped' ? `<div class="status-line waiting">Your call: ${i.recommendation ? 'it recommends ' + esc(i.recommendation) : 'scoped'}. Tap one below.</div>` : ''}<div class="reply">${b(i, 'task', 'Make it a task', '')}<button class="btn" type="button" data-idea="${esc(i.id)}" data-act="scope">${i.scope ? 'Scope again' : 'Scope it'}</button>${i.status === 'shortlisted' ? '' : b(i, 'shortlist', 'Shortlist', '')}${b(i, 'drop', 'Drop', ' quiet')}<button class="btn quiet" type="button" data-idea="${esc(i.id)}" data-act="area">${i.area === 'work' ? 'Make it Personal' : i.area === 'personal' ? 'Make it Work' : 'Tag: Work'}</button></div>`;
+    const noteOf = i => i.note && !(i.status === 'scoped' && /^Scoping (queued|now)/.test(String(i.note))) ? i.note : '';
+    const item = i => { const open = S.openItems.has('i:' + i.id), long = String(i.text || '').length + String(i.scope || '').length > 220; return `<div class="card s-${IS[i.status] || 'idle'}"><div class="head"><span class="name">${esc(i.title || i.id)}</span><span class="pill ${IS[i.status] || 'idle'}">${esc(i.status === 'scoped' ? 'your call' : (i.status || 'new'))}</span></div><div class="meta">${esc(i.area === 'work' ? 'Work' : i.area === 'personal' ? 'Personal' : 'Personal or Work')} · ${esc(i.kind || '')}${i.kind ? ' · ' : ''}${when(i.created)}</div>${i.text ? `<div class="where${open || !long ? '' : ' clamp'}">${esc(i.text)}</div>` : ''}${i.scope && (open || !long) ? `<div class="where"><b>Scope${i.recommendation ? ', ' + esc(i.recommendation) : ''}:</b> ${esc(i.scope)}</div>` : i.scope ? `<div class="where meta">Scoped${i.recommendation ? ': ' + esc(i.recommendation) : ''}</div>` : ''}${long ? `<button class="tog more" type="button" data-item="i:${esc(i.id)}" aria-expanded="${open}">${open ? 'Show less' : 'Show more'}</button>` : ''}${noteOf(i) ? `<div class="meta where">${esc(noteOf(i))}</div>` : ''}${act(i)}</div>`; };
+    const live = all.filter(i => i.status !== 'dropped'), done = all.filter(i => i.status === 'dropped');
+    const call = live.filter(i => i.status === 'scoped').length;
+    setCount('ideas', call || live.filter(i => i.status !== 'taken').length, call > 0);
+    let h = live.length ? live.map(item).join('') : '<div class="card empty">No open ideas.</div>';
+    if (done.length) {
+      h += `<button class="tog block" type="button" data-tog="ideasdone" aria-expanded="${S.showIdeasDone}">${S.showIdeasDone ? 'Hide' : 'Show'} dropped (${done.length})</button>`;
+      if (S.showIdeasDone) h += done.map(x => item(x)).join('');
+    }
+    $('ideas').innerHTML = h;
+  };
+  const taskAct = t => { const id = esc(t.id); return `<div class="where"><b>What you can do:</b> say what you want Claude to do next (or what is in the way) and tap Send, and it goes back in the queue. Or tap Drop it if you no longer want it.</div><div class="addbox"><input class="in" id="tr-${id}" type="text" placeholder="e.g. go ahead / use the second one / not now" autocomplete="off"><button class="btn primary" type="button" data-tsend="${id}">Send</button><button class="btn quiet" type="button" data-tdrop="${id}">Drop it</button></div>`; };
+  const taskReply = async (id, drop) => {
+    const t = S.taskDocs.find(x => x.id === id); if (!t) return;
+    const inp = $('tr-' + id), v = String((inp && inp.value) || '').trim(), now = new Date().toISOString(), stamp = now.slice(0, 16).replace('T', ' ') + 'Z';
+    if (!drop && !v) { $('sub').textContent = 'Type what you want first, then tap Send.'; return; }
+    const upd = drop ? { status: 'done', result: (t.result ? t.result + ' ' : '') + 'Dropped by Ronnie ' + stamp + (v ? ': ' + v : '') + '.', updated: now }
+      : { status: 'queued', detail: (t.detail ? t.detail + '\n' : '') + 'Ronnie answered ' + stamp + ': ' + v, updated: now };
+    try { await db.doc('tasks/' + id).update(upd); } catch (e) { $('sub').textContent = 'Could not save that (' + (e && e.code ? e.code : 'error') + ').'; }
+  };
+  document.addEventListener('focusout', () => { setTimeout(() => { if (S.taskDirty && !typingInTasks()) renderTaskList(); }, 400); });
+  const typingInTasks = () => { const a = document.activeElement; return !!(a && a.matches && a.matches('#tasklist input, #tasklist textarea')); };
+  const renderTaskList = () => {
+    if (typingInTasks()) { S.taskDirty = true; return; } S.taskDirty = false;
+    const TS = { 'needs-ronnie':'waiting', running:'running', queued:'idle', done:'done' }, TO = { 'needs-ronnie':0, running:1, queued:2, done:3 };
+    const all = S.taskDocs.slice().sort((a, b) => (TO[a.status] ?? 2.5) - (TO[b.status] ?? 2.5) || String(b.created || '').localeCompare(String(a.created || '')));
+    if (!all.length) { $('tasklist').innerHTML = '<div class="card empty">Nothing asked for yet. Type a request above: it runs within two hours, or straight away with Run now.</div>'; return; }
+    const TL = { 'needs-ronnie':'needs you', running:'running', queued:'queued', done:'done' };
+    const item = t => { const open = S.openItems.has('t:' + t.id), long = String(t.detail || '').length + String(t.result || '').length > 220; return `<div class="card s-${TS[t.status] || 'idle'}"><div class="head"><span class="name">${esc(t.title || t.id)}</span><span class="pill ${TS[t.status] || 'idle'}">${esc(TL[t.status] || t.status)}</span></div><div class="meta">Task for Claude · ${when(t.created)}</div>${t.detail && (open || !long) ? `<div class="where">${esc(t.detail)}</div>` : ''}${t.result ? `<div class="where${open || !long ? '' : ' clamp'}"><b>Result:</b> ${esc(t.result)}</div>` : (!open && long && t.detail ? `<div class="where clamp">${esc(t.detail)}</div>` : '')}${long ? `<button class="tog more" type="button" data-item="t:${esc(t.id)}" aria-expanded="${open}">${open ? 'Show less' : 'Show more'}</button>` : ''}${arr(t.links).filter(safeUrl).length ? `<div class="meta where">${arr(t.links).filter(safeUrl).map(u => `<a href="${safeUrl(u)}" target="_blank" rel="noopener">${esc(u)}</a>`).join('<br>')}</div>` : ''}${t.status === 'needs-ronnie' ? taskAct(t) : ''}</div>`; };
+    const fresh = t => t.status === 'done' && Date.now() - (Date.parse(t.updated || t.created) || 0) < 86400000;
+    const live = all.filter(t => t.status !== 'done' || fresh(t)), done = all.filter(t => t.status === 'done' && !fresh(t));
+    const needT = live.filter(t => t.status === 'needs-ronnie').length;
+    setCount('tasks', needT || live.filter(t => t.status !== 'done').length, needT > 0);
+    if (S.runWatch && !all.some(t => t.status === 'queued' || t.status === 'running') && Date.now() - S.runWatch > 15000) { S.runWatch = 0; const rn = $('task-run-note'); if (rn) rn.textContent = 'Runner finished at ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + '. Results are in the list below.'; }
+    let h = live.map(item).join('');
+    if (done.length) {
+      h += `<button class="tog block" type="button" data-tog="taskdone" aria-expanded="${S.showTaskDone}">${S.showTaskDone ? 'Hide' : 'Show'} done (${done.length})</button>`;
+      if (S.showTaskDone) h += done.map(x => item(x)).join('');
+    }
+    $('tasklist').innerHTML = h;
+  };
+  const addTask = async () => {
+    const inp = $('task-new'), title = inp.value.trim();
+    if (!title) return;
+    const now = new Date().toISOString();
+    try { await db.collection('tasks').add({ title, status: 'queued', created: now, updated: now, result: null, source: 'board' }); inp.value = ''; }
+    catch (e) { $('sub').textContent = 'Could not add the task (' + (e && e.code ? e.code : 'error') + ').'; }
+  };
+  const answer = async (id, text, extra) => {
+    const it = S.inbox.find(x => x.id === id);
+    try { await db.doc('inbox/' + id).update(Object.assign({ answered: new Date().toISOString(), answer: text, actioned: null, answers: extra && extra.answers ? extra.answers : null }, it && it.withdrawn_at && !it.changed_at ? { note: 'Earlier answer "' + it.withdrawn + '" was taken back by Ronnie; act on this one.' } : {})); }
+    catch (e) { $('sub').textContent = 'Could not save the answer (' + (e && e.code ? e.code : 'error') + ').'; return false; }
+    // An answer wakes the chat that asked (11 Nov). The chat's own wake is fired with NO text (a session-bound wake refuses text): the card's wake_id, else the wake whose session is the one in the card's link. Failing that, the source's wake-up task; failing that, the shifts' LOOPS step takes the card at 2 hours.
+    const chatLink = it && /claude\.ai\/code\/session_/.test(String(it.link || ''));
+    if (it && (it.wake_id || chatLink)) { (async () => { try { const mcp = await claude.use('mcp'); if (!mcp) throw { code: 'no connector in this view' };
+        let wid = it.wake_id || null;
+        if (!wid) { const sid = String(it.link).split('session_')[1].replace(/[^A-Za-z0-9].*$/, ''); const p = unwrap(await mcp.callTool('Claude Code Remote', 'list_triggers', { enabled: true, recurring: false, limit: 100 })); const t = (p && Array.isArray(p.data) ? p.data : []).filter(x => sid && String(x.persistent_session_id || '').endsWith(sid)).sort((x, y) => String(x.next_run_at || '').localeCompare(String(y.next_run_at || '')))[0]; wid = t ? t.id : null; }
+        if (!wid) throw { code: 'no_wake' };
+        await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: wid });
+        await db.doc('inbox/' + id).update({ relayed: new Date().toISOString(), relayed_to: 'the chat', relayed_via: it.wake_id ? 'wake_id' : 'session wake', relay_error: null }); }
+      catch (e) { db.doc('inbox/' + id).update({ relay_error: String((e && (e.code || e.message)) || 'error').slice(0, 120) }).catch(() => {}); if (wakePrefix(it.source)) wake([{ ...it, answer: text }]); } })(); }
+    else if (it && wakePrefix(it.source)) wake([{ ...it, answer: text }]);
+    return true;
+  };
+  const undoAnswer = async id => {
+    const it = S.inbox.find(x => x.id === id); if (!it || !it.answered) return;
+    const was = String(it.answer || ''), now = new Date().toISOString();
+    const upd = it.actioned
+      ? { answer: null, answers: null, answered: null, actioned: null, relayed: null, changed_from: was, changed_at: now, note: 'Ronnie changed his answer on ' + now.slice(0, 16).replace('T', ' ') + 'Z after Claude acted on "' + was + '": undo what that did where you can, then act on his new answer.' }
+      : { answer: null, answers: null, answered: null, relayed: null, withdrawn: was, withdrawn_at: now, note: 'Ronnie took back his answer "' + was + '" on ' + now.slice(0, 16).replace('T', ' ') + 'Z (tapped by mistake). Do not act on it; wait for his new answer.' };
+    S.undoArm = null;
+    try { await db.doc('inbox/' + id).update(upd); }
+    catch (e) { $('sub').textContent = 'Could not undo the answer (' + (e && e.code ? e.code : 'error') + ').'; renderInbox(); }
+  };
+  const copy = async (text, btn) => { try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; } catch (e) { const ta = document.createElement('textarea'); ta.value = text; ta.className = 'in'; btn.parentNode.appendChild(ta); ta.select(); btn.textContent = 'Select and copy'; } };
+  const sendQs = id => {
+    const it = S.inbox.find(x => x.id === id); if (!it) return; const Q = qList(it);
+    const A = Q.map((x, k) => { const t = $('qa-' + id + '-' + k); return { h: x.h || null, q: x.q, a: t ? t.value.trim() : '' }; });
+    if (!A.some(x => x.a)) { $('sub').textContent = 'Type at least one answer first.'; return; }
+    const text = A.map((x, k) => (k + 1) + '. ' + x.q + ' -> ' + (x.a || '(left blank)')).join('\n');
+    answer(id, text, { answers: A }).then(ok => { if (ok) { try { localStorage.removeItem(qDraftKey(id)); } catch (e) {} } });
+  };
+  const sendReply = id => { const inp = $('reply-' + id); const v = inp ? inp.value.trim() : ''; const p = (S.picked || {})[id];
+    if (!v) { if (p) $('sub').textContent = 'Type what you want first, then tap Send.'; return; }
+    answer(id, p ? p + ' -> ' + v : v).then(ok => { if (ok && S.picked) delete S.picked[id]; }); };
+  const pickWords = (id, o) => { S.picked = S.picked || {}; S.picked[id] = S.picked[id] === o ? null : o; if (!S.picked[id]) delete S.picked[id]; renderInbox(); const t = $('reply-' + id); if (t && S.picked[id]) { t.focus(); if (t.scrollIntoView) t.scrollIntoView({ block: 'center' }); } };
+  document.querySelector('main').addEventListener('input', e => { const t = e.target; if (t && t.dataset && t.dataset.qitem) qSave(t.dataset.qitem, t.dataset.qk, t.value); });
+  document.querySelector('main').addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'task-new') { e.preventDefault(); addTask(); return; } if (e.key === 'Enter' && e.target.id && e.target.id.startsWith('tr-')) { e.preventDefault(); taskReply(e.target.id.slice(3), false); return; } if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.id.startsWith('reply-')) { e.preventDefault(); sendReply(e.target.id.replace(/^reply-/, '')); } });
+  const runNow = async () => {
+    const btn = $('task-run'), note = $('task-run-note');
+    if (btn.disabled) return;
+    let started = false;
+    try {
+      const mcp = await claude.use('mcp');
+      if (!mcp) { note.textContent = 'Run now is not available in this view'; return; }
+      btn.disabled = true; note.textContent = 'Starting…';
+      await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: TRIGGER_ID, text: SIDE.fireNote + 'Run now from the board.' });
+      started = true; S.runWatch = Date.now(); note.textContent = 'Runner started. This line changes when it finishes.'; setTimeout(renderTaskList, 90000);
+      setTimeout(() => { btn.disabled = false; }, 30000);
+    } catch (e) {
+      const code = e && e.code ? String(e.code) : 'error';
+      note.textContent = code === 'not_granted' ? 'Allow the connector for this page first' : errText(e);
+    } finally { if (!started) btn.disabled = false; }
+  };
+  const RUN_ALL = SIDE.runAll.map(([label, re]) => [label, t => re.test(String(t.name || ''))]);
+  const runAll = async () => {
+    const btn = $('run-all'), note = $('run-all-note');
+    if (!btn || btn.disabled) return;
+    btn.disabled = true; note.hidden = false; note.textContent = 'Starting…';
+    const out = [];
+    try {
+      const mcp = await claude.use('mcp');
+      if (!mcp) { note.textContent = 'Not available in this view'; return; }
+      const p = unwrap(await mcp.callTool('Claude Code Remote', 'list_triggers', { enabled: true, limit: 100 }));
+      const list = p && Array.isArray(p.data) ? p.data : [];
+      for (const [label, match] of RUN_ALL) {
+        const t = list.find(match);
+        if (!t) { out.push(label + ': not found'); continue; }
+        try { await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: t.id, text: 'Run now from the board.' }); out.push(label + ': started'); }
+        catch (e) { out.push(label + ': ' + errText(e)); }
+      }
+      note.textContent = out.join(' · ');
+    } catch (e) { note.textContent = errText(e); }
+    finally { setTimeout(() => { btn.disabled = false; }, 30000); }
+  };
+  document.body.addEventListener('click', e => {
+    if (e.target.closest && e.target.closest('#run-all')) { runAll(); return; }
+    if (e.target.closest && e.target.closest('#task-add')) { addTask(); return; }
+    if (e.target.closest && e.target.closest('#task-run')) { runNow(); return; }
+    if (e.target.closest && e.target.closest('#wake-all')) { wake(pendingWakes()); return; }
+    if (e.target.closest && e.target.closest('#chase')) { chase(); return; }
+    const sb = e.target.closest && e.target.closest('button[data-start]');
+    if (sb) { const r = S.rows.find(x => x.id === sb.dataset.start); const its = r ? S.inbox.filter(i => i.answered && !i.actioned && String(i.source) === String(r.session)) : []; if (its.length) wake(its); return; }
+    const lb = e.target.closest && e.target.closest('button[data-laptop]');
+    if (lb) { startLaptop(lb.dataset.laptop); return; }
+    if (e.target.closest && e.target.closest('#resume-all')) { resumeAll(); return; }
+    const tsb = e.target.closest && e.target.closest('button[data-tsend]'); if (tsb) { taskReply(tsb.dataset.tsend, false); return; }
+    const tdb = e.target.closest && e.target.closest('button[data-tdrop]'); if (tdb) { taskReply(tdb.dataset.tdrop, true); return; }
+    const ia = e.target.closest && e.target.closest('button[data-idea]');
+    if (ia) { ideaAct(ia.dataset.idea, ia.dataset.act); return; }
+    const qb = e.target.closest && e.target.closest('button[data-qsend]'); if (qb) { sendQs(qb.dataset.qsend); return; }
+    const uh = e.target.closest && e.target.closest('button[data-unhold]'); if (uh) { S.unhold.add(uh.dataset.unhold); renderInbox(); return; }
+    const fbe = e.target.closest && e.target.closest('button[data-fbedit]'); if (fbe) { S.fbEdit = fbe.dataset.fbedit; S.fbEditText = null; renderFeedback(); const t = $('fbe-' + S.fbEdit); if (t) t.focus(); return; }
+    const fbes = e.target.closest && e.target.closest('button[data-fbeditsave]'); if (fbes) { fbEditSave(fbes.dataset.fbeditsave); return; }
+    const fbec = e.target.closest && e.target.closest('button[data-fbeditcancel]'); if (fbec) { S.fbEdit = null; S.fbEditText = null; renderFeedback(); return; }
+    const fbk = e.target.closest && e.target.closest('input[data-fbsel]'); if (fbk) { S.fbOff = S.fbOff || {}; if (fbk.checked) delete S.fbOff[fbk.dataset.fbsel]; else S.fbOff[fbk.dataset.fbsel] = true; const b = document.getElementById('fbbar'); if (b) { const t = document.createElement('div'); t.innerHTML = fbBarHtml(); b.replaceWith(t.firstChild); } return; }
+    const fbb = e.target.closest && e.target.closest('button[data-fbbatch]'); if (fbb) { const m = fbb.dataset.fbbatch; if (m === 'go') fbBatchGo(); else { S.fbOff = {}; if (m === 'none') S.fb.filter(fbPend).forEach(f => { S.fbOff[f.id] = true; }); renderFeedback(); } return; }
+    const fbx = e.target.closest && e.target.closest('[data-fbx]'); if (fbx) { const k = fbx.dataset.fbx; S.fbExp = S.fbExp || {}; if (k === '__all') S.fbDone = !S.fbDone; else S.fbExp[k] = !S.fbExp[k]; renderFeedback(); return; }
+    const fbo = e.target.closest && e.target.closest('button[data-fb]'); if (fbo) { S.fbOpen = fbo.dataset.fb || null; renderInbox(); if (S.fbOpen) { const t = $('fb-' + S.fbOpen.replace(':', '-')); if (t) t.focus(); } return; }
+    const pvb = e.target.closest && e.target.closest('button[data-pv]'); if (pvb) { const [id, k, v] = pvb.dataset.pv.split('|'); const it = S.inbox.find(x => x.id === id); if (!it) return; const V = Object.assign({}, pvVotes(it)); if (V[k] === v) delete V[k]; else V[k] = v; db.doc('inbox/' + id).update({ picvotes: V }).catch(() => { $('sub').textContent = 'Could not save that vote. Try again.'; }); return; }
+    const pvg = e.target.closest && e.target.closest('button[data-pvgo]'); if (pvg) { const id = pvg.dataset.pvgo; const it = S.inbox.find(x => x.id === id); if (!it) return; const V = pvVotes(it), P = arr(it.previews); const dn = Object.keys(V).filter(k => V[k] === 'down').map(Number).sort((a, b) => a - b), up = Object.keys(V).filter(k => V[k] === 'up').map(Number).sort((a, b) => a - b), sw = P.map((x, k) => x && x.swapped ? k + 1 : 0).filter(Boolean); answer(id, 'B: changes: replace picture' + (dn.length > 1 ? 's ' : ' ') + dn.map(k => k + 1).join(', ') + ' (disliked).' + (up.length ? ' Keep ' + up.map(k => k + 1).join(', ') + ' (liked).' : '') + (sw.length ? ' Pictures ' + sw.join(', ') + ' are my own photos: use them as they are.' : '')); return; }
+    const fbr = e.target.closest && e.target.closest('button[data-fbrm]'); if (fbr) { const [k, n] = fbr.dataset.fbrm.split('|'); arr(S.fbPics[k]).splice(Number(n), 1); fbShowPics(k); return; }
+    const fbu = e.target.closest && e.target.closest('button[data-fbunstick]'); if (fbu) { fbUnstickClick(fbu.dataset.fbunstick); return; }
+    const fbs = e.target.closest && e.target.closest('button[data-fbsend]'); if (fbs) { sendFeedback(fbs.dataset.fbsend); return; }
+    const ub = e.target.closest && e.target.closest('button[data-undo]');
+    if (ub) { const id = ub.dataset.undo; if (S.undoArm === id) undoAnswer(id); else { S.undoArm = id; renderInbox(); setTimeout(() => { if (S.undoArm === id) { S.undoArm = null; renderInbox(); } }, 8000); } return; }
+    const o = e.target.closest && e.target.closest('button.opt');
+    if (o) { if (o.dataset.send != null) sendReply(o.dataset.send); else if (o.dataset.words) pickWords(o.dataset.id, o.dataset.ans); else answer(o.dataset.id, o.dataset.ans); return; }
+    const nb = e.target.closest && e.target.closest('button[data-nudge]'); if (nb) { nudge(nb.dataset.nudge); return; }
+    const vs = e.target.closest && e.target.closest('button[data-vsteps]'); if (vs) { const k = vs.dataset.vsteps; S.openSteps.has(k) ? S.openSteps.delete(k) : S.openSteps.add(k); renderRows(); return; }
+    const sf = e.target.closest && e.target.closest('button[data-flags]'); if (sf) { S.showFlags = !S.showFlags; renderFlags(); return; }
+    const gi = e.target.closest && e.target.closest('button[data-goitem]'); if (gi) { const id = gi.dataset.goitem; showTab('waiting', true); S.openItems.add(id); S.openItems.add('c:' + id); S.openItems.delete('cx:' + id); renderInbox(); setTimeout(() => { const c = $('card-' + id); if (c && c.scrollIntoView) c.scrollIntoView({ block: 'start' }); }, 50); return; }
+    const rb = e.target.closest && e.target.closest('button[data-resbump]');
+    if (rb) { const id = rb.dataset.resbump, r = S.rows.find(x => x.id === id); if (!r || !r.resolve) return; rb.disabled = true; db.doc('rows/' + id).update({ resolve: Object.assign({}, r.resolve, { bump: new Date().toISOString() }) }).then(() => { S.resNote = vid2(id) + ' goes next, when the current turn ends.'; renderRows(); }).catch(err => { S.resNote = 'Could not move it up: ' + errText(err); renderResolve(); }); return; }
+    const rm = e.target.closest && e.target.closest('button[data-resme]');
+    if (rm) { rm.disabled = true; const on = rm.dataset.resme === 'on', t = new Date(Date.now() + 3600000).toISOString(); db.doc('meta/resolve').set(Object.assign({}, S.res || {}, on ? { ronnie_until: t, ronnie_by: 'board' } : { ronnie_until: null })).then(() => { S.resNote = on ? 'Claude saves and leaves Resolve at its next save point (within a few minutes) and keeps off until ' + new Date(t).toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'}) + '.' : 'Handed back: the next run at ten past carries on with the queue.'; renderResolve(); }).catch(err => { S.resNote = 'Could not save: ' + errText(err); renderResolve(); }); return; }
+    const cs = e.target.closest && e.target.closest('button[data-chatsave]');
+    if (cs) { const id = cs.dataset.chatsave, inp = $('chat-' + id), v = String((inp && inp.value) || '').trim(); if (!/^https:\/\/claude\.ai\/\S+$/i.test(v)) { S.chatNote[id] = 'That is not a claude.ai link. Copy the chat link from the Claude app and paste it here.'; renderRows(); return; } cs.disabled = true; db.doc('rows/' + id).update({ chat: v }).then(() => { delete S.chatNote[id]; }).catch(err => { S.chatNote[id] = 'Could not save: ' + errText(err); renderRows(); }); return; }
+    const c = e.target.closest && e.target.closest('button[data-copy]');
+    if (c) { const r = S.rows.find(x => x.id === c.dataset.copy); if (r && r.start) copy(String(r.start), c); return; }
+    const b = e.target.closest && e.target.closest('button.tog');
+    if (!b) return;
+    if (b.dataset.item != null) { const k = b.dataset.item; S.openItems.has(k) ? S.openItems.delete(k) : S.openItems.add(k); k.startsWith('i:') ? renderIdeas() : k.startsWith('t:') ? renderTaskList() : renderInbox(); }
+    else if (b.dataset.row != null) { const k = b.dataset.row; S.openRows.has(k) ? S.openRows.delete(k) : S.openRows.add(k); renderRows(); }
+    else if (b.dataset.tog === 'answered') { S.showAnswered = !S.showAnswered; renderInbox(); }
+    else if (b.dataset.tog === 'doing') { S.showDoing = !S.showDoing; renderInbox(); }
+    else if (b.dataset.tog === 'taskdone') { S.showTaskDone = !S.showTaskDone; renderTaskList(); }
+    else if (b.dataset.tog === 'ideasdone') { S.showIdeasDone = !S.showIdeasDone; renderIdeas(); }
+    else if (b.dataset.tog === 'changes') { S.showChanges = !S.showChanges; renderLocks(); }
+    else if (b.dataset.tog === 'done') { S.showDone = !S.showDone; renderRows(); }
+    else if (b.dataset.tog === 'quiet') { S.showQuiet = !S.showQuiet; renderRows(); }
+    else if (b.dataset.feed != null) { const k = b.dataset.feed; S.openFeeds.has(k) ? S.openFeeds.delete(k) : S.openFeeds.add(k); renderFeeds(); }
+  });
+
+  // Spinner in the bar until every source has sent fresh (not cached) data.
+  const SYNC_TOTAL = 13; const synced = new Set();
+  // Offline only when the browser said so AFTER the last fresh data: some phone
+  // webviews report navigator.onLine false while data is still arriving.
+  let syncAt = 0, wasDone = false, offSince = null;
+  const hhmm = t => new Date(t).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+  const syncShow = () => { const el = $('sync'); if (!el) return; if (S.failed) { el.hidden = true; return; } el.hidden = false;
+    const done = synced.size >= SYNC_TOTAL, off = done && offSince != null && offSince > syncAt;
+    el.classList.toggle('slow', !done && !!S.stale); el.classList.toggle('done', done && !off); el.classList.toggle('off', off);
+    $('sync-ok').textContent = off ? '!' : '✓';
+    $('sync-text').innerHTML = off ? 'Offline: showing the board as it was at ' + hhmm(syncAt) + '. It updates when you are back online.'
+      : done ? '<b>Up to date</b> · live: new changes appear here on their own'
+      : S.stale ? 'Still updating: what you see may be out of date' : 'Updating the board…';
+    if (done && !off && !wasDone) { el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+    wasDone = done && !off; };
+  window.addEventListener('online', () => { offSince = null; syncShow(); }); window.addEventListener('offline', () => { offSince = Date.now(); syncShow(); });
+  const loading = setTimeout(() => { S.stale = true; renderSub(); syncShow(); }, 10000);
+  const settle = (s, key) => { if (s && s.metadata && !s.metadata.fromCache) { if (key) synced.add(key); syncAt = Date.now(); offSince = null; syncShow(); clearTimeout(loading); if (S.stale) { S.stale = false; renderSub(); syncShow(); } } };
+  const fail = e => { S.failed = true; $('sub').textContent = 'Board data unavailable (' + (e && e.code ? e.code : 'error') + ').'; clearTimeout(loading); syncShow();
+    if (e && (e.status === 401 || e.status === 403)) tokBar('That token was not accepted (' + e.status + '). Paste your work_api_token again.', true); };
+  syncShow();
+
+  // One subscription per source, opened once.
+  document.addEventListener('focusout', () => { setTimeout(() => { if (S.inboxDirty && !typingInInbox()) renderInbox(); }, 400); });
+  db.doc('meta/sweep').onSnapshot(d => { settle(d, 'sweep'); S.sweepSeen = true; S.sweep = d.exists ? d.data() : null; renderSub(); renderFlags(); renderTasks(); }, fail);
+  db.doc('meta/go').onSnapshot(d => { settle(d, 'go'); const g = d.exists ? d.data() : null; S.goUntil = g && g.until ? new Date(g.until).getTime() || 0 : 0; renderRows(); }, () => { synced.add('go'); syncShow(); });
+  db.doc('meta/resolve').onSnapshot(d => { settle(d, 'resolve'); S.res = d.exists ? d.data() : null; renderRows(); }, () => { synced.add('resolve'); syncShow(); });
+  db.doc('meta/laptop').onSnapshot(d => { settle(d, 'laptop'); S.laptop = d.exists ? d.data() : null; renderTasks(); renderRows(); }, fail);
+  db.collection('inbox').onSnapshot(s => { settle(s, 'inbox'); S.inboxSeen = true; S.inbox = rows(s); renderInboxLive(); renderRows(); renderSub(); }, fail);
+  db.collection('rows').onSnapshot(s => { settle(s, 'rows'); S.rows = rows(s); renderRows(); renderSub(); renderInboxLive(); }, fail);
+  db.collection('tasks').onSnapshot(s => { settle(s, 'tasks'); S.taskDocs = rows(s); renderTaskList(); renderInboxLive(); renderRows(); }, fail);
+  db.collection('ideas').onSnapshot(s => { settle(s, 'ideas'); S.ideas = rows(s); renderIdeas(); }, fail);
+  db.collection('digest').onSnapshot(s => { settle(s, 'digest'); S.feeds = rows(s); renderFeeds(); }, fail);
+  db.collection('locks').onSnapshot(s => { settle(s, 'locks'); S.locks = rows(s); renderLocks(); }, () => { synced.add('locks'); syncShow(); });
+  db.doc('log/changes').onSnapshot(d => { settle(d, 'changes'); const c = d.exists ? d.data() : null; S.changes = c ? arr(c.items).slice().reverse() : []; renderLocks(); }, () => { synced.add('changes'); syncShow(); });
+  document.addEventListener('change', async e => { const f = e.target && e.target.matches && e.target.matches('input[data-pswap]') ? e.target : null; if (!f) return; const file = f.files && f.files[0]; const [id, k] = f.dataset.pswap.split('|'); f.value = ''; if (!file) return; S.pvBusy = S.pvBusy || {}; const it = S.inbox.find(x => x.id === id); if (!it) return; if (!/^image\//.test(file.type || '')) { S.pvBusy[id] = 'That is not a picture.'; renderInbox(); return; } S.pvBusy[id] = 'Adding your photo...'; renderInbox(); try { const as = await claude.use('assets'); if (!as) throw new Error('none'); const r = await as.upload(file); const P = arr(it.previews).map(x => Object.assign({}, x)); const o = P[Number(k)] || {}; P[Number(k)] = Object.assign({}, o, { img: '/_blob/' + r.id, orig_img: o.orig_img || o.img, swapped: true, text: 'Your own photo' }); const V = Object.assign({}, pvVotes(it)); delete V[k]; await db.doc('inbox/' + id).update({ previews: P, picvotes: V }); S.pvBusy[id] = ''; } catch (err) { S.pvBusy[id] = 'Could not add that photo. Try a smaller one.'; } renderInbox(); });
+  document.addEventListener('change', e => { const f = e.target && e.target.matches && e.target.matches('input[data-fbfile]') ? e.target : null; if (f) { const file = f.files && f.files[0]; f.value = ''; fbUpload(f.dataset.fbfile, file); } });
+  db.collection('feedback').onSnapshot(s => { settle(s, 'feedback'); S.fb = rows(s); renderFeedback(); renderInboxLive(); renderRows(); renderSub(); }, () => { synced.add('feedback'); syncShow(); });
+  db.doc('meta/loops').onSnapshot(d => { settle(d, 'loops'); S.loopsSeen = true; S.loops = d.exists ? d.data() : null; renderInboxLive(); }, () => { synced.add('loops'); syncShow(); });
+  setInterval(renderLocks, 60000);
+  setInterval(renderInboxLive, 120000);
+  setTimeout(findSuspended, 1500);
+})();
+</script>
+<!-- angle and hook on video cards (11 Nov) -->
+</body>
+</html>
