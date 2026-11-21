@@ -30,7 +30,7 @@ const PERSON_KEYS = new Set([
 const OPAQUE_KEYS = new Set(['approve', 'approval', 'sig', 'spki', 'key_id', 'subject', 'silly_wid', 'chat', 'url', 'link']);
 
 /** Health, conduct and performance words: with a person pointer in the same string, rejected anywhere. */
-const TOPIC_CORE = /\b(performance|underperform\w*|capability|disciplinar\w*|grievance|misconduct|conduct|warning|dismiss\w*|sack\w*|resign\w*|absence|absent|sickness|sick|ill|illness|health|medical|doctor|hospital|surgery|diagnos\w*|mental|anxiety|depress\w*|maternity|pregnan\w*|bereave\w*|funeral|divorce|lazy|incompeten\w*)\b/i;
+export const TOPIC_CORE = /\b(performance|underperform\w*|capability|disciplinar\w*|grievance|misconduct|conduct|warning|dismiss\w*|sack\w*|resign\w*|absence|absent|sickness|sick|ill|illness|health|medical|doctor|hospital|surgery|diagnos\w*|mental|anxiety|depress\w*|maternity|pregnan\w*|bereave\w*|funeral|divorce|lazy|incompeten\w*)\b/i;
 /** Wider personal-circumstances words: in a losjefes document these alone reject it. */
 const TOPIC_LOSJEFES = /\b(stress\w*|family|personal|probation|late(?:ness)?|attitude|struggl\w*|separat\w*|home life|carer|caring)\b/i;
 const PERSON_POINTER = /\b(he|she|him|her|his|hers|himself|herself)\b/i;
@@ -38,7 +38,7 @@ const PERSON_POINTER = /\b(he|she|him|her|his|hers|himself|herself)\b/i;
 const NARRATIVE = /\b(stole\w*|steal\w*|theft|shoplift\w*|took|taken|caught|suspect\w*|offender|perpetrator|arrest\w*|assault\w*|abus\w*|threat\w*|violen\w*|cctv|footage|witness\w*|police|officer|then|after that|walked|ran|grabbed|pushed|said|told|claimed|admitted|described|wearing|wore)\b/i;
 
 /** Unambiguous common UK first names. Capitalised whole words only; words that are also plain English are left out. */
-const FIRST_NAMES = new Set(`
+export const FIRST_NAMES = new Set(`
 Aaron Abigail Adam Adrian Alan Alex Alexander Alice Alison Amanda Amy Andrew Andy Angela Anna Anne Anthony Barry Beth Bethany Brian Callum Carl Carol Caroline Catherine Charlie Charlotte Chloe Chris Christine Christopher Claire Colin Craig Dale Daniel Darren David Dean Debbie Declan Denise Dominic Donna Douglas Edward Eleanor Elizabeth Ella Emily Emma Fiona Frank Gareth Gary Gemma George Gillian Gordon Graham Hannah Harry Heather Helen Henry Hollie Ian Imran Isabel Jack Jacob Jade James Jamie Jane Janet Jason Jennifer Jenny Jeremy Jessica Joanne Joe Joel John Jonathan Jordan Joseph Josh Joshua Julie Karen Kate Katherine Kathryn Katie Keith Kelly Ken Kerry Kevin Kieran Kim Kirsty Laura Lauren Lee Leanne Leon Lesley Liam Linda Lisa Louise Lucy Luke Lynn Marcus Margaret Maria Marie Mark Martin Mary Matthew Megan Melanie Michael Michelle Mohammed Mohammad Muhammad Naomi Natalie Neil Nicholas Nick Nicola Nigel Olivia Oliver Owen Pamela Patricia Patrick Paul Paula Peter Philip Phillip Rachel Raj Rebecca Richard Rob Robert Robin Rosie Ross Roy Ruth Ryan Sally Sam Samantha Samuel Sandra Sarah Scott Sean Shaun Sheila Simon Sophie Stephanie Stephen Steve Steven Stuart Susan Suzanne Tariq Terry Thomas Tim Timothy Tina Toby Tom Tony Tracey Tracy Vicky Victoria Wayne William Yasmin Zoe
 `.split(/\s+/).filter(Boolean));
 

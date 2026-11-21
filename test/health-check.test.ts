@@ -37,7 +37,7 @@ describe('health check: the pure checks', () => {
     // a job switched off in the registry is left alone
     const off = runChecks(empty({ runs, triggers: [{ id: 'trig_answerwatch', data: { enabled: false } }] }), new Date('2026-11-23T09:30:00Z'));
     expect(check(off, 'RUN-MISSED').pass).toBe(true);
-    expect(JOB_DEFS.length).toBe(5);
+    expect(JOB_DEFS.length).toBe(6);
   });
 
   it('on a Monday from 09:00 the brief card must exist; before 09:00 and on other days it is not asked', () => {

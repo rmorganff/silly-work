@@ -55,11 +55,11 @@ describe('/api/trigger', () => {
   it('lists this site’s jobs with their last run; filters by enabled', async () => {
     const w = await world();
     const all = (await handleTrigger(w.deps, { tool: 'list_triggers', args: {} })).body.data as any[];
-    expect(all.map((t) => t.id)).toEqual(['trig_answerwatch', 'trig_healthcheck', 'trig_fridayreview', 'trig_weekbrief', 'trig_chase']);
+    expect(all.map((t) => t.id)).toEqual(['trig_answerwatch', 'trig_healthcheck', 'trig_fridayreview', 'trig_weekbrief', 'trig_chase', 'trig_calendar']);
     expect(all.find((t) => t.id === 'trig_fridayreview')).toMatchObject({ enabled: true, last_run: null, runtime: 'netlify' });
     await handleTrigger(w.deps, { tool: 'update_trigger', args: { trigger_id: 'trig_chase', enabled: false } });
     const on = (await handleTrigger(w.deps, { tool: 'list_triggers', args: { enabled: true } })).body.data as any[];
-    expect(on.map((t) => t.id)).toEqual(['trig_answerwatch', 'trig_healthcheck', 'trig_fridayreview', 'trig_weekbrief']);
+    expect(on.map((t) => t.id)).toEqual(['trig_answerwatch', 'trig_healthcheck', 'trig_fridayreview', 'trig_weekbrief', 'trig_calendar']);
     await runJob(w.deps, 'trig_answerwatch', 'schedule');
     const again = (await handleTrigger(w.deps, { tool: 'list_triggers', args: {} })).body.data as any[];
     expect(again.find((t) => t.id === 'trig_answerwatch').last_run).toMatchObject({ status: 'ok', fired_at: '2026-11-23T09:30:00Z' });

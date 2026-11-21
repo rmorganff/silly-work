@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "silly-work",
   "version": "0.1.0",
   "private": true,
@@ -11,7 +11,8 @@
     "extract-relay": "node scripts/extract-relay.mjs"
   },
   "dependencies": {
-    "@libsql/client": "^0.15.0"
+    "@libsql/client": "^0.15.0",
+    "ical.js": "^2.2.1"
   },
   "devDependencies": {
     "@netlify/functions": "^4.0.0",

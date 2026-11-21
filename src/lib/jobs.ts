@@ -13,6 +13,7 @@ import { runHealthCheck } from './health-check';
 import { runFridayReview } from './friday-review';
 import { runWeekBrief, type BriefDeps } from './brief';
 import { runChase } from './chase';
+import { runCalendarFeed } from './ical-feed';
 
 /** `slack` and `monday` are made from the environment unless a test hands in its own. */
 export type JobDeps = BriefDeps;
@@ -37,6 +38,10 @@ const RUNNERS: Record<string, (d: JobDeps) => Promise<Record<string, unknown>>> 
   trig_weekbrief: async (d) => {
     const r = await runWeekBrief(d);
     return { card: r.card?.id ?? null, team: r.parts.team.length, vacancies: r.parts.vacancies.length, lp: r.parts.lp.length, notes: r.parts.notes.length };
+  },
+  trig_calendar: async (d) => {
+    const r = await runCalendarFeed(d);
+    return { written: r.written, items: r.items, failed: r.failed.length, skipped: r.skipped ?? null };
   },
   trig_chase: async (d) => {
     const r = await runChase(d);

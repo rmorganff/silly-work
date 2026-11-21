@@ -51,5 +51,9 @@ export const JOB_DEFS: JobMeta[] = [
     id: 'trig_chase', name: 'Chase open Slack questions', function: 'chase-scheduled', background: 'chase-background', cron_expression: 'weekdays 09:30 and 13:30 London', netlify_cron: '30 8,9,12,13 * * 1-5',
     slot: { hour: [9, 13] }, every_ms: DAY, default_enabled: true, cooldown_ms: 10 * MIN, actor: 'chase',
   },
+  {
+    id: 'trig_calendar', name: 'Calendar feeds', function: 'calendar-daily', cron_expression: 'daily 06:50 London', netlify_cron: '50 5,6 * * *',
+    slot: { hour: 6 }, every_ms: DAY, default_enabled: true, cooldown_ms: 10 * MIN, actor: 'calendar-daily',
+  },
 ];
 export const jobMeta = (id: string): JobMeta | undefined => JOB_DEFS.find((j) => j.id === id);

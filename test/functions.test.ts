@@ -54,7 +54,7 @@ describe('Netlify functions', () => {
   });
 
   it('trigger and push: registry list, config and card checks', async () => {
-    expect((await (await trigFn(post('/api/trigger', { tool: 'list_triggers' }))).json()).data).toHaveLength(5);
+    expect((await (await trigFn(post('/api/trigger', { tool: 'list_triggers' }))).json()).data).toHaveLength(6);
     expect((await pushFn(post('/api/push', { card: { title: 't' } }))).status).toBe(400);
     delete process.env.WORK_NTFY_URL;
     expect((await pushFn(post('/api/push', { card: { id: 'x', title: 'Retail 14 open' } }))).status).toBe(503);

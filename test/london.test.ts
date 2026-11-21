@@ -20,7 +20,7 @@ describe('Europe/London guard', () => {
   });
 
   it('each cron fires its London time exactly once a day all year: one UTC hour matches the slot, the other does not', () => {
-    const week = ['trig_weekbrief', 'trig_chase', 'trig_fridayreview', 'trig_healthcheck'].map((id) => JOB_DEFS.find((j) => j.id === id)!);
+    const week = ['trig_weekbrief', 'trig_chase', 'trig_fridayreview', 'trig_healthcheck', 'trig_calendar'].map((id) => JOB_DEFS.find((j) => j.id === id)!);
     for (const j of week) {
       const [min, hrs] = j.netlify_cron.split(' ');
       for (let d = 0; d < 366; d++) {
