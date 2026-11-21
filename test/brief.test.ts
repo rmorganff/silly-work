@@ -20,6 +20,7 @@ const boards = () => [
   mBoard('1232451925', 'Retail', [mItem('1', 'Wigan Retail Park', 'Interviews', 42, 3), mItem('2', 'Thornaby', 'Awaiting Apps', 40, 20), mItem('3', 'Bury', 'Closed', 90, 1), mItem('4', 'Kirkcaldy', 'Interviews', 5, 1)]),
   mBoard('10', 'Retail Recruitment 2026', [mItem('5', 'Some Candidate', 'Live', 30, 16), mItem('6', 'Another One', 'Callbacks', 2, 1)]),
   mBoard('11', 'Recruitment OLD 2024', [mItem('7', 'x', 'Live', 400, 400)]),
+  mBoard('12', 'Subitems of SM / AM Recruitment', [mItem('8', 'A Candidate', 'Live', 500, 500)]),
   mBoard('8247581349', 'Auror', [
     mItem('a1', 'Report 1', 'Arrested | Charged - Awaiting Outcome', 2, 1, { Shop: 'Bolton' }), mItem('a2', 'Report 2', 'Potential Investigations', 3, 2, { Shop: 'Bolton' }),
     mItem('a3', 'Report 3', 'Potential Investigations', 3, 2, { Shop: 'Bury' }), mItem('a4', 'Report 4', 'Evidence Submitted', 60, 40, { Shop: 'Bury' }),
@@ -39,11 +40,14 @@ describe('brief: line checks', () => {
 describe('brief: monday.com parts', () => {
   it('vacancies: Recruitment boards (not OLD) plus Retail; open items by stage; the oldest; unchanged over 14 days; item names only for Retail', async () => {
     const w = await worldB();
-    const v = await vacancies(fakeMonday(boards()), MON);
+    const monday = fakeMonday(boards());
+    const v = await vacancies(monday, MON);
     const text = v.lines.map((l) => l.text).join('\n');
     expect(text).toContain('Retail: 3 open');                  // Bury is in Closed
     expect(text).toContain('Retail Recruitment 2026: 2 open');
     expect(text).not.toContain('OLD');
+    expect(text).not.toContain('Subitems');
+    expect(monday.calls).not.toContain('12');   // a subitems board is never even read
     expect(text).toMatch(/Oldest open: Wigan Retail Park 42d, Thornaby 40d, Retail Recruitmen… 30d/);
     expect(text).not.toContain('Some Candidate');               // a recruitment board's items are never named
     expect(text).toMatch(/Unchanged over 14 days: Retail 1, Retail Recruitment 2026 1/);

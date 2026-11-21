@@ -7,6 +7,7 @@ import { makeSlack, SlackError } from './slack';
 import { makeMonday, MondayError } from './monday';
 import { CHANNELS, RONNIE_SLACK, RETAIL_BOARD_ID, LP_BOARD_ID } from './channels';
 import { siteUrlFrom } from './background';
+import { isRecruitmentBoard } from './brief';
 import { modelFor } from './llm';
 
 export const REQUIRED_SLACK_SCOPES = ['channels:history', 'groups:history', 'users:read', 'chat:write'];
@@ -47,7 +48,7 @@ export async function smoke(env: Record<string, string | undefined>, fetchImpl: 
       m.me = (await monday.me()).id ? 'ok' : 'no_id'; m.auth = true;
       const boards = await monday.listBoards();
       m.boards = boards.length;
-      m.recruitment_boards = boards.filter((b) => /recruitment/i.test(b.name) && !/\bOLD\b/i.test(b.name)).map((b) => ({ id: b.id, name: b.name }));
+      m.recruitment_boards = boards.filter((b) => isRecruitmentBoard(b.name)).map((b) => ({ id: b.id, name: b.name }));
       m.retail_board = boards.some((b) => b.id === RETAIL_BOARD_ID);
       m.loss_prevention_board = boards.some((b) => b.id === LP_BOARD_ID);
     } catch (e) { m.auth = m.auth ?? false; m.error = code(e); }

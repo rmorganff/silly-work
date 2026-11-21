@@ -127,11 +127,14 @@ async function openForRonnie(ctx: StoreCtx, now: Date): Promise<Line | null> {
 const col = (i: MItem, re: RegExp) => i.columns.find((c) => re.test(c.title) && c.text.trim())?.text.trim();
 const days = (iso: string, now: Date) => Math.floor(ageMs(iso, now) / DAY);
 
+/** A board whose name contains Recruitment, except OLD ones and the subitem boards (those hold individual candidates and are never read). */
+export const isRecruitmentBoard = (name: string): boolean => /recruitment/i.test(name) && !/\bOLD\b/i.test(name) && !/^subitems of\b/i.test(name.trim());
+
 export function openItems(b: MBoard): MItem[] { return b.items.filter((i) => !OPEN_GROUP_NOT.test(i.group?.title ?? '')); }
 
 export async function vacancies(monday: Monday, now: Date): Promise<{ lines: Line[]; oldest: number | null; notes: string[] }> {
   const notes: string[] = [];
-  const refs = (await monday.listBoards()).filter((b) => (/recruitment/i.test(b.name) && !/\bOLD\b/i.test(b.name)) || b.id === RETAIL_BOARD_ID);
+  const refs = (await monday.listBoards()).filter((b) => isRecruitmentBoard(b.name) || b.id === RETAIL_BOARD_ID);
   const lines: Line[] = []; let oldest: number | null = null;
   const unchanged: string[] = []; const oldItems: { label: string; d: number }[] = [];
   for (const ref of refs) {
