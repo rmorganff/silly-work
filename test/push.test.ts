@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import crypto from 'node:crypto';
 import { seal, open, payload, sendPush, validateCard } from '../src/lib/push';
-import { triggerStub } from '../src/lib/trigger';
 import { authorise } from '../src/lib/auth';
 
 const KEY = crypto.randomBytes(32).toString('base64');
@@ -43,16 +42,6 @@ describe('push', () => {
     expect((await sendPush({ id: 'x', title: 't' }, { ...env, WORK_NTFY_KEY: 'nope' }, f as any)).code).toBe('push_key_invalid');
     expect((await sendPush({ id: 'x', title: 't' }, env, vi.fn(async () => new Response('', { status: 500 })) as any)).code).toBe('push_server_500');
     expect((await sendPush({ id: 'x', title: 't' }, env, vi.fn(async () => { throw new Error('x'); }) as any)).code).toBe('push_unreachable');
-  });
-});
-
-describe('trigger stub', () => {
-  it('lists nothing and refuses to fire, honestly', () => {
-    expect(triggerStub({ tool: 'list_triggers' })).toMatchObject({ status: 200, body: { data: [] } });
-    const f = triggerStub({ tool: 'fire_trigger', args: { trigger_id: 't' } });
-    expect(f.body).toMatchObject({ fired: false, code: 'not_implemented' });
-    expect(f.body.error).toBeTruthy(); // the bridge reads {error} as a refused fire
-    expect(triggerStub({ tool: 'delete_everything' }).status).toBe(400);
   });
 });
 

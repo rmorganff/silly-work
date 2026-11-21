@@ -3,7 +3,7 @@ import vm from 'node:vm';
 import { readFileSync } from 'node:fs';
 import { makeCtx, db } from './helpers';
 import { handleDb } from '../src/lib/store';
-import { triggerStub } from '../src/lib/trigger';
+import { handleTrigger } from '../src/lib/trigger';
 
 const SRC = readFileSync(new URL('../public/claude-shim.js', import.meta.url), 'utf8');
 
@@ -21,7 +21,7 @@ async function browser(ctx?: Awaited<ReturnType<typeof makeCtx>>) {
       const body = JSON.parse(init.body);
       calls.push({ url, auth: init.headers.authorization, body });
       if (!/^Bearer tok$/.test(init.headers.authorization)) return new Response('{"code":"unauthorised"}', { status: 401 });
-      const out = url === '/api/trigger' ? triggerStub(body) : await handleDb(c, body);
+      const out = url === '/api/trigger' ? await handleTrigger({ ctx: c, now: () => new Date(), fetchImpl: fetch, env: {} }, body) : await handleDb(c, body);
       return new Response(JSON.stringify(out.body), { status: out.status });
     },
     setTimeout: (fn: () => void, ms: number) => { timers.push({ fn, ms, id: ++tid }); return tid; },
@@ -174,11 +174,11 @@ describe('claude-shim.js', () => {
     expect(errs[0]).toMatchObject({ status: 401, code: 'unauthorised' });
   });
 
-  it('mcp.callTool routes to /api/trigger: list_triggers is empty, fire_trigger is refused with an {error}', async () => {
+  it('mcp.callTool routes to /api/trigger: list_triggers lists the site jobs, fire_trigger of an unknown id is refused with an {error}', async () => {
     const b = await browser();
     const mcp = await b.claude.use('mcp');
     const list = await mcp.callTool('Claude Code Remote', 'list_triggers', { enabled: true, limit: 100 });
-    expect(list.data).toEqual([]);
+    expect(list.data.map((t: any) => t.id).sort()).toEqual(['trig_answerwatch', 'trig_healthcheck']); // the Friday review is seeded dormant
     const fired = await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: 't', text: 'go' });
     expect(fired.error).toBeTruthy();
     expect(b.calls.at(-1)).toMatchObject({ url: '/api/trigger', body: { server: 'Claude Code Remote', tool: 'fire_trigger', args: { trigger_id: 't' } } });

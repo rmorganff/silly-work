@@ -1,6 +1,7 @@
 ﻿import type { Config } from '@netlify/functions';
 import { context } from '../../src/lib/runtime';
-import { triggerStub } from '../../src/lib/trigger';
+import { handleTrigger } from '../../src/lib/trigger';
+import { liveDeps } from '../../src/lib/scheduled';
 import { json } from '../../src/lib/auth';
 
 const CORS_HEADERS: Record<string, string> = {
@@ -10,7 +11,7 @@ const CORS_HEADERS: Record<string, string> = {
   'access-control-max-age': '86400',
 };
 
-/** POST /api/trigger {tool: 'fire_trigger'|'list_triggers', args}. Stub until the Stage 3 workers exist. */
+/** POST /api/trigger {tool: 'fire_trigger'|'list_triggers'|'update_trigger', args}. The triggers are this site's own scheduled jobs. */
 export default async (req: Request) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: CORS_HEADERS });
@@ -23,7 +24,8 @@ export default async (req: Request) => {
     return new Response(c.deny.body, { status: c.deny.status, headers: h });
   }
   const body: any = await req.json().catch(() => null);
-  const out = triggerStub(body);
+  const live = await liveDeps();
+  const out = await handleTrigger({ ...live, ctx: c.ctx }, body);
   return json(out.status, out.body, CORS_HEADERS);
 };
 

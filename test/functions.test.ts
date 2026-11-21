@@ -53,8 +53,8 @@ describe('Netlify functions', () => {
     expect((await carryFn(new Request('https://w.test/api/carry/x', { method: 'GET' }), { params: { card_id: 'x' } })).status).toBe(405);
   });
 
-  it('trigger and push: stub answers, config and card checks', async () => {
-    expect((await (await trigFn(post('/api/trigger', { tool: 'list_triggers' }))).json()).data).toEqual([]);
+  it('trigger and push: registry list, config and card checks', async () => {
+    expect((await (await trigFn(post('/api/trigger', { tool: 'list_triggers' }))).json()).data).toHaveLength(3);
     expect((await pushFn(post('/api/push', { card: { title: 't' } }))).status).toBe(400);
     delete process.env.WORK_NTFY_URL;
     expect((await pushFn(post('/api/push', { card: { id: 'x', title: 'Retail 14 open' } }))).status).toBe(503);
