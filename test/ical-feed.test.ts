@@ -115,7 +115,7 @@ describe('fetching', () => {
     const redir = (async (u: any) => String(u).endsWith('/a') ? new Response('', { status: 302, headers: { location: 'https://b.test/b.ics' } }) : new Response(cal(), { status: 200 })) as unknown as typeof fetch;
     expect(await fetchIcs('https://a.test/a', 'Work calendar', redir)).toContain('BEGIN:VCALENDAR');
     await expect(fetchIcs('https://a.test/a', 'L', feed({ 'https://a.test/a': 'hello' }).f)).rejects.toMatchObject({ code: 'not_ical' });
-    await expect(fetchIcs('https://a.test/a', 'L', feed({}).f)).rejects.toMatchObject({ code: 'http_error' });
+    await expect(fetchIcs('https://a.test/a', 'L', feed({}).f)).rejects.toMatchObject({ code: 'http_404' });
     const big = (async () => new Response('BEGIN:VCALENDAR' + 'x'.repeat(MAX_BYTES + 10), { status: 200 })) as unknown as typeof fetch;
     await expect(fetchIcs('https://a.test/a', 'L', big)).rejects.toMatchObject({ code: 'too_big' });
     expect(new CalendarError('http_error', 'L').message).toBe('L: http_error');
@@ -240,7 +240,7 @@ describe('/api/smoke: the two feeds', () => {
       for (const x of ['cal.example', 'hol.example', 'WORK-TOKEN', 'HOLIDAY-TOKEN', 'Secret meeting', 'Emma', 'AM holiday']) expect(s).not.toContain(x);
       const bad = await smoke({ WORK_CAL_ICAL_URLS: `${W_URL},${H_URL},https://third.test/x` }, feed({ [W_URL]: 'not a calendar' }).f);
       expect(bad.calendar.feeds[0]).toEqual({ label: 'Work calendar', fetched: false, parsed: false, error: 'not_ical' });
-      expect(bad.calendar.feeds[1]).toMatchObject({ fetched: false, error: 'http_error' });
+      expect(bad.calendar.feeds[1]).toMatchObject({ fetched: false, error: 'http_404' });
       expect(bad.calendar).toMatchObject({ ok: false, extra_urls_ignored: 1 });
       expect((await smoke({}, f)).calendar).toMatchObject({ configured: false, urls: 0, feeds: [], ok: false });
     } finally { vi.useRealTimers(); }

@@ -285,7 +285,7 @@ export async function fetchIcs(url: string, label: string, fetchImpl: typeof fet
         try { await res.body?.cancel(); } catch { /* nothing to cancel */ }
         continue;
       }
-      if (!res.ok) throw new CalendarError('http_error', label);
+      if (!res.ok) throw new CalendarError(`http_${res.status}`, label);
       let text: string;
       try { text = await readCapped(res, label); }
       catch (e) { if (e instanceof CalendarError) throw e; throw new CalendarError(signal.aborted ? 'timeout' : 'fetch_failed', label); }
