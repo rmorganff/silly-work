@@ -194,7 +194,9 @@ describe('the daily run', () => {
     w.deps.env.WORK_CAL_ICAL_URLS = W_URL;
     w.deps.fetchImpl = feed({ [W_URL]: work() }).f;
     const r = await runCalendarFeed(w.deps);
-    expect(r.failed).toEqual(['Training team holidays']);
+    expect(r.failed).toEqual([]);
+    const d1 = (await get(w.ctx, 'digest', 'calendar')).data;
+    expect(d1.items.map((i: any) => i.title)).toEqual(['Tue 24 Nov 09:30 · Team meeting', 'Wed 25 Nov 10:00 · 1:1 with ES']); // no note, no "Off this week"
     const w2 = await world(NOW);
     expect(await runCalendarFeed(w2.deps)).toEqual({ written: false, items: 0, failed: [], skipped: 'not_configured' });
     expect((await get(w2.ctx, 'digest', 'calendar')).exists).toBe(false);

@@ -324,7 +324,7 @@ export async function runCalendarFeed(deps: FeedDeps): Promise<FeedResult> {
   ]);
   const failed: string[] = [];
   if ('error' in work) { failed.push(LABELS.work); console.error('calendar-feed', LABELS.work, work.error); }
-  if ('error' in hol) { failed.push(LABELS.holidays); console.error('calendar-feed', LABELS.holidays, hol.error); }
+  if ('error' in hol && hol.error !== 'not_configured') { failed.push(LABELS.holidays); console.error('calendar-feed', LABELS.holidays, hol.error); } // no second address is a choice, not a failure
 
   const note: Item[] = failed.length ? [{ title: NOTE_TITLE, text: `${joinLabels(failed)} could not be read` }] : [];
   const build = (prev: any): { updated: string; items: Item[] } => {
