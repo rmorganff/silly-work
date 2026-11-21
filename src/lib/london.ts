@@ -18,11 +18,12 @@ export const londonHour = (d: Date): number => londonTime(d).hour;
 export const londonDate = (d: Date): string => londonTime(d).date;
 export const isLondonHour = (d: Date, hour: number): boolean => londonHour(d) === hour;
 
-/** A job's London slot: an hour (0 to 23) and optionally a day of the week (0 = Sunday). */
-export interface LondonSlot { hour: number; weekday?: number }
+/** A job's London slot: one or more hours (0 to 23) and optionally days of the week (0 = Sunday). */
+export interface LondonSlot { hour: number | number[]; weekday?: number | number[] }
 export function inLondonSlot(d: Date, slot: LondonSlot): boolean {
   const t = londonTime(d);
-  return t.hour === slot.hour && (slot.weekday === undefined || t.weekday === slot.weekday);
+  const has = (v: number | number[], x: number) => (Array.isArray(v) ? v.includes(x) : v === x);
+  return has(slot.hour, t.hour) && (slot.weekday === undefined || has(slot.weekday, t.weekday));
 }
 
 const MS_DAY = 86_400_000;

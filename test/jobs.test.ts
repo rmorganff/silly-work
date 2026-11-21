@@ -55,10 +55,11 @@ describe('/api/trigger', () => {
   it('lists this site’s jobs with their last run; filters by enabled', async () => {
     const w = await world();
     const all = (await handleTrigger(w.deps, { tool: 'list_triggers', args: {} })).body.data as any[];
-    expect(all.map((t) => t.id)).toEqual(['trig_answerwatch', 'trig_healthcheck', 'trig_fridayreview']);
-    expect(all.find((t) => t.id === 'trig_fridayreview')).toMatchObject({ enabled: false, last_run: null, runtime: 'netlify' });
+    expect(all.map((t) => t.id)).toEqual(['trig_answerwatch', 'trig_healthcheck', 'trig_fridayreview', 'trig_weekbrief', 'trig_chase']);
+    expect(all.find((t) => t.id === 'trig_fridayreview')).toMatchObject({ enabled: true, last_run: null, runtime: 'netlify' });
+    await handleTrigger(w.deps, { tool: 'update_trigger', args: { trigger_id: 'trig_chase', enabled: false } });
     const on = (await handleTrigger(w.deps, { tool: 'list_triggers', args: { enabled: true } })).body.data as any[];
-    expect(on.map((t) => t.id)).toEqual(['trig_answerwatch', 'trig_healthcheck']);
+    expect(on.map((t) => t.id)).toEqual(['trig_answerwatch', 'trig_healthcheck', 'trig_fridayreview', 'trig_weekbrief']);
     await runJob(w.deps, 'trig_answerwatch', 'schedule');
     const again = (await handleTrigger(w.deps, { tool: 'list_triggers', args: {} })).body.data as any[];
     expect(again.find((t) => t.id === 'trig_answerwatch').last_run).toMatchObject({ status: 'ok', fired_at: '2026-11-23T09:30:00Z' });
@@ -67,7 +68,8 @@ describe('/api/trigger', () => {
   it('fire_trigger runs the job now, refuses an unknown id, a dormant job, and a second fire inside the cooldown', async () => {
     const w = await world();
     expect((await handleTrigger(w.deps, { tool: 'fire_trigger', args: { trigger_id: 'nope' } })).body).toMatchObject({ fired: false, code: 'no_such_trigger' });
-    expect((await handleTrigger(w.deps, { tool: 'fire_trigger', args: { trigger_id: 'trig_fridayreview' } })).body).toMatchObject({ fired: false, code: 'trigger_disabled' });
+    await handleTrigger(w.deps, { tool: 'update_trigger', args: { trigger_id: 'trig_healthcheck', enabled: false } });
+    expect((await handleTrigger(w.deps, { tool: 'fire_trigger', args: { trigger_id: 'trig_healthcheck' } })).body).toMatchObject({ fired: false, code: 'trigger_disabled' });
     const ok = await handleTrigger(w.deps, { tool: 'fire_trigger', args: { trigger_id: 'trig_answerwatch' } });
     expect(ok.body).toMatchObject({ fired: true, status: 'ok', error: null });
     const again = await handleTrigger(w.deps, { tool: 'fire_trigger', args: { trigger_id: 'trig_answerwatch' } });
@@ -77,12 +79,14 @@ describe('/api/trigger', () => {
     expect((await handleTrigger(w.deps, { tool: 'fire_trigger', args: { trigger_id: 'trig_answerwatch' } })).body).toMatchObject({ fired: true });
   });
 
-  it('update_trigger switches a job on and off; the Friday review runs once switched on', async () => {
+  it('update_trigger switches a job on and off; the Friday review runs once switched back on', async () => {
     const w = await world(new Date('2026-11-20T15:50:00Z'));
+    expect((await handleTrigger(w.deps, { tool: 'update_trigger', args: { trigger_id: 'trig_fridayreview', enabled: false } })).body).toMatchObject({ enabled: false });
+    expect(await runJob(w.deps, 'trig_fridayreview', 'background')).toMatchObject({ status: 'disabled' });
     expect((await handleTrigger(w.deps, { tool: 'update_trigger', args: { trigger_id: 'trig_fridayreview', enabled: true } })).body).toMatchObject({ enabled: true });
     expect((await get(w.ctx, '_triggers', 'trig_fridayreview')).data.enabled).toBe(true);
     await put(w.ctx, 'inbox', 'a', { id: 'a', n: 1, title: 'Retail 5 open', text: 'x', options: ['A: ok'], created: '2026-11-19T08:00:00Z', answered: null, answer: null, actioned: null });
-    expect(await runJob(w.deps, 'trig_fridayreview', 'schedule')).toMatchObject({ status: 'ok' });
+    expect(await runJob(w.deps, 'trig_fridayreview', 'background')).toMatchObject({ status: 'ok' });
     expect((await get(w.ctx, 'inbox', 'work-week-review-2026-11-20')).exists).toBe(true);
     expect((await handleTrigger(w.deps, { tool: 'update_trigger', args: { trigger_id: 'trig_fridayreview', enabled: 'yes' } })).status).toBe(400);
     expect((await handleTrigger(w.deps, { tool: 'update_trigger', args: { trigger_id: 'nope', enabled: true } })).body).toMatchObject({ code: 'no_such_trigger' });

@@ -1,16 +1,16 @@
 /**
- * The deterministic Friday review: the two parts of the `Work Friday review` routine that need no model.
+ * The Friday review. Two parts need no model:
  *  - step 2: act on last week's answered proposal and idea cards (A on an idea queues a task, B drops it, C drops it for later);
  *  - step 3: the week in numbers, as one "Work week review" card.
- * Not here (they need a model, so they stay on claude.ai): the kudos drafts and the one proposal for next week.
- * It is seeded dormant (job-defs: default_enabled false) so it cannot double up with the routine; switch it on with update_trigger
- * once the routine is retired.
+ * Then, with a model key and inside the daily cap, the steps that do (friday-llm.ts): kudos drafts and the weekly proposal.
+ * It runs as a background job, Fridays 15:45 London.
  */
 import type { StoreCtx } from './store';
 import { getDoc, listDocs, putDoc, writeDoc, isCode, type Doc } from './board';
 import { raiseCard, pushCard, clip } from './cards';
 import { HOUR, ageMs, isoOf, parseTime, type Now } from './board-health';
 import { londonTime, shortDay } from './london';
+import { fridayLlm } from './friday-llm';
 
 export type ReviewDeps = { ctx: StoreCtx; now: () => Date; fetchImpl: typeof fetch; env: Record<string, string | undefined> };
 export type ReviewItem = { title: string; text: string };
@@ -115,6 +115,8 @@ export async function runFridayReview(deps: ReviewDeps) {
     if (!r.existed) await pushCard({ id, n: r.n ?? undefined, title: r.title, text, options: r.options, kind: 'cards' }, deps.env, deps.fetchImpl);
     card = { id, created: !r.existed };
   }
-  await putDoc(ctx, 'audit', 'friday-review-latest', { at: isoOf(now), date, proposals_done: acted.done.length, proposals_left: acted.left.length, card: card?.id ?? null });
-  return { acted, items, card };
+  // The two steps that need a model (kudos drafts, the weekly proposal). Without a key or inside the cap they are simply skipped.
+  const llm = await fridayLlm(deps, items);
+  await putDoc(ctx, 'audit', 'friday-review-latest', { at: isoOf(now), date, proposals_done: acted.done.length, proposals_left: acted.left.length, card: card?.id ?? null, llm });
+  return { acted, items, card, llm };
 }

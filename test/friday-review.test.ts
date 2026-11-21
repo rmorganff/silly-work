@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { actOnProposals, weekItems, runFridayReview } from '../src/lib/friday-review';
 import { runJob } from '../src/lib/jobs';
+import { handleTrigger } from '../src/lib/trigger';
 import { world, card, put, get } from './jobs-helpers';
 
 const FRI = '2026-11-20T15:50:00Z';
@@ -83,9 +84,10 @@ describe('Friday review: the week in numbers', () => {
     expect((await runFridayReview(w2.deps)).card).toBeNull();
   });
 
-  it('is seeded dormant: scheduled, it does nothing until switched on', async () => {
+  it('a switched-off review does nothing', async () => {
     const w = await world(new Date(FRI));
-    expect(await runJob(w.deps, 'trig_fridayreview', 'schedule')).toMatchObject({ status: 'disabled' });
+    await handleTrigger(w.deps, { tool: 'update_trigger', args: { trigger_id: 'trig_fridayreview', enabled: false } });
+    expect(await runJob(w.deps, 'trig_fridayreview', 'background')).toMatchObject({ status: 'disabled' });
     expect((await get(w.ctx, 'inbox', 'work-week-review-2026-11-20')).exists).toBe(false);
   });
 });

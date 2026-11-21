@@ -11,6 +11,8 @@ import { getDoc, writeDoc, isCode } from './board';
 import { ageMs } from './board-health';
 import { JOB_DEFS, jobMeta, type JobMeta } from './job-defs';
 import { ensureRegistered, runJob, triggerDoc, type JobDeps } from './jobs';
+import { startBackground } from './background';
+import { isoOf } from './board-health';
 
 export interface TriggerOut { status: number; body: Record<string, unknown> }
 const refuse = (code: string, extra: Record<string, unknown> = {}): TriggerOut => ({ status: 200, body: { fired: false, error: code, code, ...extra } });
@@ -45,6 +47,13 @@ export async function fireTrigger(deps: JobDeps, args: any): Promise<TriggerOut>
   if (reg.data.enabled === false) return refuse('trigger_disabled');
   const last = await getDoc(deps.ctx, '_trigger_runs', def.id);
   if (last && ageMs(last.data.fired_at, deps.now()) < def.cooldown_ms) return refuse('rate_limited', { retry_after_s: Math.ceil((def.cooldown_ms - ageMs(last.data.fired_at, deps.now())) / 1000) });
+  if (def.background) { // a long job: write a "started" record (it is the cooldown), then start its background function
+    const rec = { fired_at: isoOf(deps.now()), by: 'fire', status: 'started', error: null };
+    await writeDoc(deps.ctx, last ? { op: 'set', collection: '_trigger_runs', id: def.id, data: rec } : { op: 'add', collection: '_trigger_runs', id: def.id, data: rec });
+    const s = await startBackground(def, deps.env, deps.fetchImpl, 'fire');
+    if (!s.started) { await writeDoc(deps.ctx, { op: 'set', collection: '_trigger_runs', id: def.id, data: { ...rec, finished_at: isoOf(deps.now()), status: 'failed', error: s.reason } }); return refuse(s.reason); }
+    return { status: 200, body: { fired: true, trigger_id: def.id, status: 'started', error: null } };
+  }
   const out = await runJob(deps, def.id, 'fire');
   return { status: 200, body: { fired: out.status === 'ok', trigger_id: def.id, status: out.status, error: out.error ?? null } };
 }

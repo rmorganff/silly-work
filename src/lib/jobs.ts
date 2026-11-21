@@ -11,10 +11,14 @@ import { JOB_DEFS, jobMeta, type JobMeta } from './job-defs';
 import { runAnswerWatch } from './answer-watch';
 import { runHealthCheck } from './health-check';
 import { runFridayReview } from './friday-review';
+import { runWeekBrief, type BriefDeps } from './brief';
+import { runChase } from './chase';
 
-export interface JobDeps { ctx: StoreCtx; now: () => Date; fetchImpl: typeof fetch; env: Record<string, string | undefined> }
-export type JobSource = 'schedule' | 'fire';
-export type JobOutcome = { status: 'ok' | 'failed' | 'disabled' | 'off_hour' | 'no_such_job'; id: string; result?: unknown; error?: string };
+/** `slack` and `monday` are made from the environment unless a test hands in its own. */
+export type JobDeps = BriefDeps;
+/** schedule: from the cron (held to its London slot); fire: from /api/trigger; background: the Netlify background function a scheduled run started (the slot was checked before it was started). */
+export type JobSource = 'schedule' | 'fire' | 'background';
+export type JobOutcome = { status: 'ok' | 'failed' | 'disabled' | 'off_hour' | 'no_such_job' | 'started'; id: string; result?: unknown; error?: string };
 
 /** The small result kept on the run record: counts and ids only, never card text. */
 const RUNNERS: Record<string, (d: JobDeps) => Promise<Record<string, unknown>>> = {
@@ -28,7 +32,15 @@ const RUNNERS: Record<string, (d: JobDeps) => Promise<Record<string, unknown>>> 
   },
   trig_fridayreview: async (d) => {
     const r = await runFridayReview(d);
-    return { proposals_done: r.acted.done.length, proposals_left: r.acted.left.length, items: r.items.length, card: r.card?.id ?? null };
+    return { proposals_done: r.acted.done.length, proposals_left: r.acted.left.length, items: r.items.length, card: r.card?.id ?? null, kudos: (r.llm as any).kudos ?? 0, proposal: (r.llm as any).proposal ?? null };
+  },
+  trig_weekbrief: async (d) => {
+    const r = await runWeekBrief(d);
+    return { card: r.card?.id ?? null, team: r.parts.team.length, vacancies: r.parts.vacancies.length, lp: r.parts.lp.length, notes: r.parts.notes.length };
+  },
+  trig_chase: async (d) => {
+    const r = await runChase(d);
+    return { open: r.open, answered: r.answered, chased: r.chased, lapsed: r.lapsed, skipped: r.skipped, notes: r.notes.length };
   },
 };
 
@@ -47,17 +59,26 @@ export async function ensureRegistered(ctx: StoreCtx, def: JobMeta) {
 
 const errCode = (e: any) => String(e?.code || e?.name || 'error').slice(0, 60);
 
-/** Runs one job. Never throws: a failure is recorded and returned. */
-export async function runJob(deps: JobDeps, id: string, source: JobSource): Promise<JobOutcome> {
-  const def = jobMeta(id), run = RUNNERS[id];
-  if (!def || !run) return { status: 'no_such_job', id };
-  const { ctx } = deps, now = deps.now();
-  const jobCtx: StoreCtx = { ...ctx, actor: def.actor };
+/** Checks a job may start now: it exists, it is switched on, and (when scheduled) it is the right London hour. Null means go. */
+export async function gate(deps: JobDeps, id: string, source: JobSource): Promise<JobOutcome | null> {
+  const def = jobMeta(id);
+  if (!def || !RUNNERS[id]) return { status: 'no_such_job', id };
+  const jobCtx: StoreCtx = { ...deps.ctx, actor: def.actor };
   let reg;
   try { reg = await ensureRegistered(jobCtx, def); }
   catch (e: any) { console.error('[silly-work]', id, 'registry unreadable', errCode(e)); return { status: 'failed', id, error: 'registry_unavailable' }; }
   if (reg.data.enabled === false) return { status: 'disabled', id };
-  if (source === 'schedule' && def.slot && !inLondonSlot(now, def.slot)) return { status: 'off_hour', id };
+  if (source === 'schedule' && def.slot && !inLondonSlot(deps.now(), def.slot)) return { status: 'off_hour', id };
+  return null;
+}
+
+/** Runs one job. Never throws: a failure is recorded and returned. A background job started by a scheduled function arrives as source 'background'. */
+export async function runJob(deps: JobDeps, id: string, source: JobSource): Promise<JobOutcome> {
+  const blocked = await gate(deps, id, source);
+  if (blocked) return blocked;
+  const def = jobMeta(id)!, run = RUNNERS[id];
+  const now = deps.now();
+  const jobCtx: StoreCtx = { ...deps.ctx, actor: def.actor };
 
   const fired_at = isoOf(now);
   let rec: Record<string, unknown>, out: JobOutcome;

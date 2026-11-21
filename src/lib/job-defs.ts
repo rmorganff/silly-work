@@ -10,6 +10,8 @@ export interface JobMeta {
   name: string;
   /** Netlify function file that holds its schedule, for display and for the tests that keep the two in step. */
   function: string;
+  /** Set for a job too long for a scheduled function (30 s): the scheduled function only starts this Netlify background function (15 min). */
+  background?: string;
   /** What the schedule means, in London time. */
   cron_expression: string;
   /** The UTC cron the function file declares. A job with a `slot` lists both UTC hours it can land on. */
@@ -38,8 +40,16 @@ export const JOB_DEFS: JobMeta[] = [
     slot: { hour: 9 }, every_ms: DAY, default_enabled: true, cooldown_ms: 10 * MIN, actor: 'health-check',
   },
   {
-    id: 'trig_fridayreview', name: 'Friday review', function: 'friday-review-scheduled', cron_expression: 'Fridays 15:50 London', netlify_cron: '50 14,15 * * 5',
-    slot: { hour: 15, weekday: 5 }, every_ms: 7 * DAY, default_enabled: false, cooldown_ms: 10 * MIN, actor: 'friday-review',
+    id: 'trig_fridayreview', name: 'Friday review', function: 'friday-review-scheduled', background: 'friday-review-background', cron_expression: 'Fridays 15:45 London', netlify_cron: '45 14,15 * * 5',
+    slot: { hour: 15, weekday: 5 }, every_ms: 7 * DAY, default_enabled: true, cooldown_ms: 10 * MIN, actor: 'friday-review',
+  },
+  {
+    id: 'trig_weekbrief', name: 'Work week brief', function: 'week-brief-scheduled', background: 'week-brief-background', cron_expression: 'Mondays 07:45 London', netlify_cron: '45 6,7 * * 1',
+    slot: { hour: 7, weekday: 1 }, every_ms: 7 * DAY, default_enabled: true, cooldown_ms: 10 * MIN, actor: 'week-brief',
+  },
+  {
+    id: 'trig_chase', name: 'Chase open Slack questions', function: 'chase-scheduled', background: 'chase-background', cron_expression: 'weekdays 09:30 and 13:30 London', netlify_cron: '30 8,9,12,13 * * 1-5',
+    slot: { hour: [9, 13] }, every_ms: DAY, default_enabled: true, cooldown_ms: 10 * MIN, actor: 'chase',
   },
 ];
 export const jobMeta = (id: string): JobMeta | undefined => JOB_DEFS.find((j) => j.id === id);

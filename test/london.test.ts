@@ -19,6 +19,19 @@ describe('Europe/London guard', () => {
     expect(londonTime(new Date('2026-10-25T01:30:00Z')).hour).toBe(1);  // back to GMT: 01:30 again
   });
 
+  it('each cron fires its London time exactly once a day all year: one UTC hour matches the slot, the other does not', () => {
+    const week = ['trig_weekbrief', 'trig_chase', 'trig_fridayreview', 'trig_healthcheck'].map((id) => JOB_DEFS.find((j) => j.id === id)!);
+    for (const j of week) {
+      const [min, hrs] = j.netlify_cron.split(' ');
+      for (let d = 0; d < 366; d++) {
+        const day = new Date(Date.UTC(2026, 0, 1 + d));
+        const hits = hrs.split(',').map(Number).filter((h) => inLondonSlot(new Date(Date.UTC(day.getUTCFullYear(), day.getUTCMonth(), day.getUTCDate(), h, Number(min))), { ...j.slot!, weekday: undefined }));
+        const expected = ([] as number[]).concat(j.slot!.hour).length;
+        expect(hits.length).toBe(expected);
+      }
+    }
+  });
+
   it('a slot can name a weekday (Friday 15:50 for the review)', () => {
     const slot = { hour: 15, weekday: 5 };
     expect(inLondonSlot(new Date('2026-11-20T15:50:00Z'), slot)).toBe(true);  // Fri, GMT
@@ -41,10 +54,9 @@ describe('Europe/London guard', () => {
       expect(/schedule: '([^']+)'/.exec(src)?.[1]).toBe(j.netlify_cron);
       if (j.slot) {
         const hours = j.netlify_cron.split(' ')[1].split(',').map(Number);
-        expect(hours).toHaveLength(2);
+        expect(hours.length).toBeGreaterThanOrEqual(2);
         // the same London slot must be reachable in GMT (UTC hour = slot hour) and in BST (one hour earlier)
-        expect(hours).toContain(j.slot.hour);
-        expect(hours).toContain(j.slot.hour - 1);
+        for (const h of ([] as number[]).concat(j.slot.hour)) { expect(hours).toContain(h); expect(hours).toContain(h - 1); }
       }
     }
   });

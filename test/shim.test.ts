@@ -178,7 +178,7 @@ describe('claude-shim.js', () => {
     const b = await browser();
     const mcp = await b.claude.use('mcp');
     const list = await mcp.callTool('Claude Code Remote', 'list_triggers', { enabled: true, limit: 100 });
-    expect(list.data.map((t: any) => t.id).sort()).toEqual(['trig_answerwatch', 'trig_healthcheck']); // the Friday review is seeded dormant
+    expect(list.data.map((t: any) => t.id).sort()).toEqual(['trig_answerwatch', 'trig_chase', 'trig_fridayreview', 'trig_healthcheck', 'trig_weekbrief']);
     const fired = await mcp.callTool('Claude Code Remote', 'fire_trigger', { trigger_id: 't', text: 'go' });
     expect(fired.error).toBeTruthy();
     expect(b.calls.at(-1)).toMatchObject({ url: '/api/trigger', body: { server: 'Claude Code Remote', tool: 'fire_trigger', args: { trigger_id: 't' } } });
